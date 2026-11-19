@@ -35,14 +35,23 @@ function scrollToSection(sectionId) {
 }
 
 /* Every link that points to "#something" scrolls with the function above.
-   No section is added to the URL bar, so it always shows the clean address (relaxtrip.com/).
-   Links pasted WITH a hash (relaxtrip.com/#faq) still land on that section: the browser does that on its own. */
+   The URL bar shows the section as a PATH (relaxtrip.com/reviews), never with #.
+   Pasted or refreshed path links still land on the right section: on Cloudflare Pages the public/_redirects
+   file serves index.html for any path, and the small router below scrolls to the matching section. */
 document.addEventListener('click', event => {
   const link = event.target.closest('a[href^="#"]');
   if (!link || link.getAttribute('href').length < 2) return;
   event.preventDefault();
   const sectionId = link.getAttribute('href').slice(1);
   scrollToSection(sectionId);
-  try { history.replaceState(null, '', location.pathname + location.search); } catch (error) { /* some previews block this: ignore */ }
+  const newUrl = sectionId === 'top' ? '/' : '/' + sectionId;
+  try { history.replaceState(null, '', newUrl); } catch (error) { /* some previews block this: ignore */ }
 });
+
+/* Path router: on load, a path matching a section id (/, /reviews, /faq ...) scrolls to that section.
+   A #hash on the actual URL is left to the browser, which jumps on its own. */
+if (!location.hash) {
+  const pathSection = decodeURIComponent(location.pathname).replace(/\/+$/, '').split('/').pop();
+  if (pathSection && document.getElementById(pathSection)) scrollToSection(pathSection);
+}
 
