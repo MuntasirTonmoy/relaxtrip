@@ -33,11 +33,15 @@
 @media(prefers-reduced-motion:reduce){.marquee{-webkit-mask-image:none;mask-image:none}.marquee-track{width:auto;flex-wrap:wrap;justify-content:center;transform:none}.airline{margin:.35rem}.airline[aria-hidden=true]{display:none}}
 
 /* FOOTER BOTTOM STRIP (like a classic travel-agency footer): SSLCommerz banner on the left,
-   copyright line on the right; the two stack on small screens. */
-.paybar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.25rem 2rem;margin-top:2.25rem;padding-top:1.5rem;border-top:1px solid #3a3a3a}
+   copyright line on the right on laptops+; on tablets/phones the copyright sits BELOW the banner. */
+.paybar{display:flex;flex-direction:column;align-items:flex-start;gap:1rem;margin-top:2.25rem;padding-top:1.5rem;border-top:1px solid #3a3a3a}
 /* The banner can scroll sideways on phones like a film strip (reference: akijair.com footer). */
 .paybar-logo{max-width:100%;overflow-x:auto}
 .paybar-copy{margin:0;font-size:1.0625rem;color:#a8a8a8}
+@media(min-width:1024px){
+  .paybar{flex-direction:row;align-items:center;justify-content:space-between;gap:2rem}
+  .paybar-copy{white-space:nowrap;text-align:right}
+}
 /* The single SSLCommerz banner ("Pay With" + methods + "Verified by") - the only payment element. */
 .pay-banner{display:block;width:min(100%,42rem);height:auto;background:#fff;border-radius:.75rem;padding:.6rem;box-shadow:0 2px 8px rgba(0,0,0,.45)}
 /* ".foot .socials" (2 classes) so it beats the general ".foot ul" grid rule from section 6
@@ -49,7 +53,7 @@
 .socials a:hover{border-color:var(--color-brand-gold)}
 .socials svg{width:1.35rem;height:1.35rem}
 @media(max-width:767px){.foot .socials{gap:.5rem;justify-content:flex-start}}
-/* Phones: the banner takes the full row (and stacks under/over the copyright line via flex-wrap). */
+/* Phones: the banner takes the full row; the copyright line stays below it. */
 @media(max-width:575px){
   .paybar-logo{width:100%}
   .paybar-copy{text-align:left}

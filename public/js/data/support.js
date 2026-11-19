@@ -15,4 +15,5 @@ export const SUPPORT_CHANNELS = [
 export const SOCIAL_LINKS = [
   { icon: "facebook", label: { en: "Facebook", bn: "ফেসবুক" }, url: "https://www.facebook.com/relaxtripbangladesh/" },
   { icon: "whatsapp", label: { en: "WhatsApp Channel", bn: "হোয়াটসঅ্যাপ চ্যানেল" }, url: "https://whatsapp.com/channel/0029VbCiIHWFCCoP2afjbb1g" },
+  { type: "email", icon: "gmail", label: { en: "Gmail", bn: "জিমেইল" } },
 ];
