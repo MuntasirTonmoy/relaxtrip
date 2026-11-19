@@ -16,7 +16,7 @@
 /* NUMBERS (stat cards): 2 x 2 grid. The big numbers count up when scrolled into view. */
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
 .stat{text-align:center;padding:1.75rem 1rem}
-.stat b{display:block;font-size:clamp(2rem,4vw,2.75rem);font-weight:800;line-height:1.1;color:var(--color-accent-text)}
+.stat b{display:block;font-size:clamp(2rem,4vw,2.75rem);font-weight:800;line-height:1.25;color:var(--color-accent-text);font-variant-numeric:tabular-nums}
 .stat p{margin:.6rem 0 .2rem;font-weight:700;font-size:var(--font-size-small);line-height:1.4} .stat small{font-size:.8125rem;color:var(--color-text-muted)}
 /* SERVICE cards description text. */
 .svc p{color:var(--color-text-muted);font-size:var(--font-size-small)}
@@ -37,13 +37,7 @@
 .rev{display:grid;grid-template-rows:auto 1fr auto;gap:1.25rem;text-align:center;justify-items:center;padding:2.5rem 2rem}
 /* Gold star rating. */
 .stars{color:var(--color-brand-gold);letter-spacing:.2em;font-size:1.65rem}
-blockquote{font-size:clamp(1.2375rem,1.13rem + .5vw,1.4375rem);font-weight:500;line-height:1.55} .who{display:flex;gap:1rem;align-items:center;text-align:left} .who small{color:var(--color-text-muted);font-size:.9625rem}
-/* "Recommends on Facebook" line: wraps on small phones (not enough room next to the avatar),
-   one line from tablet upwards. The clamp shrinks it just enough to fit in the narrower 2- and 3-card views. */
-.fb-src{display:inline-flex;align-items:center;gap:.4rem;font-weight:600;font-size:.85rem;max-width:100%}
-.who > span{min-width:0}
-@media(min-width:640px){.fb-src{white-space:nowrap;font-size:clamp(.7rem,.56rem + .22vw,.85rem);max-width:100%}.fb-src span{overflow:hidden;text-overflow:ellipsis}}
-.fb-src .i{width:1rem;height:1rem;color:#1877F2}
+blockquote{font-size:clamp(1.2375rem,1.13rem + .5vw,1.4375rem);font-weight:500;line-height:1.55} .who{display:flex;gap:1rem;align-items:center;justify-content:center;text-align:left} .who small{color:var(--color-text-muted);font-size:.9625rem}
 /* Slider controls row: previous arrow, dots, next arrow. */
 .cc{display:flex;justify-content:center;align-items:center;gap:.75rem;margin-top:1.5rem;flex-wrap:wrap;max-width:100%}
 /* Dots stay in one horizontal row between the arrows. */

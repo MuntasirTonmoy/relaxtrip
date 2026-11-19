@@ -52,7 +52,7 @@ document.querySelector('#track').innerHTML = REVIEWS.map((review, index) => {
   const avatar = review.photo
     ? `<span class="av photo" aria-hidden="true"><img src="${review.photo}" alt="" loading="lazy"></span>`
     : `<span class="av" aria-hidden="true">${review.initials || initialsOf(review.name.en)}</span>`;
-  return `<div class="slide" role="group" aria-roledescription="slide" aria-label="${index + 1} / ${REVIEWS.length}"><figure class="card rev"><div class="stars" role="img" aria-label="5 / 5">★★★★★</div><blockquote data-i18n="${cardText('review', index, 'quote', review.quote)}"></blockquote><figcaption class="who">${avatar}<span><b data-i18n="${cardText('review', index, 'name', review.name)}"></b><br><small class="fb-src"><i data-icon="facebook"></i><span data-i18n="review_fb_source"></span></small></span></figcaption></figure></div>`;
+  return `<div class="slide" role="group" aria-roledescription="slide" aria-label="${index + 1} / ${REVIEWS.length}"><figure class="card rev"><div class="stars" role="img" aria-label="5 / 5">★★★★★</div><blockquote data-i18n="${cardText('review', index, 'quote', review.quote)}"></blockquote><figcaption class="who">${avatar}<span><b data-i18n="${cardText('review', index, 'name', review.name)}"></b></span></figcaption></figure></div>`;
 }).join('');
 
 /* "Why us" numbered list */
