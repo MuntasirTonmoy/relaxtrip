@@ -77,7 +77,7 @@ blockquote{font-size:var(--font-size-large);font-weight:500} .who{display:flex;g
 .cta{background:#2b2b2b;color:#fff;text-align:center} .cta p{color:#d0d0d0;max-width:34rem}
 .cta .btn:not(.primary){background:transparent;color:#fff;border-color:#666}
 /* FOOTER (final colour is set in section 8). */
-.foot{background:#1f1f1f;color:#cfcfcf;padding-block:4rem 2rem}
+.foot{background:#1f1f1f;color:#cfcfcf;padding-block:clamp(3rem,6vw,4rem) 2rem}
 /* Footer columns: 1 on phones, 2 from 640px, 4 from 1024px. */
 .foot-g{display:grid;gap:2.5rem;grid-template-columns:1fr} .foot-g>div{display:grid;gap:1rem;align-content:start}
 @media(min-width:640px){.foot-g{grid-template-columns:1fr 1fr}} @media(min-width:1024px){.foot-g{grid-template-columns:2fr 1fr 1fr 1.4fr}}

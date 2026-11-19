@@ -23,14 +23,16 @@ function getPerView() {
 const maxFirstSlide = () => Math.max(0, SLIDE_COUNT - getPerView());
 
 /* Shows the window of cards that starts at card `index`; wraps around at both ends.
-   One step moves exactly ONE card: with 11 cards that is 100/11 % of the track,
-   which is correct for any screen size and any number of cards per view. */
+   One step moves exactly ONE card. The track is as wide as the viewport (one page),
+   so one card = 100 / cards-per-view % of the track (100% on mobile, 50% on tablet,
+   33.33% on laptop). */
 function goToSlide(index) {
+  const cardsPerView = getPerView();
   const last = maxFirstSlide();
   currentSlideIndex = index > last ? 0 : index < 0 ? last : Math.min(index, last);
-  reviewTrack.style.transform = `translateX(${-currentSlideIndex * (100 / SLIDE_COUNT)}%)`;
+  reviewTrack.style.transform = `translateX(${-currentSlideIndex * (100 / cardsPerView)}%)`;
   /* Cards outside the current window cannot be tabbed into */
-  const visibleUpTo = currentSlideIndex + getPerView();
+  const visibleUpTo = currentSlideIndex + cardsPerView;
   reviewSlides.forEach((slide, slideIndex) => { slide.inert = slideIndex < currentSlideIndex || slideIndex >= visibleUpTo; });
   reviewDots.forEach((dot, dotIndex) => dot.setAttribute('aria-current', dotIndex === currentSlideIndex));
 }
