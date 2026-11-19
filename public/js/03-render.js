@@ -5,7 +5,7 @@ import { TEAM_MEMBERS, FAQ_ITEMS } from './data/team-faq.js';
 import { PARTNER_AIRLINES, AIRLINE_LOGO_URL, PAYMENT_METHODS, PAYMENT_LOGO_URL, PAYMENT_GATEWAY_BADGE } from './data/partners.js';
 import { SUPPORT_CHANNELS } from './data/support.js';
 import { iconSvg, LOGO_HTML } from './01-icons.js';
-import { whatsappLink, PHONE_LINK, MAPS_LINK, initialsOf } from './02-helpers.js';
+import { whatsappLink, PHONE_INTERNATIONAL_DIGITS, PHONE_LINK, MAPS_LINK, initialsOf } from './02-helpers.js';
 import { cardText } from './04-language.js';
 
 /* =========================================================================

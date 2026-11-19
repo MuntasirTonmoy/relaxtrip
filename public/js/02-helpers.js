@@ -26,6 +26,7 @@ function toInternationalDigits(localNumber) {
 }
 const PHONE_INTERNATIONAL_DIGITS = toInternationalDigits(CONTACT.phone);
 const WHATSAPP_INTERNATIONAL_DIGITS = toInternationalDigits(CONTACT.whatsappPhone || CONTACT.phone);
+export { PHONE_INTERNATIONAL_DIGITS };
 export const PHONE_LINK = 'tel:+' + PHONE_INTERNATIONAL_DIGITS;
 export const MAPS_LINK = CONTACT.mapsLink || 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(CONTACT.address.en);
 
