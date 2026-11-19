@@ -11,11 +11,10 @@
    ========================================================================= */
 /* Logo mark colours: .mk-s = gray parts, .mk-g = gold crescent (shapes live in the SVG <symbol> at the top of <body>). */
 .mk-s{fill:var(--color-logo-gray)} .mk-g{fill:var(--color-logo-mark-gold)}
-/* Dark-theme logo values spelled out (not via the variables) so the mark and the wordmark
-   ALWAYS lighten in dark mode, even where variable inheritance into the SVG <use> copy fails. */
-.dark .mk-s{fill:#d9d9d9}
-.dark .wm .gy{color:#d9d9d9}
-.dark .wm .x{background-image:linear-gradient(90deg,var(--color-brand-gold) 50%,#d9d9d9 50%)}
+/* Dark theme: the wordmark letters go white (the SVG mark's own fill lives inline in index.html,
+   using --color-logo-gray / --color-logo-mark-gold, so it follows the theme automatically). */
+.dark .wm .gy{color:#ffffff}
+.dark .wm .x{background-image:linear-gradient(90deg,var(--color-brand-gold) 50%,#ffffff 50%)}
 /* Logo mark size in the header/footer. */
 .logo svg{height:2.5rem;width:3rem;flex:none}
 /* Hero badge = green "trust" look (light theme, then dark theme). */
