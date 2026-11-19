@@ -112,7 +112,7 @@ function refreshAirportDisplay(wrapper) {
   valueText.classList.toggle('is-empty', !selection);
   valueText.textContent = selection ? (currentLanguage === 'bn' && selection.bn ? selection.bn : selection.city) : translate(wrapper.dataset.placeholderKey);
   wrapper.querySelector('.f-sub').textContent = selection
-    ? (selection.airport ? `${selection.code} - ${selection.airport}` : (selection.flag ? `${selection.flag} ${selection.code}` : (selection.code ? selection.code : '')))
+    ? (selection.airport ? `${selection.code} - ${selection.airport}` : (selection.code ? selection.code : ''))
     : translate(wrapper.dataset.hintKey);
 }
 /* The list inside the pop-up: popular entries, or the ones matching what was typed (works for airports AND countries) */
@@ -128,11 +128,14 @@ function renderAirportList(wrapper) {
   const selectedCode = valueInputOf(wrapper).dataset.selection ? JSON.parse(valueInputOf(wrapper).dataset.selection).code : '';
   let itemsHtml = matches.slice(0, 40).map(airport => {
     const cityName = currentLanguage === 'bn' && airport.bn ? airport.bn : airport.city;
-    const iconHtml = isCountry ? airport.flag : iconSvg('plane');
+    /* Country flags are small images (Windows shows flag EMOJIS as plain letters, so emojis are unreliable) */
+    const iconHtml = isCountry
+      ? `<img class="flag-img" src="https://flagcdn.com/w40/${airport.code.toLowerCase()}.png" alt="" loading="lazy">`
+      : iconSvg('plane');
     const textHtml = isCountry
       ? `<b>${cityName}</b>`
       : `<b>${cityName}, ${airport.country}</b><small>${airport.airport}</small>`;
-    return `<li><button class="pop-item${airport.code === selectedCode ? ' is-selected' : ''}" type="button" role="option" data-airport-code="${airport.code}"><span class="pop-icon${isCountry ? ' pop-flag' : ''}">${iconHtml}</span><span class="pop-item-text">${textHtml}</span><span class="pop-code">${airport.code}</span></button></li>`;
+    return `<li><button class="pop-item${airport.code === selectedCode ? ' is-selected' : ''}" type="button" role="option" data-airport-code="${airport.code}"><span class="pop-icon pop-flag">${iconHtml}</span><span class="pop-item-text">${textHtml}</span><span class="pop-code">${airport.code}</span></button></li>`;
   }).join('');
   if (!itemsHtml && typedText) {                                      /* nothing found: let the visitor use what they typed */
     itemsHtml = `<li><button class="pop-item" type="button" role="option" data-airport-free="${encodeURIComponent(typedText)}"><span class="pop-icon">${iconSvg(isCountry ? 'globe' : 'plane')}</span><span class="pop-item-text"><b>${translate('booking_use_typed').replace('{q}', escapeHtml(typedText))}</b></span></button></li>`;

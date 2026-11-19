@@ -30,9 +30,9 @@ export const AIRLINE_LOGO_URL = "https://pics.avs.io/120/120/{code}.png";
    logo = (optional) address of this method's logo image. This only DISPLAYS accepted methods; real online payment needs a payment-gateway account.
    To use your own file for a method, drop it into public/logos/payments/ named e.g. bkash.svg; a file that cannot load falls back to the name. ---- */
 export const PAYMENT_METHODS = [
-  { name: "Visa", id: "visa" },
-  { name: "Mastercard", id: "mastercard" },
-  { name: "American Express", id: "americanexpress" },
+  { name: "Visa", id: "visa", logo: "logos/payments/visa.svg" },
+  { name: "Mastercard", id: "mastercard", logo: "logos/payments/mastercard.svg" },
+  { name: "American Express", id: "americanexpress", logo: "logos/payments/americanexpress.svg" },
   { name: "bKash", id: "bkash" },
   { name: "Nagad", id: "nagad" },
   { name: "Rocket", id: "rocket" },
@@ -42,10 +42,12 @@ export const PAYMENT_METHODS = [
   { name: "Cash at office", id: "-" },
 ];
 
-/* Folder pattern for the payment logo files. Ships with real Visa / Mastercard / American Express marks and
-   simple brand-colour wordmarks for the Bangladeshi methods — replace any file in public/logos/payments/ with
-   the official one any time. "" = no logos, the tiles show the names. A logo that cannot load falls back to the name. */
-export const PAYMENT_LOGO_URL = "logos/payments/{id}.svg";
+/* Folder pattern for the payment logo files. The official logo pictures for bKash, Nagad, Rocket, Upay and
+   Nexus Pay are in public/logos/payments/ (bkash.png, nagad.png, rocket.png, upay.png, nexuspay.png), and
+   visa / mastercard / americanexpress use exact vector marks (visa.svg, mastercard.svg, americanexpress.svg);
+   a file that cannot load falls back to the name. To switch ALL tiles to another folder or file type, change
+   just the pattern below. "" = no logos, the tiles show the names. */
+export const PAYMENT_LOGO_URL = "logos/payments/{id}.png";
 
 /* ---- Optional "Verified by" badge at the right of the payment row (for example the SSLCOMMERZ banner).
    Keep it null until you really are a verified merchant. Example:
