@@ -45,13 +45,13 @@ document.addEventListener('click', event => {
   const sectionId = link.getAttribute('href').slice(1);
   scrollToSection(sectionId);
   const newUrl = sectionId === 'top' ? '/' : '/' + sectionId;
-  try { history.replaceState(null, '', newUrl); } catch (error) { /* some previews block this: ignore */ }
+  try { window.history.replaceState(null, '', newUrl); } catch (error) { /* some previews block this: ignore */ }
 });
 
 /* Path router: on load, a path matching a section id (/, /reviews, /faq ...) scrolls to that section.
    A #hash on the actual URL is left to the browser, which jumps on its own. */
-if (!location.hash) {
-  const pathSection = decodeURIComponent(location.pathname).replace(/\/+$/, '').split('/').pop();
+if (window.location && !window.location.hash) {
+  const pathSection = decodeURIComponent(window.location.pathname).replace(/\/+$/, '').split('/').pop();
   if (pathSection && document.getElementById(pathSection)) scrollToSection(pathSection);
 }
 

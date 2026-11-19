@@ -15,7 +15,7 @@
 /* Smooth scrolling for anchor links. scroll-padding-top keeps targets clear of the sticky header. */
 html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
 /* Page defaults: colours come from the tokens, so light/dark theme switches everything. */
-body{margin:0;background:var(--color-page-background);color:var(--color-text);font:400 var(--font-size-body)/var(--line-height-body) "Plus Jakarta Sans","Hind Siliguri",system-ui,sans-serif;-webkit-font-smoothing:antialiased;transition:background-color var(--motion-duration-normal),color var(--motion-duration-normal)}
+body{margin:0;background:var(--color-page-background);color:var(--color-text);font:400 var(--font-size-body)/var(--line-height-body) "Plus Jakarta Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased;transition:background-color var(--motion-duration-normal),color var(--motion-duration-normal)}
 /* Remove default browser margins; spacing is added deliberately per component. */
 h1,h2,h3,h4,p,figure,blockquote,ul{margin:0}
 ul{padding:0;list-style:none}
