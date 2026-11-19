@@ -71,6 +71,7 @@ export const SITE_TEXT = {
     en: "Real feedback from clients who experienced our ticketing and tour services.",
     bn: "আমাদের সেবা গ্রহণকারী সম্মানিত ক্লায়েন্টদের বাস্তব অভিজ্ঞতা।",
   },
+  review_fb_source: { en: "Recommends Relax Trip on Facebook", bn: "ফেসবুকে Relax Trip ফর সুপারিশ করেছেন" },
 
   /* ---- WHY US (heading) ---- */
   why_tag: { en: "Why Choose Us", bn: "কেন আমাদের বেছে নেবেন" },

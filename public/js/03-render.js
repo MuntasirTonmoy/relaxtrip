@@ -45,16 +45,9 @@ document.querySelector('#stats').innerHTML = STAT_CARDS.map(({ type, value, labe
   return `<div class="card stat rv" style="--reveal-order:${index}"><b ${numberAttribute}>0</b><p data-i18n="${cardText('stat', index, 'label', label)}"></p><small data-i18n="${cardText('stat', index, 'note', note)}"></small></div>`;
 }).join('');
 
-/* Poster shown on a video review before it is played (logo watermark + YouTube thumbnail + badge + play button).
-   If the thumbnail cannot load, it removes itself and the dark poster behind it shows instead. */
-export function videoPosterHtml(reviewIndex) {
-  const review = REVIEWS[reviewIndex];
-  return `<svg class="vmk" aria-hidden="true"><use href="#rt-mark" width="100%" height="100%"/></svg><img src="https://i.ytimg.com/vi/${review.videoId}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="vbadge" data-i18n="${cardText('review', reviewIndex, 'videoBadge', review.videoBadge)}"></span><button class="play" aria-label="Play video review ${reviewIndex + 1}">${iconSvg('play')}</button>`;
-}
-
-/* Review slides (inside #track) */
+/* Review slides (inside #track): stars, the quote, then who said it (Facebook recommendation) */
 document.querySelector('#track').innerHTML = REVIEWS.map((review, index) =>
-  `<div class="slide" role="group" aria-roledescription="slide" aria-label="${index + 1} / ${REVIEWS.length}"><figure class="card rev"><div class="vid" data-index="${index}">${videoPosterHtml(index)}</div><div class="stars" role="img" aria-label="5 / 5">★★★★★</div><blockquote data-i18n="${cardText('review', index, 'quote', review.quote)}"></blockquote><figcaption class="who"><span class="av" aria-hidden="true">${review.initials || initialsOf(review.name.en)}</span><span><b data-i18n="${cardText('review', index, 'name', review.name)}"></b><br><small data-i18n="${cardText('review', index, 'location', review.location)}"></small></span></figcaption></figure></div>`
+  `<div class="slide" role="group" aria-roledescription="slide" aria-label="${index + 1} / ${REVIEWS.length}"><figure class="card rev"><div class="stars" role="img" aria-label="5 / 5">★★★★★</div><blockquote data-i18n="${cardText('review', index, 'quote', review.quote)}"></blockquote><figcaption class="who"><span class="av" aria-hidden="true">${review.initials || initialsOf(review.name.en)}</span><span><b data-i18n="${cardText('review', index, 'name', review.name)}"></b><br><small class="fb-src"><i data-icon="facebook"></i><span data-i18n="review_fb_source"></span></small></span></figcaption></figure></div>`
 ).join('');
 
 /* Slider dots (one per review) */

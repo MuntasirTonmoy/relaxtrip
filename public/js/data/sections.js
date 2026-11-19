@@ -81,40 +81,91 @@ export const SERVICES = [
   },
 ];
 
-/* ---- REVIEWS: one slide each (video review card).
-   videoId   = the YouTube video ID (the part after "v=" in the link). These are DUMMY ids - replace them.
-   videoBadge = small label on the video poster.
-   initials  = (optional) avatar letters; if missing they are made from the English name. ---- */
+/* ---- REVIEWS: real customer recommendations taken from our Facebook page.
+   HOW TO EDIT:
+   - ADD a review: copy one { ... } block, paste it at the top or bottom, and change name + quote.
+   - REMOVE a review: delete its { ... } block.
+   quotes are shown exactly as customers wrote them (English or Bangla). The SAME text is used
+   for both languages, so reviews switch between EN/BN unchanged - swap quote.bn for your own
+   Bangla translation if you prefer.
+   initials are made automatically from the English name. ---- */
 export const REVIEWS = [
   {
-    name: { en: "Tanvir Ahmed", bn: "তানভীর আহমেদ" },
-    location: { en: "Dhaka, Bangladesh", bn: "ঢাকা, বাংলাদেশ" },
+    name: { en: "Md Rafik Ahmed", bn: "Md Rafik Ahmed" },
     quote: {
-      en: "\"RelaxTrip made our family trip to Cox's Bazar completely effortless. Tickets and hotel bookings were handled in minutes with great support!\"",
-      bn: "\"রিল্যাক্সট্রিপ আমাদের কক্সবাজার পারিবারিক ভ্রমণকে অত্যন্ত সহজ করে তুলেছে। টিকিট এবং হোটেল বুকিং মাত্র কয়েক মিনিটে সম্পন্ন হয়েছে!\"",
+      en: "Excellent service! The booking process was smooth, quick, and hassle-free. Highly recommended for reliable air ticketing services.",
+      bn: "Excellent service! The booking process was smooth, quick, and hassle-free. Highly recommended for reliable air ticketing services.",
     },
-    videoBadge: { en: "Video Review: Cox's Bazar Trip", bn: "ভিডিও রিভিউ: কক্সবাজার ট্যুর" },
-    videoId: "jNQXAC9IVRw",
   },
   {
-    name: { en: "Sumaiya Rahman", bn: "সুমাইয়া রহমান" },
-    location: { en: "Chattogram, Bangladesh", bn: "চট্টগ্রাম, বাংলাদেশ" },
+    name: { en: "Yeasin Arafat", bn: "Yeasin Arafat" },
     quote: {
-      en: "\"I got my Dubai tourist visa and air ticket through RelaxTrip. Their pricing is transparent and the service is exceptionally professional.\"",
-      bn: "\"আমি রিল্যাক্সট্রিপের মাধ্যমে আমার দুবাই ট্যুরিস্ট ভিসা ও এয়ার টিকিট সংগ্রহ করেছি। তাদের মূল্য অত্যন্ত স্বচ্ছ এবং সেবা পেশাদার।\"",
+      en: "Well and so much trustful... thanks for making our journey so easy and comfortable.",
+      bn: "Well and so much trustful... thanks for making our journey so easy and comfortable.",
     },
-    videoBadge: { en: "Video Review: Dubai Visa & Flight", bn: "ভিডিও রিভিউ: দুবাই ভিসা ও ফ্লাইট" },
-    videoId: "jNQXAC9IVRw",
   },
   {
-    name: { en: "Fahim Chowdhury", bn: "ফাহিম চৌধুরী" },
-    location: { en: "Sylhet, Bangladesh", bn: "সিলেট, বাংলাদেশ" },
+    name: { en: "MD Forhad Ahmead", bn: "MD Forhad Ahmead" },
     quote: {
-      en: "\"Outstanding 24/7 support. When my connecting flight was rescheduled, their team solved my ticket reissuance instantly.\"",
-      bn: "\"অসাধারণ ২৪/৭ সাপোর্ট। কানেক্টিং ফ্লাইট পরিবর্তনের সময় এয়ারপোর্টে থাকা অবস্থায় তাদের টিম তাৎক্ষণিকভাবে সমাধান করে দিয়েছে।\"",
+      en: "\u0985\u09a4\u09cd\u09af\u09a8\u09cd\u09a4 \u09ac\u09bf\u09b6\u09cd\u09ac\u09b8\u09cd\u09a4 \u098f\u0995\u099f\u09bf \u098f\u09af\u09bc\u09be\u09b0 \u099f\u09bf\u0995\u09bf\u099f\u09bf\u0982 \u09b8\u09be\u09b0\u09cd\u09ad\u09bf\u09b8\u0964 \u09a4\u09be\u09a6\u09c7\u09b0 \u09b8\u09be\u09b0\u09cd\u09ad\u09bf\u09b8\u09c7 \u0986\u09ae\u09bf \u09b8\u09a8\u09cd\u09a4\u09c1\u09b7\u09cd\u099f\u0964",
+      bn: "\u0985\u09a4\u09cd\u09af\u09a8\u09cd\u09a4 \u09ac\u09bf\u09b6\u09cd\u09ac\u09b8\u09cd\u09a4 \u098f\u0995\u099f\u09bf \u098f\u09af\u09bc\u09be\u09b0 \u099f\u09bf\u0995\u09bf\u099f\u09bf\u0982 \u09b8\u09be\u09b0\u09cd\u09ad\u09bf\u09b8\u0964 \u09a4\u09be\u09a6\u09c7\u09b0 \u09b8\u09be\u09b0\u09cd\u09ad\u09bf\u09b8\u09c7 \u0986\u09ae\u09bf \u09b8\u09a8\u09cd\u09a4\u09c1\u09b7\u09cd\u099f\u0964",
     },
-    videoBadge: { en: "Video Review: 24/7 Support", bn: "ভিডিও রিভিউ: ২৪/৭ সাপোর্ট" },
-    videoId: "jNQXAC9IVRw",
+  },
+  {
+    name: { en: "Tareq Rahman", bn: "Tareq Rahman" },
+    quote: {
+      en: "\u09a4\u09be\u09a6\u09c7\u09b0 \u09ac\u09cd\u09af\u09ac\u09b9\u09be\u09b0 \u0993 \u09b8\u09be\u09b0\u09cd\u09ad\u09bf\u09b8 \u09a6\u09c1\u099f\u09cb\u0987 \u0985\u09a8\u09c7\u0995 \u09ad\u09be\u09b2\u09cb\u0964 \u09ac\u09b0\u09cd\u09a4\u09ae\u09be\u09a8 \u09b8\u09ae\u09df\u09c7 \u098f\u0987 \u09b0\u0995\u09ae \u09b8\u09be\u09b0\u09cd\u09ad\u09bf\u09b8 \u0996\u09c1\u09ac\u0987 \u0995\u09ae \u09aa\u09be\u0993\u09df\u09be \u09af\u09be\u09df\u0964 \u09b8\u09ac \u0995\u09bf\u099b\u09c1\u09b0 \u099c\u09a8\u09cd\u09af \u09a7\u09a8\u09cd\u09af\u09ac\u09be\u09a6.",
+      bn: "\u09a4\u09be\u09a6\u09c7\u09b0 \u09ac\u09cd\u09af\u09ac\u09b9\u09be\u09b0 \u0993 \u09b8\u09be\u09b0\u09cd\u09ad\u09bf\u09b8 \u09a6\u09c1\u099f\u09cb\u0987 \u0985\u09a8\u09c7\u0995 \u09ad\u09be\u09b2\u09cb\u0964 \u09ac\u09b0\u09cd\u09a4\u09ae\u09be\u09a8 \u09b8\u09ae\u09df\u09c7 \u098f\u0987 \u09b0\u0995\u09ae \u09b8\u09be\u09b0\u09cd\u09ad\u09bf\u09b8 \u0996\u09c1\u09ac\u0987 \u0995\u09ae \u09aa\u09be\u0993\u09df\u09be \u09af\u09be\u09df\u0964 \u09b8\u09ac \u0995\u09bf\u099b\u09c1\u09b0 \u099c\u09a8\u09cd\u09af \u09a7\u09a8\u09cd\u09af\u09ac\u09be\u09a6.",
+    },
+  },
+  {
+    name: { en: "Tahsan Khan", bn: "Tahsan Khan" },
+    quote: {
+      en: "\u0986\u09ae\u09bf \u0986\u099c\u0995\u09c7 \u09ae\u09be\u09b2\u09af\u09bc\u09c7\u09b6\u09bf\u09af\u09bc\u09be\u09af\u09af\u09bc \u09b0\u09bf\u09b2\u09cd\u09af\u09be\u0995\u09cd\u09b8 \u099f\u09bf\u09aa \u098f\u09b0 \u09ae\u09be\u09a7\u09cd\u09af\u09ae\u09c7 \u099f\u09bf\u0995\u09c7\u099f \u0995\u09c7\u099f\u09c7 \u0986\u09b8\u099b\u09bf, \u0993\u09a8\u09be\u09a6\u09c7\u09b0 \u09ac\u09cd\u09af\u09ac\u09b9\u09be\u09b0 \u0985\u09a8\u09c7\u0995 \u09ad\u09be\u09b2\u09cb \u098f\u09ac\u0982 \u0985\u09a8\u09c7\u0995 \u09b8\u09be\u09aa\u09cb\u09b0\u09cd\u099f\u09bf\u0982 \u09b8\u0995\u09b2 \u0995\u09bf\u099b\u09c1 \u0985\u09a8\u09c7\u0995 \u09b8\u09c1\u09a8\u09cd\u09a6\u09b0 \u0995\u09b0\u09c7 \u09ac\u09c1\u099d\u09bf\u09af\u09bc\u09c7 \u09a6\u09bf\u09af\u09bc\u09c7\u099b\u09bf\u09b2\u09c7\u09a8\u0964",
+      bn: "\u0986\u09ae\u09bf \u0986\u099c\u0995\u09c7 \u09ae\u09be\u09b2\u09af\u09bc\u09c7\u09b6\u09bf\u09af\u09bc\u09be\u09af\u09af\u09bc \u09b0\u09bf\u09b2\u09cd\u09af\u09be\u0995\u09cd\u09b8 \u099f\u09bf\u09aa \u098f\u09b0 \u09ae\u09be\u09a7\u09cd\u09af\u09ae\u09c7 \u099f\u09bf\u0995\u09c7\u099f \u0995\u09c7\u099f\u09c7 \u0986\u09b8\u099b\u09bf, \u0993\u09a8\u09be\u09a6\u09c7\u09b0 \u09ac\u09cd\u09af\u09ac\u09b9\u09be\u09b0 \u0985\u09a8\u09c7\u0995 \u09ad\u09be\u09b2\u09cb \u098f\u09ac\u0982 \u0985\u09a8\u09c7\u0995 \u09b8\u09be\u09aa\u09cb\u09b0\u09cd\u099f\u09bf\u0982 \u09b8\u0995\u09b2 \u0995\u09bf\u099b\u09c1 \u0985\u09a8\u09c7\u0995 \u09b8\u09c1\u09a8\u09cd\u09a6\u09b0 \u0995\u09b0\u09c7 \u09ac\u09c1\u099d\u09bf\u09af\u09bc\u09c7 \u09a6\u09bf\u09af\u09bc\u09c7\u099b\u09bf\u09b2\u09c7\u09a8\u0964",
+    },
+  },
+  {
+    name: { en: "Md Rafsan Imran", bn: "Md Rafsan Imran" },
+    quote: {
+      en: "I really appreciate their professionalism, honesty, and commitment to customer satisfaction.",
+      bn: "I really appreciate their professionalism, honesty, and commitment to customer satisfaction.",
+    },
+  },
+  {
+    name: { en: "Habibur Rahman", bn: "Habibur Rahman" },
+    quote: {
+      en: "Very satisfied with their service. Highly recommended!",
+      bn: "Very satisfied with their service. Highly recommended!",
+    },
+  },
+  {
+    name: { en: "Tufael Khan", bn: "Tufael Khan" },
+    quote: {
+      en: "Excellent service with reasonable prices.",
+      bn: "Excellent service with reasonable prices.",
+    },
+  },
+  {
+    name: { en: "SK Walid", bn: "SK Walid" },
+    quote: {
+      en: "Excellent service with reasonable prices. Highly recommended.",
+      bn: "Excellent service with reasonable prices. Highly recommended.",
+    },
+  },
+  {
+    name: { en: "Sam Fisher", bn: "Sam Fisher" },
+    quote: {
+      en: "Trusted and very well-behaved. After-sales service is top-notch. 100/100 recommended.",
+      bn: "Trusted and very well-behaved. After-sales service is top-notch. 100/100 recommended.",
+    },
+  },
+  {
+    name: { en: "M M Sohan Parvez", bn: "M M Sohan Parvez" },
+    quote: {
+      en: "The admin's support and behavior is awesome.",
+      bn: "The admin's support and behavior is awesome.",
+    },
   },
 ];
 

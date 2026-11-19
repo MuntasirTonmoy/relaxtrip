@@ -1,13 +1,13 @@
 /* =========================================================================
-   FILE: css/09-map-video-poster.css
+   FILE: css/09-map.css
    This file was section 09 of the old single-file version.
    LOAD ORDER MATTERS: keep the <link> list in index.html in numbered order,
    lower numbers load first, later files win when rules conflict.
    ========================================================================= */
 
 /* =========================================================================
-   9. MAP AND VIDEO POSTER
-   The illustrated map card in Location, and the dark poster shown behind each video review.
+   9. MAP CARD
+   The real Google Maps frame in the Location section (plus the static SVG map fallback styles).
    ========================================================================= */
 
 /* Wordmark always uses the brand font and tight spacing, in both languages, so it looks identical everywhere. */
@@ -25,7 +25,4 @@ html[lang=bn] .wm,html[lang=bn] .wm *{letter-spacing:-.03em}
 .m-w{fill:color-mix(in srgb,var(--color-brand-charcoal) 22%,transparent)} .m-r{stroke:var(--color-border);stroke-width:6}
 .m-halo{fill:rgba(255,180,0,.28);transform-box:fill-box;transform-origin:center;animation:pulse 2s ease-in-out infinite}
 .m-lab{position:absolute;left:1rem;bottom:1rem;display:inline-flex;gap:.5rem;align-items:center;padding:.65rem 1.1rem;border-radius:999px;background:var(--color-brand-gold);color:var(--color-black);font-weight:700;font-size:var(--font-size-small)}
-/* Video poster backdrop (charcoal to black) + the logo mark watermark inside it. */
-.vid{background:linear-gradient(135deg,var(--color-brand-charcoal),#111)} .vid img{position:absolute;inset:0}
-.vmk{position:absolute;inset:0;margin:auto;width:40%;height:72%;opacity:.22}
 

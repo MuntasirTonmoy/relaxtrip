@@ -21,7 +21,7 @@ relaxtrip/
     │   ├── 06-sections.css    ← services, why-us, team, FAQ, reviews…
     │   ├── 07-reveal-motion.css   ← scroll fade-in animations
     │   ├── 08-refinements.css ← small polish (hovers, badges)
-    │   ├── 09-map-video-poster.css
+    │   ├── 09-map.css
     │   ├── 10-small-screens.css   ← phone/tablet adjustments
     │   ├── 11-mobile-menu-cta.css ← mobile drawer & floating CTA
     │   ├── 12-airlines-payments-support.css
@@ -49,7 +49,7 @@ relaxtrip/
             ├── contact.js     ← phone, email, address, WhatsApp number
             ├── navigation.js  ← NAV_LINKS, TRUST_POINTS
             ├── enquiry.js     ← ENQUIRY_TABS, AIRPORTS, calendar settings
-            ├── sections.js    ← STAT_CARDS, SERVICES, REVIEWS, WHY_US_ITEMS
+            ├── sections.js    ← STAT_CARDS, SERVICES, REVIEWS (Facebook), WHY_US_ITEMS
             ├── team-faq.js    ← TEAM_MEMBERS, FAQ_ITEMS
             ├── partners.js    ← PARTNER_AIRLINES, PAYMENT_METHODS + logo folder pattern
             ├── support.js     ← SUPPORT_CHANNELS, SOCIAL_LINKS (footer social icons)

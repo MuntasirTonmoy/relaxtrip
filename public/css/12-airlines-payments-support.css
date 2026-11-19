@@ -32,20 +32,28 @@
 /* People who ask for less motion get a still, wrapped grid instead of the scrolling row. */
 @media(prefers-reduced-motion:reduce){.marquee{-webkit-mask-image:none;mask-image:none}.marquee-track{width:auto;flex-wrap:wrap;justify-content:center;transform:none}.airline{margin:.35rem}.airline[aria-hidden=true]{display:none}}
 
-/* FOOTER "PAY WITH" row: label on the left, white logo tiles, optional "Verified by" badge on the right. */
+/* FOOTER "PAY WITH" row: label on the left, white logo tiles, optional "Verified by" badge on the right.
+   All tiles are the exact same size (a fixed-height box), so every row lines up perfectly. */
 .pay{display:flex;flex-wrap:wrap;align-items:center;gap:1.25rem 1.75rem;margin-top:3rem;padding-top:1.5rem;border-top:1px solid #3a3a3a}
 .pay-head{display:grid;gap:.35rem;padding-right:1.75rem;border-right:1px solid #3a3a3a}
 .pay-title{display:flex;align-items:center;gap:.5rem;margin:0}
 .pay-head p{margin:0;max-width:14rem;font-size:.8125rem;color:#a8a8a8}
 /* ".foot" in front so this beats the general footer list rule (which would stack the tiles). */
-.foot .pay-list{display:flex;flex:1;flex-wrap:wrap;gap:.75rem;margin:0;padding:0;list-style:none}
-.socials{display:flex;flex-direction:row;gap:.6rem;list-style:none;margin:0 0 1.4rem;padding:0}
+.foot .pay-list{display:flex;flex:1;flex-wrap:wrap;align-items:center;gap:.75rem;margin:0;padding:0;list-style:none}
+.socials{display:flex;flex-direction:row;flex-wrap:wrap;gap:.6rem;list-style:none;margin:0 0 1.4rem;padding:0}
 .socials li{flex:none}
 .socials a{display:grid;place-items:center;width:2.75rem;height:2.75rem;border-radius:999px;border:1px solid var(--color-border);background:transparent;color:var(--color-text-muted);transition:transform var(--motion-duration-normal) var(--motion-easing),color var(--motion-duration-normal) var(--motion-easing),border-color var(--motion-duration-normal) var(--motion-easing)}
 .socials a:hover{transform:translateY(-2px);color:var(--color-brand-gold);border-color:var(--color-brand-gold)}
 .socials svg{width:1.35rem;height:1.35rem}
 @media(max-width:767px){.socials{gap:.5rem;justify-content:flex-start}}
-.pay-tile{display:grid;place-items:center;width:5.5rem;aspect-ratio:2 / 1;height:auto;padding:.4rem .6rem;border-radius:.75rem;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.45);overflow:hidden}
+/* Phones: the whole set of payment logos stays in ONE horizontal row - it scrolls sideways
+   instead of wrapping onto several uneven lines (scroll with a finger, like a film strip). */
+@media(max-width:575px){
+  .foot .pay-list{flex-wrap:nowrap;overflow-x:auto;padding-bottom:.5rem;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}
+  .pay-tile{scroll-snap-align:start}
+  .pay-gateway{margin-left:0}
+}
+.pay-tile{display:grid;place-items:center;flex:none;width:5.5rem;height:2.75rem;padding:.4rem .6rem;border-radius:.75rem;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.45);overflow:hidden}
 .pay-tile img{display:block;width:100%;height:100%;object-fit:contain}
 .pay-name{display:none;font-size:.75rem;font-weight:800;line-height:1.15;text-align:center;color:#1f1f1f}
 .pay-tile.no-logo .pay-name{display:block}
