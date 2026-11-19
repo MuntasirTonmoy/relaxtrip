@@ -39,13 +39,13 @@ function enquiryFieldHtml(tab, field) {
     }).join('');
     return `${wrapperStart('f-segmented')}<fieldset><legend class="sr-only" data-i18n="${labelKey}"></legend><div class="seg-group">${pills}</div></fieldset></div>`;
   }
+  const swapButtonHtml = field.swapWith
+    ? `<button class="f-swap" type="button" data-swap="${field.name}|${field.swapWith}">${iconSvg('swap')}<span class="sr-only" data-i18n="booking_swap"></span></button>`
+    : '';
   if (field.type === 'airport') {                                    /* city + airport (or country, when source = "countries"), chosen from a searchable list */
     const extraAttributes = ` data-placeholder-key="${cardText(keyPrefix, 0, 'placeholder', field.placeholder)}" data-hint-key="${cardText(keyPrefix, 0, 'hint', field.hint)}" data-options-source="${field.source || 'airports'}"`;
-    const swapButton = field.swapWith
-      ? `<button class="f-swap" type="button" data-swap="${field.name}|${field.swapWith}">${iconSvg('swap')}<span class="sr-only" data-i18n="booking_swap"></span></button>`
-      : '';
     const searchKey = field.source === 'countries' ? 'booking_search_country' : 'booking_search_airport';
-    return `${wrapperStart('f-popup-field', extraAttributes)}${triggerStart}${labelHtml}<span class="f-value"></span><span class="f-sub"></span></button><input type="hidden" name="${field.name}" id="${idPrefix}" data-value-input data-selection="">${swapButton}<div class="f-pop" id="${idPrefix}-popover" role="dialog" aria-label="${field.label.en}">${searchBox(searchKey)}<p class="pop-title"></p><ul class="pop-list" role="listbox"></ul></div></div>`;
+    return `${wrapperStart('f-popup-field', extraAttributes)}${triggerStart}${labelHtml}<span class="f-value"></span><span class="f-sub"></span></button><input type="hidden" name="${field.name}" id="${idPrefix}" data-value-input data-selection="">${swapButtonHtml}<div class="f-pop" id="${idPrefix}-popover" role="dialog" aria-label="${field.label.en}">${searchBox(searchKey)}<p class="pop-title"></p><ul class="pop-list" role="listbox"></ul></div></div>`;
   }
   if (field.type === 'select') {                                     /* a list pop-up (optionally with a search box) */
     field.options.forEach((option, index) => cardText(keyPrefix + '_option', index, 'label', option.label));
@@ -55,7 +55,7 @@ function enquiryFieldHtml(tab, field) {
   }
   if (field.type === 'date') {                                       /* a calendar pop-up */
     const datePlaceholder = field.placeholder ? ` data-placeholder-key="${cardText(keyPrefix, 0, 'placeholder', field.placeholder)}"` : '';
-    return `${wrapperStart('f-popup-field', datePlaceholder)}${triggerStart}${labelHtml}<span class="f-value"></span><span class="f-sub"></span></button><input type="hidden" name="${field.name}" id="${idPrefix}" data-value-input><div class="f-pop cal-pop" id="${idPrefix}-popover" role="dialog" aria-label="${field.label.en}"><div class="cal-head"><span class="cal-head-icon">${iconSvg('calendar')}</span><span class="cal-head-text"><small data-i18n="${labelKey}"></small><b class="cal-head-value"></b></span></div><div class="cal-nav"><button class="cal-nav-button" type="button" data-cal-nav="-1">${iconSvg('chev-l')}</button><b class="cal-month"></b><button class="cal-nav-button" type="button" data-cal-nav="1">${iconSvg('chev-r')}</button></div><div class="cal-grid"></div></div></div>`;
+    return `${wrapperStart('f-popup-field', datePlaceholder)}${triggerStart}${labelHtml}<span class="f-value"></span><span class="f-sub"></span></button><input type="hidden" name="${field.name}" id="${idPrefix}" data-value-input>${swapButtonHtml}<div class="f-pop cal-pop" id="${idPrefix}-popover" role="dialog" aria-label="${field.label.en}"><div class="cal-head"><span class="cal-head-icon">${iconSvg('calendar')}</span><span class="cal-head-text"><small data-i18n="${labelKey}"></small><b class="cal-head-value"></b></span></div><div class="cal-nav"><button class="cal-nav-button" type="button" data-cal-nav="-1">${iconSvg('chev-l')}</button><b class="cal-month"></b><button class="cal-nav-button" type="button" data-cal-nav="1">${iconSvg('chev-r')}</button></div><div class="cal-grid"></div></div></div>`;
   }
   if (field.type === 'travellers') {                                 /* summary button + pop-up with counters (and cabin class) */
     const counterRows = field.counters.map((counter, index) => {
@@ -246,6 +246,11 @@ function refreshEnquiryForm(form) {
     const isEnabled = form.elements[wrapper.dataset.enableWhenField].value === wrapper.dataset.enableWhenValue;
     wrapper.classList.toggle('is-disabled', !isEnabled);
     wrapper.querySelectorAll('[data-value-input]').forEach(control => { control.disabled = !isEnabled; });   /* a disabled field is not checked */
+  });
+  /* A swap arrow between two fields disappears when the second field is switched off (One Way hides the Departure-Return arrow). */
+  form.querySelectorAll('.f-swap').forEach(button => {
+    const secondWrapper = form.querySelector('.f[data-field="' + button.dataset.swap.split('|')[1] + '"]');
+    button.hidden = Boolean(secondWrapper && secondWrapper.classList.contains('is-disabled'));
   });
   form.querySelectorAll('.f[data-type=date]').forEach(wrapper => {
     const field = fieldOfWrapper(form, wrapper);

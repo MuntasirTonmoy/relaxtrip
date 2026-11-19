@@ -6,7 +6,7 @@ import { PARTNER_AIRLINES, AIRLINE_LOGO_URL } from './data/partners.js';
 import { SUPPORT_CHANNELS, SOCIAL_LINKS } from './data/support.js';
 import { iconSvg, LOGO_HTML } from './01-icons.js';
 import { whatsappLink, PHONE_INTERNATIONAL_DIGITS, PHONE_LINK, MAPS_LINK, initialsOf } from './02-helpers.js';
-import { cardText } from './04-language.js';
+import { cardText, localizeDigits, onLanguageChange } from './04-language.js';
 
 /* =========================================================================
    3. BUILD THE PAGE
@@ -162,7 +162,12 @@ structuredDataTag.textContent = JSON.stringify({
   openingHours: CONTACT.openingHoursCode
 });
 document.head.appendChild(structuredDataTag);
-document.querySelectorAll('[data-phone-text]').forEach(element => { element.textContent = CONTACT.phone; });
+/* The phone number re-writes itself on language change: Bangla numerals in bn mode, English digits in en mode. */
+function refreshPhoneTexts() {
+  document.querySelectorAll('[data-phone-text]').forEach(element => { element.textContent = localizeDigits(CONTACT.phone); });
+}
+refreshPhoneTexts();
+onLanguageChange(refreshPhoneTexts);
 document.querySelectorAll('[data-email-text]').forEach(element => { element.textContent = CONTACT.email; });
 
 /* Menu button holds two icons; CSS shows the "menu" or the "X" depending on aria-expanded */
