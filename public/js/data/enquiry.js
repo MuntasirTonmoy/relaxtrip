@@ -20,7 +20,7 @@ export const ENQUIRY_TABS = [
     id: "flight",
     icon: "plane",
     label: { en: "Air Ticket", bn: "এয়ার টিকিট" },
-    messageIntro: "Hello RelaxTrip! I would like to enquire about ✈️ Air ticket booking.",
+    messageIntro: "Hello RelaxTrip! I would like to enquire about Air ticket booking.",
     messageClosing: "Please share the best available fares. Thank you!",
     fields: [
       { name: "tripType", type: "segmented", columns: 12, label: { en: "Trip type", bn: "ট্রিপের ধরন" }, messageLabel: "Trip",
@@ -28,7 +28,7 @@ export const ENQUIRY_TABS = [
       { name: "from", type: "airport", columns: 2.5, required: true, swapWith: "to", defaultCode: "DAC", label: { en: "From", bn: "কোথা থেকে" }, placeholder: { en: "Select city", bn: "শহর বাছাই করুন" }, hint: { en: "City or airport", bn: "শহর বা বিমানবন্দর" } },
       { name: "to", type: "airport", columns: 2.5, required: true, label: { en: "To", bn: "কোথায়" }, placeholder: { en: "Select city", bn: "শহর বাছাই করুন" }, hint: { en: "City or airport", bn: "শহর বা বিমানবন্দর" } },
       { name: "departure", type: "date", columns: 2, required: true, label: { en: "Departure", bn: "যাত্রার তারিখ" } },
-      { name: "return", type: "date", columns: 2, required: true, minFrom: "departure", enableWhen: { field: "tripType", value: "return" }, disabledText: { en: "Add Return", bn: "ফেরার তারিখ দিন" }, label: { en: "Return", bn: "ফেরার তারিখ" } },
+      { name: "return", type: "date", columns: 2, required: true, minFrom: "departure", enableWhen: { field: "tripType", value: "return" }, disabledText: { en: "Add return date", bn: "ফেরার তারিখ দিন" }, placeholder: { en: "Add return date", bn: "ফেরার তারিখ দিন" }, label: { en: "Return", bn: "ফেরার তারিখ" } },
       { name: "travellers", type: "travellers", columns: 3, tablet: 4, summarySub: "class", label: { en: "Passenger & Class", bn: "যাত্রী ও ক্লাস" },
         counters: [
           { name: "adults", min: 1, max: 9, value: 1, label: { en: "Adult", bn: "প্রাপ্তবয়স্ক" }, hint: { en: "12 years and above", bn: "১২ বছর ও তার বেশি" }, messageLabel: "Adults" },
@@ -43,10 +43,10 @@ export const ENQUIRY_TABS = [
     id: "visa",
     icon: "file-check",
     label: { en: "Visa Processing", bn: "ভিসা প্রসেসিং" },
-    messageIntro: "Hello RelaxTrip! I would like to enquire about 🛂 Visa processing.",
+    messageIntro: "Hello RelaxTrip! I would like to enquire about Visa processing.",
     messageClosing: "Please let me know the required documents, fees and processing time. Thank you!",
     fields: [
-      { name: "country", type: "text", columns: 3, required: true, label: { en: "Visa country", bn: "ভিসার দেশ" }, placeholder: { en: "e.g. Malaysia", bn: "যেমন মালয়েশিয়া" }, hint: { en: "Where do you want to go?", bn: "কোথায় যেতে চান?" }, messageLabel: "Destination country" },
+      { name: "country", type: "airport", source: "countries", columns: 3, required: true, label: { en: "Visa country", bn: "ভিসার দেশ" }, placeholder: { en: "Select country", bn: "দেশ বাছাই করুন" }, hint: { en: "City or country", bn: "শহর বা দেশ" }, messageLabel: "Destination country" },
       { name: "visaType", type: "select", columns: 3, searchable: true, searchPlaceholder: { en: "Search visa type", bn: "ভিসার ধরন খুঁজুন" }, label: { en: "Visa type", bn: "ভিসার ধরন" }, hint: { en: "Select", bn: "নির্বাচন করুন" }, messageLabel: "Visa type",
         options: [ { icon: "compass", label: { en: "Tourist", bn: "ট্যুরিস্ট" } }, { icon: "briefcase", label: { en: "Business", bn: "বিজনেস" } }, { icon: "cap", label: { en: "Student", bn: "স্টুডেন্ট" } }, { icon: "building", label: { en: "Work", bn: "ওয়ার্ক" } }, { icon: "heart", label: { en: "Medical", bn: "মেডিকেল" } }, { icon: "globe", label: { en: "Other", bn: "অন্যান্য" } } ] },
       { name: "travelDate", type: "date", columns: 3, label: { en: "Expected travel date", bn: "ভ্রমণের সম্ভাব্য তারিখ" }, messageLabel: "Expected travel date" },
@@ -109,6 +109,36 @@ export const AIRPORTS = [
   { city: "Toronto", bn: "টরন্টো", country: "Canada", airport: "Pearson International Airport", code: "YYZ" },
   { city: "New York", bn: "নিউ ইয়র্ক", country: "United States", airport: "John F. Kennedy International Airport", code: "JFK" },
   { city: "Sydney", bn: "সিডনি", country: "Australia", airport: "Kingsford Smith Airport", code: "SYD" },
+];
+
+/* ---- COUNTRIES for the Visa tab's country pop-up (the search list with flags).
+   To add a country: copy one line. To REMOVE: delete the line. popular: true = listed before the visitor types anything.
+   city = English country name, bn = Bangla name, code = 2-letter country code, flag = the flag emoji (from emojipedia.org, keep the two-part emoji together).
+   If a visitor types a country that is not in this list, they can still use what they typed. ---- */
+export const COUNTRIES = [
+  { city: "Australia", bn: "অস্ট্রেলিয়া", code: "AU", flag: "🇦🇺", popular: true },
+  { city: "Canada", bn: "কানাডা", code: "CA", flag: "🇨🇦", popular: true },
+  { city: "China", bn: "চীন", code: "CN", flag: "🇨🇳" },
+  { city: "Denmark", bn: "ডেনমার্ক", code: "DK", flag: "🇩🇰" },
+  { city: "Egypt", bn: "মিশর", code: "EG", flag: "🇪🇬" },
+  { city: "France", bn: "ফ্রান্স", code: "FR", flag: "🇫🇷" },
+  { city: "Germany", bn: "জার্মানি", code: "DE", flag: "🇩🇪" },
+  { city: "India", bn: "ভারত", code: "IN", flag: "🇮🇳", popular: true },
+  { city: "Indonesia", bn: "ইন্দোনেশিয়া", code: "ID", flag: "🇮🇩" },
+  { city: "Italy", bn: "ইতালি", code: "IT", flag: "🇮🇹" },
+  { city: "Japan", bn: "জাপান", code: "JP", flag: "🇯🇵", popular: true },
+  { city: "Malaysia", bn: "মালয়েশিয়া", code: "MY", flag: "🇲🇾", popular: true },
+  { city: "Maldives", bn: "মালদ্বীপ", code: "MV", flag: "🇲🇻" },
+  { city: "Qatar", bn: "কাতার", code: "QA", flag: "🇶🇦" },
+  { city: "Saudi Arabia", bn: "সৌদি আরব", code: "SA", flag: "🇸🇦", popular: true },
+  { city: "Singapore", bn: "সিঙ্গাপুর", code: "SG", flag: "🇸🇬", popular: true },
+  { city: "South Korea", bn: "দক্ষিণ কোরিয়া", code: "KR", flag: "🇰🇷", popular: true },
+  { city: "Thailand", bn: "থাইল্যান্ড", code: "TH", flag: "🇹🇭", popular: true },
+  { city: "Turkey", bn: "তুরস্ক", code: "TR", flag: "🇹🇷" },
+  { city: "United Arab Emirates", bn: "সংযুক্ত আরব আমিরাত", code: "AE", flag: "🇦🇪", popular: true },
+  { city: "United Kingdom", bn: "যুক্তরাজ্য", code: "GB", flag: "🇬🇧", popular: true },
+  { city: "United States", bn: "যুক্তরাষ্ট্র", code: "US", flag: "🇺🇸", popular: true },
+  { city: "Vietnam", bn: "ভিয়েতনাম", code: "VN", flag: "🇻🇳" },
 ];
 
 /* First day of the week in the date pop-up calendar: 0 = Sunday, 6 = Saturday */

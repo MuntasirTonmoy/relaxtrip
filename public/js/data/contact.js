@@ -27,6 +27,7 @@ export const CONTACT = {
   email: "relaxtripbd@gmail.com",
   address: { en: "Saha Tower, Nayapalton, Dhaka, Bangladesh", bn: "সাহা টাওয়ার, নয়াপল্টন, ঢাকা, বাংলাদেশ" },
   mapsLink: "",                 /* (optional) your own map link. Leave "" to open Google Maps for the address above */
+  mapEmbed: "Shah Tower, 48 Naya Paltan, Dhaka 1000",   /* (optional) what the real Google map on the page searches for. Leave "" to use the address above */
   openingHours: { en: "Saturday - Thursday: 10:00 AM - 8:00 PM", bn: "শনিবার - বৃহস্পতিবার: সকাল ১০:০০ - রাত ৮:০০" },
   openingHoursCode: "Sa-Th 10:00-20:00"   /* same hours in the short form search engines read (Mo Tu We Th Fr Sa Su) */
 };

@@ -114,14 +114,9 @@
       <li><i data-icon="mail"></i><a data-contact-link="email" data-email-text></a></li>
       <li><i data-icon="clock"></i><span data-i18n="office_hours"></span></li></ul></div>
       <a class="btn primary" target="_blank" rel="noopener noreferrer" data-contact-link="map"><i data-icon="nav"></i><span data-i18n="get_directions"></span></a></div>
-    <a class="map rv" style="--reveal-order:1" target="_blank" rel="noopener noreferrer" data-contact-link="map" aria-label="Open RelaxTrip office in Google Maps">
-      <svg viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <path class="m-w" d="M0 300C120 260 200 330 320 290S520 220 600 250V400H0Z"/>
-        <g class="m-r" fill="none" stroke-linecap="round"><path d="M-10 120L620 60"/><path d="M-10 220L620 190"/><path d="M120-10L180 410"/><path d="M330-10L300 410"/><path d="M470-10L520 410"/><path d="M-10 30L330 410"/></g>
-        <circle class="m-halo" cx="300" cy="190" r="34"/>
-        <path d="M300 236c-22-26-34-44-34-62a34 34 0 0 1 68 0c0 18-12 36-34 62z" fill="var(--color-brand-gold)" stroke="var(--color-black)" stroke-width="3"/><circle cx="300" cy="174" r="11" fill="var(--color-black)"/>
-      </svg>
-      <span class="m-lab"><i data-icon="pin"></i><span data-i18n="get_directions"></span></span></a>
+    <div class="map rv" style="--reveal-order:1" id="map-frame" aria-label="RelaxTrip office on Google Maps">
+      <a class="m-lab" target="_blank" rel="noopener noreferrer" data-contact-link="map"><i data-icon="pin"></i><span data-i18n="get_directions"></span></a>
+    </div>
   </div>
 </div></section>
 
@@ -148,6 +143,7 @@
     <div><h4 class="eyebrow" data-i18n="footer_contact"></h4><ul>
       <li data-i18n="office_address"></li><li><a data-contact-link="phone" data-phone-text></a></li><li><a data-contact-link="email" data-email-text></a></li></ul></div>
   </div>
+  <ul class="socials" id="socials"></ul>
   <div class="pay">
     <div class="pay-head"><h4 class="eyebrow pay-title"><i data-icon="lock"></i><span data-i18n="footer_payments_title"></span></h4><p data-i18n="footer_payments_note"></p></div>
     <ul class="pay-list" id="pay-list"></ul>

@@ -25,24 +25,27 @@ export const PARTNER_AIRLINES = [
 export const AIRLINE_LOGO_URL = "https://pics.avs.io/120/120/{code}.png";
 
 /* ---- FOOTER "PAY WITH" LOGOS: white tiles in the footer.
-   name = text shown when there is no logo. id = (optional) short lowercase word used in the logo file name (defaults to the name).
-   logo = (optional) address of this method's logo image. This only DISPLAYS accepted methods; real online payment needs a payment-gateway account. ---- */
+   name = text shown when there is no logo. id = the logo file name in logos/payments/ (defaults to the name lowercase);
+   id: "-" = never show a logo for this method, always the name.
+   logo = (optional) address of this method's logo image. This only DISPLAYS accepted methods; real online payment needs a payment-gateway account.
+   To use your own file for a method, drop it into public/logos/payments/ named e.g. bkash.svg; a file that cannot load falls back to the name. ---- */
 export const PAYMENT_METHODS = [
-  { name: "Visa" },
-  { name: "Mastercard" },
-  { name: "American Express" },
-  { name: "bKash" },
-  { name: "Nagad" },
-  { name: "Rocket" },
-  { name: "Upay" },
-  { name: "Nexus Pay" },
-  { name: "Bank transfer", id: "bank" },
-  { name: "Cash at office", id: "cash" },
+  { name: "Visa", id: "visa" },
+  { name: "Mastercard", id: "mastercard" },
+  { name: "American Express", id: "americanexpress" },
+  { name: "bKash", id: "bkash" },
+  { name: "Nagad", id: "nagad" },
+  { name: "Rocket", id: "rocket" },
+  { name: "Upay", id: "upay" },
+  { name: "Nexus Pay", id: "nexuspay" },
+  { name: "Bank transfer", id: "-" },
+  { name: "Cash at office", id: "-" },
 ];
 
-/* Folder pattern for your payment logo files, e.g. "logos/payments/{id}.svg" (files visa.svg, bkash.svg ...).
-   "" = no logo files, the tiles show the names. A logo that cannot load falls back to the name. */
-export const PAYMENT_LOGO_URL = "";
+/* Folder pattern for the payment logo files. Ships with real Visa / Mastercard / American Express marks and
+   simple brand-colour wordmarks for the Bangladeshi methods — replace any file in public/logos/payments/ with
+   the official one any time. "" = no logos, the tiles show the names. A logo that cannot load falls back to the name. */
+export const PAYMENT_LOGO_URL = "logos/payments/{id}.svg";
 
 /* ---- Optional "Verified by" badge at the right of the payment row (for example the SSLCOMMERZ banner).
    Keep it null until you really are a verified merchant. Example:

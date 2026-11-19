@@ -8,6 +8,8 @@ A fully static, dependency-free website. Plain HTML + CSS + vanilla JavaScript �
 relaxtrip/
 ├── README.md
 └── public/                    ← deploy THIS folder (it is the website root)
+    │
+    ├── logos/payments/         ← payment logos used by the footer tiles (replace with official files any time)
     ├── index.html             ← page skeleton: <head>, body markup, logo SVG
     │
     ├── css/                   ← one file per section, loaded in number order
@@ -49,8 +51,8 @@ relaxtrip/
             ├── enquiry.js     ← ENQUIRY_TABS, AIRPORTS, calendar settings
             ├── sections.js    ← STAT_CARDS, SERVICES, REVIEWS, WHY_US_ITEMS
             ├── team-faq.js    ← TEAM_MEMBERS, FAQ_ITEMS
-            ├── partners.js    ← PARTNER_AIRLINES, PAYMENT_METHODS + logo URLs
-            ├── support.js     ← SUPPORT_CHANNELS
+            ├── partners.js    ← PARTNER_AIRLINES, PAYMENT_METHODS + logo folder pattern
+            ├── support.js     ← SUPPORT_CHANNELS, SOCIAL_LINKS (footer social icons)
             └── texts.js       ← SITE_TEXT (every UI label, in English + Bangla)
 ```
 
@@ -69,7 +71,21 @@ const SERVICES = [
 ];
 ```
 
+**Add a visa country** (the Flag search list in the Visa tab): `js/data/enquiry.js` → `COUNTRIES` — copy one line:
+
+```js
+{ city: "Australia", bn: "অস্ট্রেলিয়া", code: "AU", flag: "🇦🇺", popular: true },
+```
+
+**Change a WhatsApp message's wording**: `js/data/enquiry.js` → each tab's `messageIntro` / `messageClosing` (keep them plain text; avoid emojis if WhatsApp shows them oddly on some phones).
+
 **Change the WhatsApp number / email / address**: `js/data/contact.js` — used everywhere (buttons, footer, enquiry messages) automatically.
+
+**Change the embedded Google map**: `contact.js` → `mapEmbed` (what the map searches for; the yellow "Get directions" button links to Google Maps for the office address).
+
+**Change the footer social icons**: `js/data/support.js` → `SOCIAL_LINKS` — add/remove/reorder `{ ... }` lines; put your real page addresses in `url`. WhatsApp/phone/email rows can skip `url` and pull the link from CONTACT. Icons come from `ICON_PATHS` in `js/01-icons.js` (facebook, whatsapp, youtube, tiktok, linkedin are included; add more the same way as any icon).
+
+**Payment logos**: the footer tiles read `logos/payments/{id}.svg` (set in `partners.js` → `PAYMENT_LOGO_URL`). Real Visa / Mastercard / American Express marks are included; bKash, Nagad, Rocket, Upay, NexusPay use simple brand-colour wordmarks — drop the official logo file into `public/logos/payments/` with the matching name to replace one. A logo that cannot load falls back to the method name automatically.
 
 **Change a UI label** (e.g. "Book Now"): `js/data/texts.js` — every label has an `en` and a `bn` value. Update both.
 

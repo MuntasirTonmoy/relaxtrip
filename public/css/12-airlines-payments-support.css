@@ -39,6 +39,10 @@
 .pay-head p{margin:0;max-width:14rem;font-size:.8125rem;color:#a8a8a8}
 /* ".foot" in front so this beats the general footer list rule (which would stack the tiles). */
 .foot .pay-list{display:flex;flex:1;flex-wrap:wrap;gap:.75rem;margin:0;padding:0;list-style:none}
+.socials{display:flex;gap:.6rem;flex-wrap:wrap;list-style:none;margin:0 0 1.4rem;padding:0}
+.socials a{display:grid;place-items:center;width:2.75rem;height:2.75rem;border-radius:999px;border:1px solid var(--color-border);background:transparent;color:var(--color-text-muted);transition:transform var(--motion-duration-normal) var(--motion-easing),color var(--motion-duration-normal) var(--motion-easing),border-color var(--motion-duration-normal) var(--motion-easing)}
+.socials a:hover{transform:translateY(-2px);color:var(--color-brand-gold);border-color:var(--color-brand-gold)}
+.socials svg{width:1.35rem;height:1.35rem}
 .pay-tile{display:grid;place-items:center;min-width:4.5rem;height:3.25rem;padding:.35rem .7rem;border-radius:.75rem;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.45);overflow:hidden}
 .pay-tile img{display:block;max-width:100%;max-height:100%;object-fit:contain}
 .pay-name{display:none;font-size:.75rem;font-weight:800;line-height:1.15;text-align:center;color:#1f1f1f}

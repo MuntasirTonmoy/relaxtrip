@@ -6,3 +6,16 @@ export const SUPPORT_CHANNELS = [
   { type: "phone", icon: "phone", label: { en: "Call us", bn: "আমাদের কল করুন" } },
   { type: "email", icon: "mail", label: { en: "Email us", bn: "ইমেইল করুন" } },
 ];
+
+/* ---- SOCIAL LINKS: round icon buttons at the bottom of the footer.
+   Add / remove / reorder a whole { ... } line. Two kinds of entry:
+     1. your own address: { icon: "facebook", label: { en, bn }, url: "https://..." }   icon can be facebook, youtube, tiktok, linkedin (names in js/01-icons.js ICON_PATHS)
+     2. using CONTACT automatically: { type: "whatsapp" | "phone" | "email", icon, label } — the link is built from CONTACT, no url needed.
+   Icons for other sites can be added in js/01-icons.js under ICON_PATHS. ---- */
+export const SOCIAL_LINKS = [
+  { icon: "facebook", label: { en: "Facebook", bn: "ফেসবুক" }, url: "https://facebook.com/relaxtripbd" },
+  { type: "whatsapp", icon: "whatsapp", label: { en: "WhatsApp", bn: "হোয়াটসঅ্যাপ" } },
+  { icon: "youtube", label: { en: "YouTube", bn: "ইউটিউব" }, url: "https://youtube.com/@relaxtripbd" },
+  { icon: "tiktok", label: { en: "TikTok", bn: "টিকটক" }, url: "https://tiktok.com/@relaxtripbd" },
+  { icon: "linkedin", label: { en: "LinkedIn", bn: "লিঙ্কডইন" }, url: "https://linkedin.com/company/relaxtripbd" },
+];

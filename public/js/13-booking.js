@@ -1,4 +1,4 @@
-import { ENQUIRY_TABS, AIRPORTS, CALENDAR_WEEK_STARTS_ON } from './data/enquiry.js';
+import { ENQUIRY_TABS, AIRPORTS, COUNTRIES, CALENDAR_WEEK_STARTS_ON } from './data/enquiry.js';
 import { iconSvg } from './01-icons.js';
 import { whatsappLink, prefersReducedMotion } from './02-helpers.js';
 import { cardText, translate, localizeDigits, currentLanguage, onLanguageChange } from './04-language.js';
@@ -39,12 +39,13 @@ function enquiryFieldHtml(tab, field) {
     }).join('');
     return `${wrapperStart('f-segmented')}<fieldset><legend class="sr-only" data-i18n="${labelKey}"></legend><div class="seg-group">${pills}</div></fieldset></div>`;
   }
-  if (field.type === 'airport') {                                    /* city + airport, chosen from a searchable list */
-    const extraAttributes = ` data-placeholder-key="${cardText(keyPrefix, 0, 'placeholder', field.placeholder)}" data-hint-key="${cardText(keyPrefix, 0, 'hint', field.hint)}"`;
+  if (field.type === 'airport') {                                    /* city + airport (or country, when source = "countries"), chosen from a searchable list */
+    const extraAttributes = ` data-placeholder-key="${cardText(keyPrefix, 0, 'placeholder', field.placeholder)}" data-hint-key="${cardText(keyPrefix, 0, 'hint', field.hint)}" data-options-source="${field.source || 'airports'}"`;
     const swapButton = field.swapWith
       ? `<button class="f-swap" type="button" data-swap="${field.name}|${field.swapWith}">${iconSvg('swap')}<span class="sr-only" data-i18n="booking_swap"></span></button>`
       : '';
-    return `${wrapperStart('f-popup-field', extraAttributes)}${triggerStart}${labelHtml}<span class="f-value"></span><span class="f-sub"></span></button><input type="hidden" name="${field.name}" id="${idPrefix}" data-value-input data-selection="">${swapButton}<div class="f-pop" id="${idPrefix}-popover" role="dialog" aria-label="${field.label.en}">${searchBox('booking_search_airport')}<p class="pop-title"></p><ul class="pop-list" role="listbox"></ul></div></div>`;
+    const searchKey = field.source === 'countries' ? 'booking_search_country' : 'booking_search_airport';
+    return `${wrapperStart('f-popup-field', extraAttributes)}${triggerStart}${labelHtml}<span class="f-value"></span><span class="f-sub"></span></button><input type="hidden" name="${field.name}" id="${idPrefix}" data-value-input data-selection="">${swapButton}<div class="f-pop" id="${idPrefix}-popover" role="dialog" aria-label="${field.label.en}">${searchBox(searchKey)}<p class="pop-title"></p><ul class="pop-list" role="listbox"></ul></div></div>`;
   }
   if (field.type === 'select') {                                     /* a list pop-up (optionally with a search box) */
     field.options.forEach((option, index) => cardText(keyPrefix + '_option', index, 'label', option.label));
@@ -53,7 +54,8 @@ function enquiryFieldHtml(tab, field) {
     return `${wrapperStart('f-popup-field')}${triggerStart}${labelHtml}<span class="f-value"></span>${subHtml}</button><input type="hidden" name="${field.name}" id="${idPrefix}" data-value-input value="${firstOption.value ?? firstOption.label.en}"><div class="f-pop" id="${idPrefix}-popover" role="dialog" aria-label="${field.label.en}">${searchHtml}<ul class="pop-list" role="listbox"></ul></div></div>`;
   }
   if (field.type === 'date') {                                       /* a calendar pop-up */
-    return `${wrapperStart('f-popup-field')}${triggerStart}${labelHtml}<span class="f-value"></span><span class="f-sub"></span></button><input type="hidden" name="${field.name}" id="${idPrefix}" data-value-input><div class="f-pop cal-pop" id="${idPrefix}-popover" role="dialog" aria-label="${field.label.en}"><div class="cal-head"><span class="cal-head-icon">${iconSvg('calendar')}</span><span class="cal-head-text"><small data-i18n="${labelKey}"></small><b class="cal-head-value"></b></span></div><div class="cal-nav"><button class="cal-nav-button" type="button" data-cal-nav="-1">${iconSvg('chev-l')}</button><b class="cal-month"></b><button class="cal-nav-button" type="button" data-cal-nav="1">${iconSvg('chev-r')}</button></div><div class="cal-grid"></div></div></div>`;
+    const datePlaceholder = field.placeholder ? ` data-placeholder-key="${cardText(keyPrefix, 0, 'placeholder', field.placeholder)}"` : '';
+    return `${wrapperStart('f-popup-field', datePlaceholder)}${triggerStart}${labelHtml}<span class="f-value"></span><span class="f-sub"></span></button><input type="hidden" name="${field.name}" id="${idPrefix}" data-value-input><div class="f-pop cal-pop" id="${idPrefix}-popover" role="dialog" aria-label="${field.label.en}"><div class="cal-head"><span class="cal-head-icon">${iconSvg('calendar')}</span><span class="cal-head-text"><small data-i18n="${labelKey}"></small><b class="cal-head-value"></b></span></div><div class="cal-nav"><button class="cal-nav-button" type="button" data-cal-nav="-1">${iconSvg('chev-l')}</button><b class="cal-month"></b><button class="cal-nav-button" type="button" data-cal-nav="1">${iconSvg('chev-r')}</button></div><div class="cal-grid"></div></div></div>`;
   }
   if (field.type === 'travellers') {                                 /* summary button + pop-up with counters (and cabin class) */
     const counterRows = field.counters.map((counter, index) => {
@@ -88,6 +90,8 @@ const fieldOfWrapper = (form, wrapper) => tabOfForm(form).fields.find(field => f
 const valueInputOf = wrapper => wrapper.querySelector('[data-value-input]');
 const dateLocale = () => (currentLanguage === 'bn' ? 'bn-BD' : 'en-GB');
 const optionKeyOf = (tab, field, index) => `enquiry_${tab.id}_${field.name}_option_${index + 1}_label`;
+const SOURCE_LISTS = { airports: AIRPORTS, countries: COUNTRIES };
+const listFor = wrapper => SOURCE_LISTS[wrapper.dataset.optionsSource] || AIRPORTS;
 const airportByCode = code => AIRPORTS.find(airport => airport.code === code);
 function parseIsoDate(isoDate) {
   const [year, month, day] = isoDate.split('-').map(Number);
@@ -107,23 +111,31 @@ function refreshAirportDisplay(wrapper) {
   const valueText = wrapper.querySelector('.f-value');
   valueText.classList.toggle('is-empty', !selection);
   valueText.textContent = selection ? (currentLanguage === 'bn' && selection.bn ? selection.bn : selection.city) : translate(wrapper.dataset.placeholderKey);
-  wrapper.querySelector('.f-sub').textContent = selection ? (selection.code ? `${selection.code} - ${selection.airport}` : '') : translate(wrapper.dataset.hintKey);
+  wrapper.querySelector('.f-sub').textContent = selection
+    ? (selection.airport ? `${selection.code} - ${selection.airport}` : (selection.flag ? `${selection.flag} ${selection.code}` : (selection.code ? selection.code : '')))
+    : translate(wrapper.dataset.hintKey);
 }
-/* The list inside the pop-up: popular airports, or the airports matching what was typed */
+/* The list inside the pop-up: popular entries, or the ones matching what was typed (works for airports AND countries) */
 function renderAirportList(wrapper) {
   const typedText = wrapper.querySelector('.pop-search-input').value.trim();
   const query = typedText.toLowerCase();
+  const isCountry = wrapper.dataset.optionsSource === 'countries';
+  const list = listFor(wrapper);
   const matches = query
-    ? AIRPORTS.filter(airport => [airport.city, airport.bn, airport.country, airport.airport, airport.code].filter(Boolean).join(' ').toLowerCase().includes(query))
-    : AIRPORTS.filter(airport => airport.popular);
-  wrapper.querySelector('.pop-title').textContent = translate(query ? 'booking_search_results' : 'booking_popular_airports');
+    ? list.filter(airport => [airport.city, airport.bn, airport.country, airport.airport, airport.code].filter(Boolean).join(' ').toLowerCase().includes(query))
+    : list.filter(airport => airport.popular);
+  wrapper.querySelector('.pop-title').textContent = translate(query ? 'booking_search_results' : (isCountry ? 'booking_popular_countries' : 'booking_popular_airports'));
   const selectedCode = valueInputOf(wrapper).dataset.selection ? JSON.parse(valueInputOf(wrapper).dataset.selection).code : '';
   let itemsHtml = matches.slice(0, 40).map(airport => {
     const cityName = currentLanguage === 'bn' && airport.bn ? airport.bn : airport.city;
-    return `<li><button class="pop-item${airport.code === selectedCode ? ' is-selected' : ''}" type="button" role="option" data-airport-code="${airport.code}"><span class="pop-icon">${iconSvg('plane')}</span><span class="pop-item-text"><b>${cityName}, ${airport.country}</b><small>${airport.airport}</small></span><span class="pop-code">${airport.code}</span></button></li>`;
+    const iconHtml = isCountry ? airport.flag : iconSvg('plane');
+    const textHtml = isCountry
+      ? `<b>${cityName}</b>`
+      : `<b>${cityName}, ${airport.country}</b><small>${airport.airport}</small>`;
+    return `<li><button class="pop-item${airport.code === selectedCode ? ' is-selected' : ''}" type="button" role="option" data-airport-code="${airport.code}"><span class="pop-icon${isCountry ? ' pop-flag' : ''}">${iconHtml}</span><span class="pop-item-text">${textHtml}</span><span class="pop-code">${airport.code}</span></button></li>`;
   }).join('');
   if (!itemsHtml && typedText) {                                      /* nothing found: let the visitor use what they typed */
-    itemsHtml = `<li><button class="pop-item" type="button" role="option" data-airport-free="${encodeURIComponent(typedText)}"><span class="pop-icon">${iconSvg('plane')}</span><span class="pop-item-text"><b>${translate('booking_use_typed').replace('{q}', escapeHtml(typedText))}</b></span></button></li>`;
+    itemsHtml = `<li><button class="pop-item" type="button" role="option" data-airport-free="${encodeURIComponent(typedText)}"><span class="pop-icon">${iconSvg(isCountry ? 'globe' : 'plane')}</span><span class="pop-item-text"><b>${translate('booking_use_typed').replace('{q}', escapeHtml(typedText))}</b></span></button></li>`;
   }
   wrapper.querySelector('.pop-list').innerHTML = itemsHtml;
 }
@@ -160,7 +172,7 @@ function refreshDateDisplay(wrapper) {
     valueText.textContent = translate(wrapper.dataset.disabledKey);
     weekdayText.textContent = '';
   } else if (!input.value) {
-    valueText.textContent = translate('booking_select_date');
+    valueText.textContent = wrapper.dataset.placeholderKey ? translate(wrapper.dataset.placeholderKey) : translate('booking_select_date');
     weekdayText.textContent = '';
   } else {
     const date = parseIsoDate(input.value);

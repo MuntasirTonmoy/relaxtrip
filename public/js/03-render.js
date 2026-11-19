@@ -3,7 +3,7 @@ import { NAV_LINKS, TRUST_POINTS } from './data/navigation.js';
 import { STAT_CARDS, SERVICES, REVIEWS, WHY_US_ITEMS } from './data/sections.js';
 import { TEAM_MEMBERS, FAQ_ITEMS } from './data/team-faq.js';
 import { PARTNER_AIRLINES, AIRLINE_LOGO_URL, PAYMENT_METHODS, PAYMENT_LOGO_URL, PAYMENT_GATEWAY_BADGE } from './data/partners.js';
-import { SUPPORT_CHANNELS } from './data/support.js';
+import { SUPPORT_CHANNELS, SOCIAL_LINKS } from './data/support.js';
 import { iconSvg, LOGO_HTML } from './01-icons.js';
 import { whatsappLink, PHONE_INTERNATIONAL_DIGITS, PHONE_LINK, MAPS_LINK, initialsOf } from './02-helpers.js';
 import { cardText } from './04-language.js';
@@ -99,7 +99,7 @@ document.querySelector('#airline-list').innerHTML =
 /* Footer "Pay with" tiles: a white tile with the logo; without a logo (or if it cannot load) the tile shows the name */
 document.querySelector('#pay-list').innerHTML = PAYMENT_METHODS.map(method => {
   const fileId = method.id || method.name.toLowerCase().replace(/[^a-z0-9]+/g, '');
-  const logoUrl = method.logo || (PAYMENT_LOGO_URL ? PAYMENT_LOGO_URL.replace('{id}', fileId) : '');
+  const logoUrl = method.logo === '' || method.id === '-' ? '' : (method.logo || (PAYMENT_LOGO_URL ? PAYMENT_LOGO_URL.replace('{id}', fileId) : ''));
   const logoImage = logoUrl
     ? `<img src="${logoUrl}" alt="${method.name}" loading="lazy" onerror="this.parentElement.classList.add('no-logo');this.remove()">`
     : '';
@@ -125,6 +125,33 @@ document.querySelector('#support-list').innerHTML = SUPPORT_CHANNELS.map(({ type
   const openInNewTab = type === 'whatsapp' ? ' target="_blank" rel="noopener"' : '';
   return `<a class="support-link" href="${href}"${openInNewTab}><span class="ibox">${iconSvg(icon)}</span><span><b data-i18n="${cardText('support', index, 'label', label)}"></b>${detailHtml}</span></a>`;
 }).join('');
+
+/* Social icon buttons at the bottom of the footer (SOCIAL_LINKS in the content scripts) */
+const socialLinksBox = document.querySelector('#socials');
+if (socialLinksBox) {
+  socialLinksBox.innerHTML = SOCIAL_LINKS.map(social => {
+    const href = social.url
+      ? social.url
+      : social.type === 'whatsapp' ? whatsappLink('Hello RelaxTrip!')
+      : social.type === 'phone' ? PHONE_LINK
+      : social.type === 'email' ? 'mailto:' + CONTACT.email
+      : '#';
+    return `<li><a href="${href}" aria-label="${social.label.en}" title="${social.label.en}" target="_blank" rel="noopener noreferrer"><i data-icon="${social.icon}"></i></a></li>`;
+  }).join('');
+}
+
+/* The real Google map of the office (the query comes from CONTACT.mapEmbed, falling back to the address). The yellow "Get directions" pill stays in the HTML on top of it */
+const mapFrame = document.querySelector('#map-frame');
+if (mapFrame) {
+  const mapQuery = CONTACT.mapEmbed || CONTACT.address.en || CONTACT.address;
+  const mapIframe = document.createElement('iframe');
+  mapIframe.title = 'RelaxTrip office on Google Maps';
+  mapIframe.src = 'https://www.google.com/maps?q=' + encodeURIComponent(mapQuery) + '&z=16&output=embed&hl=en';
+  mapIframe.loading = 'lazy';
+  mapIframe.allowFullscreen = true;
+  mapIframe.referrerPolicy = 'no-referrer-when-downgrade';
+  mapFrame.prepend(mapIframe);
+}
 
 /* Fill in the logo wherever the HTML has data-logo */
 document.querySelectorAll('[data-logo]').forEach(logoPlaceholder => {
