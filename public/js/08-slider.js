@@ -48,7 +48,12 @@ function setupCarousel(root, track) {
     const cardsPerView = getPerView();
     const last = maxFirstSlide();
     currentSlideIndex = index > last ? 0 : index < 0 ? last : Math.min(index, last);
-    track.style.transform = `translateX(${-currentSlideIndex * (100 / cardsPerView)}%)`;
+    /* Last position: align the END of the card row with the END of the viewport in real pixels.
+       This avoids the fraction-of-a-percent rounding error (card basis is 33.3333% of the track)
+       that could otherwise leave the last card slightly cut off or the window not fully filled. */
+    const overflowAtEndPx = track.scrollWidth - track.clientWidth;
+    const endAlign = currentSlideIndex === last && overflowAtEndPx > 0 ? `translateX(-${overflowAtEndPx}px)` : `translateX(${-currentSlideIndex * (100 / cardsPerView)}%)`;
+    track.style.transform = endAlign;
     /* Cards outside the current window cannot be tabbed into */
     const visibleUpTo = currentSlideIndex + cardsPerView;
     slides.forEach((slide, slideIndex) => { slide.inert = slideIndex < currentSlideIndex || slideIndex >= visibleUpTo; });
