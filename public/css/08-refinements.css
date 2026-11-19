@@ -11,6 +11,11 @@
    ========================================================================= */
 /* Logo mark colours: .mk-s = gray parts, .mk-g = gold crescent (shapes live in the SVG <symbol> at the top of <body>). */
 .mk-s{fill:var(--color-logo-gray)} .mk-g{fill:var(--color-logo-mark-gold)}
+/* Dark-theme logo values spelled out (not via the variables) so the mark and the wordmark
+   ALWAYS lighten in dark mode, even where variable inheritance into the SVG <use> copy fails. */
+.dark .mk-s{fill:#d9d9d9}
+.dark .wm .gy{color:#d9d9d9}
+.dark .wm .x{background-image:linear-gradient(90deg,var(--color-brand-gold) 50%,#d9d9d9 50%)}
 /* Logo mark size in the header/footer. */
 .logo svg{height:2.5rem;width:3rem;flex:none}
 /* Hero badge = green "trust" look (light theme, then dark theme). */
@@ -37,8 +42,9 @@ html[lang=bn] body{font-family:"Hind Siliguri","Plus Jakarta Sans",system-ui,san
 @media(max-width:479px){.ctl{gap:.375rem}.ctl .btn{width:40px;min-height:40px;padding:0}.ctl .btn.lang{width:auto;padding:0 .55rem}.logo{font-size:1.05rem;gap:.4rem}.logo svg{height:2.1rem;width:2.55rem}}
 /* Review card padding. From 640px the cards sit 2-up (3-up from 1024px): tighter padding,
    body-size quote text, and equal card heights (handled by .slide>.rev in section 6). */
-.rev{padding:1.25rem 1.25rem 2rem}
-@media(min-width:640px){#track .rev{padding:1.5rem 1.25rem}#track blockquote{font-size:var(--font-size-body)}}
+.rev{padding:1.4rem 1.4rem 2.2rem}
+@media(min-width:640px){#track .rev{padding:1.65rem 1.4rem}#track blockquote{font-size:clamp(1.2375rem,1.15rem + .45vw,1.4375rem)}}
+#track .av{width:3.3rem;height:3.3rem}   /* avatar +10% to match the bigger text */
 /* (Older) charcoal CTA band + padding. Background is replaced by the gold band in section 11; padding still applies. */
 .cta{background:var(--color-brand-charcoal);padding-block:clamp(4.5rem,10vw,7.5rem)} .cta p{color:#f2f2f2}
 /* Content of the closing band: centred stack with comfortable spacing. */

@@ -32,6 +32,7 @@ export function translate(key) {
   let text = entry[currentLanguage] ?? entry.en ?? '';
   text = text.replace('{WM}', WORDMARK_HTML);                                  /* insert the coloured wordmark */
   if (!text.includes('<') && currentLanguage === 'en') text = text.replace(/'/g, '’');   /* curly apostrophes */
+  if (!text.includes('<') && currentLanguage === 'bn') text = localizeDigits(text);   /* Bangla numerals even if a bn text was typed with 0-9 */
   text = text.replace(/2026|২০২৬/, localizeDigits(new Date().getFullYear())); /* always show the current year */
   if (/^review_\d+_quote$/.test(key)) {                                        /* review quotes get curly quote marks */
     text = '“' + text.replace(/^["“]|["”]$/g, '') + '”';
