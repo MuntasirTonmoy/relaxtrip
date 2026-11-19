@@ -93,6 +93,7 @@ const optionKeyOf = (tab, field, index) => `enquiry_${tab.id}_${field.name}_opti
 const SOURCE_LISTS = { airports: AIRPORTS, countries: COUNTRIES };
 const listFor = wrapper => SOURCE_LISTS[wrapper.dataset.optionsSource] || AIRPORTS;
 const airportByCode = code => AIRPORTS.find(airport => airport.code === code);
+const findByCode = (wrapper, code) => listFor(wrapper).find(item => item.code === code);
 function parseIsoDate(isoDate) {
   const [year, month, day] = isoDate.split('-').map(Number);
   return new Date(year, month - 1, day);
@@ -363,7 +364,7 @@ bookingPanelsBox.addEventListener('click', event => {
     closeAllFieldPopups();
   } else if (popupItem) {                                              /* a choice in the airport / list pop-up */
     if (popupItem.dataset.airportCode) {
-      setAirportSelection(wrapper, airportByCode(popupItem.dataset.airportCode));
+      setAirportSelection(wrapper, findByCode(wrapper, popupItem.dataset.airportCode));
     } else if (popupItem.dataset.airportFree !== undefined) {
       setAirportSelection(wrapper, { city: decodeURIComponent(popupItem.dataset.airportFree), code: '' });
     } else {
@@ -463,8 +464,8 @@ function buildEnquiryMessage(tab, form) {
 }
 
 document.querySelectorAll('.booking-form').forEach(form => {
-  tabOfForm(form).fields.filter(field => field.defaultCode).forEach(field => {      /* airports chosen at the start (e.g. Dhaka) */
-    setAirportSelection(form.querySelector(`[data-field="${field.name}"]`), airportByCode(field.defaultCode));
+  tabOfForm(form).fields.filter(field => field.defaultCode).forEach(field => {      /* choices filled at the start (e.g. Dhaka) */
+    setAirportSelection(form.querySelector(`[data-field="${field.name}"]`), findByCode(form.querySelector(`[data-field="${field.name}"]`), field.defaultCode));
   });
   form.addEventListener('input', () => refreshEnquiryForm(form));
   form.addEventListener('change', () => refreshEnquiryForm(form));
