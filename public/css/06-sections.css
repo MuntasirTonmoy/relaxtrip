@@ -45,13 +45,21 @@ blockquote{font-size:clamp(1.2375rem,1.13rem + .5vw,1.4375rem);font-weight:500;l
 @media(min-width:640px){.fb-src{white-space:nowrap;font-size:clamp(.7rem,.56rem + .22vw,.85rem);max-width:100%}.fb-src span{overflow:hidden;text-overflow:ellipsis}}
 .fb-src .i{width:1rem;height:1rem;color:#1877F2}
 /* Slider controls row: previous arrow, dots, next arrow. */
-.cc{display:flex;justify-content:center;align-items:center;gap:.75rem;margin-top:1.5rem}
+.cc{display:flex;justify-content:center;align-items:center;gap:.75rem;margin-top:1.5rem;flex-wrap:wrap;max-width:100%}
 /* Dots stay in one horizontal row between the arrows. */
-.dots{display:flex;align-items:center}
+.dots{display:flex;align-items:center;max-width:100%}
 /* Slider dots. The clickable area is bigger than the visible dot (easier to tap). */
 .dot{width:1.75rem;height:2.75rem;display:grid;place-items:center;background:none;border:0;padding:0;cursor:pointer}
 .dot::before{content:"";width:.625rem;height:.625rem;border-radius:999px;background:color-mix(in srgb,var(--color-text-muted) 40%,transparent);transition:all var(--motion-duration-normal) var(--motion-easing)}
 .dot:hover::before{background:var(--color-brand-gold)} .dot[aria-current=true]::before{width:1.5rem;background:var(--color-brand-gold)}
+/* On phones the arrows + up to 11 dots must fit one small screen: smaller controls, tighter gaps. */
+@media(max-width:639px){
+  .cc{gap:.3rem}
+  .cc .btn.ib{width:42px;min-height:42px}
+  .dot{width:1.1rem;height:2.25rem}
+  .dot::before{width:.45rem;height:.45rem}
+  .dot[aria-current=true]::before{width:1rem}
+}
 /* WHY US: heading on the left (sticky from 1024px), numbered list on the right. */
 .why{display:grid;gap:3rem} .why .head{text-align:left;margin:0}
 @media(min-width:1024px){.why{grid-template-columns:5fr 7fr;gap:5rem}.why .head{position:sticky;top:7rem;align-self:start}}
