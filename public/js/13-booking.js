@@ -247,14 +247,13 @@ function refreshEnquiryForm(form) {
 }
 /* Called after every language change (dates, airports and numbers are written by script, not by data-i18n) */
 function refreshEnquiryDisplays() {
-  onLanguageChange(refreshEnquiryDisplays);   /* dates, airports and passenger summaries are script-written texts */
-
-document.querySelectorAll('.booking-form').forEach(form => {
+  document.querySelectorAll('.booking-form').forEach(form => {
     refreshEnquiryForm(form);
     form.querySelectorAll('.f.open[data-type=airport]').forEach(renderAirportList);
     form.querySelectorAll('.f.open[data-type=select]').forEach(wrapper => renderSelectList(form, wrapper));
   });
 }
+onLanguageChange(refreshEnquiryDisplays);   /* dates, airports and passenger summaries are script-written texts */
 
 /* ---------- Pop-ups: open, close, position ---------- */
 /* Puts the pop-up inside the card: full card width on phones, otherwise its own width, never past the card's right edge */
