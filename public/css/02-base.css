@@ -1,0 +1,49 @@
+/* =========================================================================
+   FILE: css/02-base.css
+   This file was section 02 of the old single-file version.
+   LOAD ORDER MATTERS: keep the <link> list in index.html in numbered order,
+   lower numbers load first, later files win when rules conflict.
+   ========================================================================= */
+
+/* =========================================================================
+   2. BASE STYLES
+   Browser reset, text defaults, the centred page container, and the layout
+   pieces every section shares (section spacing, section heading, grids).
+   ========================================================================= */
+/* Include padding and border in every element's width (makes sizing predictable). */
+*{box-sizing:border-box}
+/* Smooth scrolling for anchor links. scroll-padding-top keeps targets clear of the sticky header. */
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+/* Page defaults: colours come from the tokens, so light/dark theme switches everything. */
+body{margin:0;background:var(--color-page-background);color:var(--color-text);font:400 var(--font-size-body)/var(--line-height-body) "Plus Jakarta Sans","Hind Siliguri",system-ui,sans-serif;-webkit-font-smoothing:antialiased;transition:background-color var(--motion-duration-normal),color var(--motion-duration-normal)}
+/* Remove default browser margins; spacing is added deliberately per component. */
+h1,h2,h3,h4,p,figure,blockquote,ul{margin:0}
+ul{padding:0;list-style:none}
+/* Heading look. text-wrap:balance avoids one lonely word on the last line. */
+h1,h2,h3{font-weight:var(--font-weight-heading);line-height:var(--line-height-heading);letter-spacing:-.02em;text-wrap:balance}
+h1{font-size:var(--font-size-h1)} h2{font-size:var(--font-size-h2)} h3{font-size:var(--font-size-h3)}
+a{color:inherit}
+/* Keyboard focus ring (only appears when navigating by keyboard, not on mouse click). */
+:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:3px;border-radius:6px}
+/* Colour of highlighted text. */
+::selection{background:var(--color-brand-gold);color:var(--color-black)}
+/* Default size of every inline SVG icon. */
+.i{width:1.25rem;height:1.25rem;flex:none}
+/* "Skip to content" link: hidden above the screen until a keyboard user focuses it. */
+.skip{position:absolute;left:1rem;top:-4rem;z-index:100;background:var(--color-brand-gold);color:var(--color-black);padding:.75rem 1rem;border-radius:var(--radius-control);font-weight:700;transition:top var(--motion-duration-normal)}
+.skip:focus{top:1rem}
+/* Centred page column: max 1200px wide with side margins (2rem on phones, 4rem from 768px). */
+.container{width:min(1200px,100% - 2rem);margin-inline:auto}
+@media(min-width:768px){.container{width:min(1200px,100% - 4rem)}}
+/* SECTION: .sec = vertical spacing of a page section; .alt = the soft grey background used on alternate sections. */
+.sec{padding-block:var(--section-padding-vertical)} .alt{background:var(--color-section-alt-background)}
+/* SECTION HEADING: small label (eyebrow), big title and intro text, centred above each section. */
+.head{max-width:42rem;margin:0 auto var(--section-heading-gap);text-align:center}
+.head h2{margin:.6rem 0 1rem} .head p{color:var(--color-text-muted);font-size:var(--font-size-large)}
+/* EYEBROW: the small coloured label above section titles (e.g. "ABOUT US"). Change its size here. */
+.eyebrow{font-size:clamp(.9375rem,.9rem + .25vw,1.0625rem);font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-text)}
+/* 3-COLUMN GRID: 1 column on phones, 2 from 768px, 3 from 1024px. Used by services and team. */
+.g3{display:grid;gap:var(--grid-gap);grid-template-columns:1fr}
+@media(min-width:768px){.g3{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.g3{grid-template-columns:repeat(3,1fr)}}
+

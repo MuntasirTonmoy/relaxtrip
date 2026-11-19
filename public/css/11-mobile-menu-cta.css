@@ -1,0 +1,25 @@
+/* =========================================================================
+   FILE: css/11-mobile-menu-cta.css
+   This file was section 11 of the old single-file version.
+   LOAD ORDER MATTERS: keep the <link> list in index.html in numbered order,
+   lower numbers load first, later files win when rules conflict.
+   ========================================================================= */
+
+/* =========================================================================
+   11. MOBILE MENU + CLOSING CTA BAND
+   The mobile menu floats over the page instead of pushing it down (so nav
+   links scroll to the right place). The "Ready for your next flight?" band is gold.
+   ========================================================================= */
+/* MOBILE MENU floats over the page (absolute) so opening/closing it never shifts the content. */
+.mnav{position:absolute;top:100%;left:0;right:0;background:var(--color-page-background)}
+/* Border + shadow only while the menu is open. */
+.mnav.open{border-bottom:1px solid var(--color-border);box-shadow:0 18px 24px -18px rgba(0,0,0,.35)}
+/* CLOSING BAND: gold background with black text and buttons (same in light and dark theme). */
+.cta{background:var(--color-brand-gold);color:var(--color-black)} .cta h2{color:var(--color-black)} .cta p{color:rgba(17,17,17,.85)}
+/* On the gold band the primary button is black, the secondary one is outlined. */
+.cta .btn.primary{background:var(--color-black);border-color:var(--color-black);color:#fff} .cta .btn.primary:hover{background:#2a2a2a;border-color:#2a2a2a;filter:none}
+/* Secondary (outlined) button on the gold band. */
+.cta .btn:not(.primary){background:transparent;color:var(--color-black);border-color:var(--color-black)} .cta .btn:not(.primary):hover{background:rgba(17,17,17,.1);border-color:var(--color-black)}
+/* Keyboard focus ring must be dark on the gold band. */
+.cta :focus-visible{outline-color:var(--color-black)}
+

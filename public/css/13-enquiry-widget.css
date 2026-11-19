@@ -1,0 +1,142 @@
+/* =========================================================================
+   FILE: css/13-enquiry-widget.css
+   This file was section 13 of the old single-file version.
+   LOAD ORDER MATTERS: keep the <link> list in index.html in numbered order,
+   lower numbers load first, later files win when rules conflict.
+   ========================================================================= */
+
+/* =========================================================================
+   13. HERO ENQUIRY WIDGET (Air Ticket / Visa search card -> WhatsApp message)
+   ========================================================================= */
+/* The hero is now one centred column (text, then the wide search card). overflow:visible lets the passenger pop-up hang below the hero. */
+.hero{overflow:visible;padding-block:clamp(2.25rem,5vw,4rem) 5.5rem}
+.hero-g{gap:2.5rem}
+.hero-t{max-width:52rem;margin-inline:auto;gap:1.25rem}
+/* WRAPPER: floating tab pill + card + note. It is the "container" the fields measure themselves against.
+   z-index keeps the passenger pop-up above the sections that come after the hero. */
+.booking-wrap{position:relative;z-index:5;width:100%;max-width:72rem;justify-self:center;display:grid;grid-template-columns:minmax(0,1fr);container:booking / inline-size}
+/* TABS: a rounded pill that overlaps the top edge of the card. */
+.booking-tabs{position:relative;z-index:3;justify-self:center;display:flex;gap:.25rem;max-width:100%;margin-bottom:-2.25rem;padding:.4rem;border:1px solid var(--color-border);border-radius:999px;background:var(--color-card-background);box-shadow:0 12px 28px -12px rgba(0,0,0,.35)}
+.booking-tab{display:flex;align-items:center;gap:.6rem;min-height:48px;padding:0 1.25rem 0 .45rem;border:0;border-radius:999px;background:transparent;color:var(--color-text-muted);font-family:inherit;font-size:var(--font-size-small);font-weight:800;cursor:pointer;transition:background-color var(--motion-duration-normal),color var(--motion-duration-fast)}
+.booking-tab-icon{width:2.25rem;height:2.25rem;display:grid;place-items:center;border-radius:50%;background:color-mix(in srgb,var(--color-brand-gold) 22%,transparent);color:var(--color-text)}
+.booking-tab:hover{color:var(--color-text)}
+.booking-tab[aria-selected=true]{background:var(--color-brand-gold);color:var(--color-black)}
+.booking-tab[aria-selected=true] .booking-tab-icon{background:rgba(255,255,255,.55);color:var(--color-black)}
+/* Very narrow screens (card under 22rem wide, roughly phones under 375px): drop the round icons so both tab names fit. */
+@container booking (max-width:21.99rem){.booking-tab-icon{display:none}.booking-tab{padding:0 .9rem}}
+/* THE CARD. overflow stays visible so the swap button, search button and pop-up can stick out. */
+/* overflow-x:clip stops closed pop-ups from making the page scroll sideways; overflow-y stays visible so the Send button and pop-ups can hang below the card. */
+.booking{position:relative;overflow-x:clip;overflow-y:visible;padding:3.5rem 1.5rem 0;border-radius:var(--radius-card)}
+/* Elements hidden with the "hidden" attribute must really disappear (the rules below set display). */
+.booking [hidden]{display:none}
+.booking-form{position:relative;display:grid;gap:1.25rem;padding-bottom:3.25rem}
+/* FIELDS: a row that wraps. Each field says how many of 12 "columns" it is wide (--c-desktop / --c-tablet / --c-phone, halves like 2.5 allowed).
+   The width formula keeps the 1rem gaps exact, so 2.5 + 2.5 + 2 + 2 + 3 = a full row. */
+.booking-fields{display:flex;flex-wrap:wrap;gap:1rem}
+.f{--c:var(--c-phone,12);position:relative;display:grid;grid-template-columns:minmax(0,1fr);flex:0 0 calc(var(--c) / 12 * 100% - (12 - var(--c)) / 12 * 1rem - .05px);min-width:0;margin:0;padding:0;border:0}
+@container booking (min-width:36rem){.f{--c:var(--c-tablet,6)}}
+@container booking (min-width:62rem){.f{--c:var(--c-desktop,3)}}
+.f fieldset{margin:0;padding:0;border:0;min-width:0}
+/* A FIELD CARD: small label, big value, small line below. */
+.f-card{position:relative;display:grid;gap:.15rem;align-content:center;width:100%;height:100%;min-height:5.75rem;margin:0;padding:.9rem 1.1rem;border:1px solid var(--color-border);border-radius:var(--radius-inner);background:var(--color-page-background);color:var(--color-text);font:inherit;text-align:left;cursor:text;transition:border-color var(--motion-duration-fast),box-shadow var(--motion-duration-fast)}
+.f-card:hover,.f-card:focus-within{border-color:var(--color-brand-gold)}
+.f-card:focus-within{box-shadow:0 0 0 3px color-mix(in srgb,var(--color-brand-gold) 30%,transparent)}
+.f-label{font-size:.75rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted)}
+.f-control,.f-value{font-size:clamp(1.125rem,1rem + .5vw,1.4rem);font-weight:800;line-height:1.25;color:var(--color-text)}
+.f-control{width:100%;min-width:0;padding:0;border:0;border-radius:0;outline:none;background:transparent;font-family:inherit}
+.f-control::placeholder{color:var(--color-text-muted);opacity:.55;font-weight:700}
+.f-sub{min-height:1.2em;font-size:.8125rem;color:var(--color-text-muted)}
+.f-value.is-empty{color:var(--color-text-muted);opacity:.7}
+.f.is-disabled .f-card{cursor:pointer;opacity:.8}
+.f-card-button{cursor:pointer}
+/* SWAP BUTTON between From and To (sits on the border between the two cards; on phones below the From card). */
+.f-swap{position:absolute;z-index:4;top:50%;right:-1.875rem;transform:translateY(-50%);width:2.75rem;height:2.75rem;display:grid;place-items:center;padding:0;border:4px solid var(--color-card-background);border-radius:50%;background:var(--color-brand-gold);color:var(--color-black);cursor:pointer;transition:transform var(--motion-duration-normal) var(--motion-easing)}
+.f-swap:hover{transform:translateY(-50%) rotate(180deg)}
+@container booking (max-width:35.99rem){.f-swap{top:auto;bottom:-1.875rem;right:1rem;transform:none}.f-swap:hover{transform:rotate(180deg)}}
+/* TRIP TYPE pills (One Way / Round Trip). */
+.f-segmented .seg-group{display:inline-flex;gap:.25rem;padding:.3rem;border:1px solid var(--color-border);border-radius:999px;background:var(--color-section-alt-background)}
+.seg{position:relative}
+.seg input{position:absolute;top:0;left:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.seg span{display:inline-flex;align-items:center;min-height:40px;padding:0 1.1rem;border-radius:999px;color:var(--color-text-muted);font-size:var(--font-size-small);font-weight:700;transition:background-color var(--motion-duration-fast),color var(--motion-duration-fast)}
+.seg:hover span{color:var(--color-text)}
+.seg input:checked + span{background:var(--color-brand-gold);color:var(--color-black)}
+.seg input:focus-visible + span{outline:2px solid var(--color-focus-ring);outline-offset:3px}
+/* PASSENGER POP-UP: opens under the passenger card (class "open" is added by the script). */
+.pax-pop{position:absolute;z-index:20;top:calc(100% + .5rem);right:0;width:min(23rem,calc(100vw - 2rem));display:grid;gap:1rem;padding:1.25rem;border:1px solid var(--color-border);border-radius:var(--radius-card);background:var(--color-card-background);box-shadow:0 24px 48px -16px rgba(0,0,0,.5);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity var(--motion-duration-normal) var(--motion-easing),transform var(--motion-duration-normal) var(--motion-easing),visibility 0s var(--motion-duration-normal)}
+.f.open .pax-pop{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+@container booking (max-width:35.99rem){.pax-pop{left:0;right:0;width:auto}}
+.pax-title,.pop-title{margin:0;font-size:.75rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-muted)}
+.pax-row{display:flex;align-items:center;gap:.9rem}
+.pax-icon{flex:none;width:2.5rem;height:2.5rem;display:grid;place-items:center;border-radius:.75rem;background:color-mix(in srgb,var(--color-brand-gold) 20%,transparent);color:var(--color-text)}
+.pax-text{flex:1;display:grid;min-width:0}
+.pax-text b{font-size:var(--font-size-small)}
+.pax-text small{font-size:.8125rem;color:var(--color-text-muted)}
+.pax-stepper{display:flex;align-items:center;gap:.25rem;padding:.25rem;border:1px solid var(--color-border);border-radius:999px}
+.pax-step{width:2.25rem;height:2.25rem;display:grid;place-items:center;padding:0;border:0;border-radius:50%;background:transparent;color:var(--color-text);cursor:pointer;transition:background-color var(--motion-duration-fast)}
+.pax-step:hover:not(:disabled){background:var(--color-brand-gold);color:var(--color-black)}
+.pax-step:disabled{opacity:.35;cursor:not-allowed}
+.pax-count{min-width:1.75rem;text-align:center;font-weight:800}
+/* Cabin class choices: 2 x 2 radio cards. */
+.cabin-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.cabin{position:relative}
+.cabin input{position:absolute;top:0;left:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.cabin span{display:flex;align-items:center;gap:.6rem;min-height:2.75rem;padding:.5rem .75rem;border:1px solid var(--color-border);border-radius:var(--radius-control);font-size:.875rem;font-weight:700;line-height:1.2;transition:border-color var(--motion-duration-fast),background-color var(--motion-duration-fast)}
+.cabin span::before{content:"";flex:none;width:1.1rem;height:1.1rem;border:2px solid var(--color-border);border-radius:50%}
+.cabin:hover span{border-color:var(--color-brand-gold)}
+.cabin input:checked + span{border-color:var(--color-brand-gold);background:color-mix(in srgb,var(--color-brand-gold) 14%,transparent)}
+.cabin input:checked + span::before{border-color:var(--color-brand-gold);background:radial-gradient(circle,var(--color-brand-gold) 45%,transparent 50%)}
+.cabin input:focus-visible + span{outline:2px solid var(--color-focus-ring);outline-offset:3px}
+.pax-done{width:100%}
+/* SEND BUTTON: half inside, half outside the bottom edge of the card, with a soft ring. */
+.booking-send{position:absolute;left:0;right:0;bottom:-1.6rem;width:min(22rem,calc(100% - 3rem));min-height:56px;margin:0 auto;box-shadow:0 0 0 .5rem var(--color-page-background),0 14px 30px -10px rgba(255,180,0,.6)}
+.booking-note{margin:2.5rem 0 0;text-align:center;font-size:.8125rem;color:var(--color-text-muted)}
+
+/* Values and small lines stay on ONE line; long airport names end with "...". */
+.f-value,.f-sub{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.f-value-icon{display:inline-block;margin-right:.5rem;vertical-align:-.2em;color:var(--color-accent-text)}
+.f-value-icon .i{width:1.25rem;height:1.25rem}
+/* A field left empty when "Send" was pressed: red border + the message above the button. */
+.f.is-invalid .f-card{border-color:#d92d20;box-shadow:0 0 0 3px rgba(217,45,32,.18)}
+.booking-error{margin:0;text-align:center;font-size:var(--font-size-small);font-weight:700;color:#d92d20}
+.dark .booking-error{color:#ff8a80}
+.booking-fallback{margin:0;text-align:center;font-size:var(--font-size-small);font-weight:700}
+.booking-fallback a{color:var(--color-text);text-decoration:underline;text-decoration-color:var(--color-brand-gold);text-underline-offset:4px}
+/* POP-UP under a field card (airport search, visa type list, calendar). The script sets its width and left position so it always stays inside the card. */
+.f-pop{position:absolute;z-index:20;top:calc(100% + .5rem);left:0;width:min(26rem,calc(100vw - 2rem));display:grid;gap:.75rem;padding:1rem;border:1px solid var(--color-border);border-radius:var(--radius-card);background:var(--color-card-background);box-shadow:0 24px 48px -16px rgba(0,0,0,.5);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity var(--motion-duration-normal) var(--motion-easing),transform var(--motion-duration-normal) var(--motion-easing),visibility 0s var(--motion-duration-normal)}
+.f.open .f-pop{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+/* Search box at the top of a pop-up. */
+.pop-search{display:flex;align-items:center;gap:.6rem;min-height:48px;padding:0 .9rem;border:1px solid var(--color-border);border-radius:var(--radius-control);background:var(--color-page-background);color:var(--color-text-muted);transition:border-color var(--motion-duration-fast),box-shadow var(--motion-duration-fast)}
+.pop-search:focus-within{border-color:var(--color-brand-gold);box-shadow:0 0 0 3px color-mix(in srgb,var(--color-brand-gold) 30%,transparent)}
+.pop-search-input{flex:1;min-width:0;padding:0;border:0;outline:none;background:transparent;color:var(--color-text);font:inherit;font-size:var(--font-size-body)}
+.pop-search-input::placeholder{color:var(--color-text-muted);opacity:.7}
+/* The list of choices: scrolls when long. */
+.pop-list{display:grid;gap:.15rem;max-height:18rem;margin:0;padding:0;overflow-y:auto;list-style:none}
+.pop-item{display:flex;align-items:center;gap:.9rem;width:100%;padding:.55rem;border:0;border-radius:var(--radius-control);background:transparent;color:var(--color-text);font:inherit;text-align:left;cursor:pointer;transition:background-color var(--motion-duration-fast)}
+.pop-item:hover,.pop-item:focus-visible,.pop-item.is-selected{background:color-mix(in srgb,var(--color-brand-gold) 16%,transparent)}
+.pop-icon{flex:none;width:2.5rem;height:2.5rem;display:grid;place-items:center;border-radius:.75rem;background:color-mix(in srgb,var(--color-brand-gold) 22%,transparent);color:var(--color-text)}
+.pop-item-text{display:grid;min-width:0;flex:1}
+.pop-item-text b{font-size:var(--font-size-small);line-height:1.3}
+.pop-item-text small{font-size:.8125rem;color:var(--color-text-muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pop-code{flex:none;padding:.25rem .6rem;border-radius:.5rem;background:var(--color-section-alt-background);font-size:.8125rem;font-weight:800;letter-spacing:.04em}
+/* CALENDAR pop-up: header with the chosen date, month arrows, then a 7-column grid of days. */
+.cal-pop{width:min(23rem,calc(100vw - 2rem))}
+.cal-head{display:flex;align-items:center;gap:.9rem;padding:.7rem;border-radius:var(--radius-inner);background:var(--color-section-alt-background)}
+.cal-head-icon{flex:none;width:2.75rem;height:2.75rem;display:grid;place-items:center;border-radius:.9rem;background:var(--color-brand-gold);color:var(--color-black)}
+.cal-head-text{display:grid;min-width:0}
+.cal-head-text small{font-size:.75rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted)}
+.cal-head-value{font-size:var(--font-size-small)}
+.cal-nav{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.cal-nav-button{width:2.5rem;height:2.5rem;display:grid;place-items:center;padding:0;border:0;border-radius:50%;background:var(--color-section-alt-background);color:var(--color-text);cursor:pointer;transition:background-color var(--motion-duration-fast)}
+.cal-nav-button:hover:not(:disabled){background:var(--color-brand-gold);color:var(--color-black)}
+.cal-nav-button:disabled{opacity:.35;cursor:not-allowed}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.2rem;text-align:center}
+.cal-weekday{padding:.4rem 0;font-size:.75rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--color-text-muted)}
+.cal-day{position:relative;aspect-ratio:1;min-height:2.4rem;padding:0;border:0;border-radius:.75rem;background:transparent;color:var(--color-text);font:inherit;font-weight:700;cursor:pointer;transition:background-color var(--motion-duration-fast)}
+.cal-day:hover:not(:disabled){background:color-mix(in srgb,var(--color-brand-gold) 28%,transparent)}
+.cal-day:disabled{opacity:.3;cursor:not-allowed}
+.cal-day.is-today::after{content:"";position:absolute;left:50%;bottom:.3rem;width:.3rem;height:.3rem;margin-left:-.15rem;border-radius:50%;background:var(--color-brand-gold)}
+.cal-day.is-selected{background:var(--color-brand-gold);color:var(--color-black);opacity:1}
+.cal-day.is-selected::after{background:var(--color-black)}
+/* While a search pop-up is open the floating Support button steps aside so it never covers the list. */
+body:has(.booking .f.open) .support{opacity:0;pointer-events:none}
+.support{transition:opacity var(--motion-duration-normal)}

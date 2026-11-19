@@ -1,0 +1,163 @@
+import { CONTACT } from './data/contact.js';
+import { NAV_LINKS, TRUST_POINTS } from './data/navigation.js';
+import { STAT_CARDS, SERVICES, REVIEWS, WHY_US_ITEMS } from './data/sections.js';
+import { TEAM_MEMBERS, FAQ_ITEMS } from './data/team-faq.js';
+import { PARTNER_AIRLINES, AIRLINE_LOGO_URL, PAYMENT_METHODS, PAYMENT_LOGO_URL, PAYMENT_GATEWAY_BADGE } from './data/partners.js';
+import { SUPPORT_CHANNELS } from './data/support.js';
+import { iconSvg, LOGO_HTML } from './01-icons.js';
+import { whatsappLink, PHONE_LINK, MAPS_LINK, initialsOf } from './02-helpers.js';
+import { cardText } from './04-language.js';
+
+/* =========================================================================
+   3. BUILD THE PAGE
+   Each list from the content script (SERVICES, TEAM_MEMBERS ...) becomes cards here,
+   so adding an item to a list adds a card. style="--reveal-order:N" makes cards in the
+   same row appear one after another.
+   ========================================================================= */
+
+/* Section links: header menu, mobile menu and footer all use NAV_LINKS */
+document.querySelectorAll('[data-nav]').forEach(navContainer => {
+  navContainer.innerHTML = NAV_LINKS.map(({ sectionId, label }, index) => {
+    const linkHtml = `<a class="nav-link" href="#${sectionId}" data-i18n="${cardText('nav', index, 'label', label)}"></a>`;
+    return navContainer.dataset.nav === 'li' ? `<li>${linkHtml}</li>` : linkHtml;
+  }).join('');
+});
+
+/* Hero trust points */
+document.querySelector('.trust').innerHTML = TRUST_POINTS.map(({ icon, text }, index) =>
+  `<span>${iconSvg(icon)}<b data-i18n="${cardText('trust', index, 'text', text)}"></b></span>`
+).join('');
+
+/* Service cards: each opens WhatsApp with a message about that service */
+document.querySelector('#svc').innerHTML = SERVICES.map((service, index) => {
+  const enquiryMessage = 'Hi RelaxTrip, I want to enquire about: ' + service.title.en;
+  return `<a class="card link svc rv" style="--reveal-order:${index % 3}" target="_blank" rel="noopener" href="${whatsappLink(enquiryMessage)}"><span class="ibox">${iconSvg(service.icon)}</span><h3 data-i18n="${cardText('service', index, 'title', service.title)}"></h3><p data-i18n="${cardText('service', index, 'description', service.description)}"></p><span class="more"><span data-i18n="enq"></span>${iconSvg('arrow')}</span></a>`;
+}).join('');
+
+/* Footer list of services */
+document.querySelector('#fsvc').innerHTML = SERVICES.map((service, index) =>
+  `<li><a class="nav-link" href="#services" data-i18n="${cardText('service', index, 'title', service.title)}"></a></li>`
+).join('');
+
+/* "About" number cards */
+document.querySelector('#stats').innerHTML = STAT_CARDS.map(({ type, value, label, note }, index) => {
+  const numberAttribute = type === 'counter' ? `data-count="${value}"` : `data-num="${value}"`;
+  return `<div class="card stat rv" style="--reveal-order:${index}"><b ${numberAttribute}>0</b><p data-i18n="${cardText('stat', index, 'label', label)}"></p><small data-i18n="${cardText('stat', index, 'note', note)}"></small></div>`;
+}).join('');
+
+/* Poster shown on a video review before it is played (logo watermark + YouTube thumbnail + badge + play button).
+   If the thumbnail cannot load, it removes itself and the dark poster behind it shows instead. */
+export function videoPosterHtml(reviewIndex) {
+  const review = REVIEWS[reviewIndex];
+  return `<svg class="vmk" aria-hidden="true"><use href="#rt-mark" width="100%" height="100%"/></svg><img src="https://i.ytimg.com/vi/${review.videoId}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="vbadge" data-i18n="${cardText('review', reviewIndex, 'videoBadge', review.videoBadge)}"></span><button class="play" aria-label="Play video review ${reviewIndex + 1}">${iconSvg('play')}</button>`;
+}
+
+/* Review slides (inside #track) */
+document.querySelector('#track').innerHTML = REVIEWS.map((review, index) =>
+  `<div class="slide" role="group" aria-roledescription="slide" aria-label="${index + 1} / ${REVIEWS.length}"><figure class="card rev"><div class="vid" data-index="${index}">${videoPosterHtml(index)}</div><div class="stars" role="img" aria-label="5 / 5">★★★★★</div><blockquote data-i18n="${cardText('review', index, 'quote', review.quote)}"></blockquote><figcaption class="who"><span class="av" aria-hidden="true">${review.initials || initialsOf(review.name.en)}</span><span><b data-i18n="${cardText('review', index, 'name', review.name)}"></b><br><small data-i18n="${cardText('review', index, 'location', review.location)}"></small></span></figcaption></figure></div>`
+).join('');
+
+/* Slider dots (one per review) */
+document.querySelector('#dots').style.display = 'contents';
+document.querySelector('#dots').innerHTML = REVIEWS.map((review, index) =>
+  `<button class="dot" data-index="${index}" aria-label="Review ${index + 1}"></button>`
+).join('');
+
+/* "Why us" numbered list */
+document.querySelector('#whyl').innerHTML = WHY_US_ITEMS.map(({ title, description }, index) => {
+  const displayNumber = String(index + 1).padStart(2, '0');
+  return `<div class="wi rv" style="--reveal-order:${index}"><span class="n" data-num="${displayNumber}">${displayNumber}</span><div><h3 data-i18n="${cardText('whyus', index, 'title', title)}"></h3><p data-i18n="${cardText('whyus', index, 'description', description)}"></p></div></div>`;
+}).join('');
+
+/* Team cards */
+document.querySelector('#teaml').innerHTML = TEAM_MEMBERS.map((member, index) =>
+  `<div class="card rv" style="--reveal-order:${index}"><span class="av lg" aria-hidden="true">${member.initials || initialsOf(member.name.en)}</span><div><h3 data-i18n="${cardText('team', index, 'name', member.name)}"></h3><p class="role" data-i18n="${cardText('team', index, 'role', member.role)}"></p></div><p data-i18n="${cardText('team', index, 'description', member.description)}"></p></div>`
+).join('');
+
+/* FAQ questions and answers */
+document.querySelector('#faql').innerHTML = FAQ_ITEMS.map(({ question, answer }, index) => {
+  const number = index + 1;
+  return `<div class="card fq"><button aria-expanded="false" aria-controls="fa${number}" id="fh${number}"><span data-i18n="${cardText('faq', index, 'question', question)}"></span>${iconSvg('plus')}</button><div class="fb" id="fa${number}" role="region" aria-labelledby="fh${number}"><div><p data-i18n="${cardText('faq', index, 'answer', answer)}"></p></div></div></div>`;
+}).join('');
+
+/* Partner airlines: a slowly scrolling strip. Each half of the strip holds the whole list (repeated if the
+   list is short); the second half is a copy hidden from screen readers, so the loop has no visible gap.
+   The round badge shows the airline logo; if there is no logo (or it cannot load) it shows the code on gold instead. */
+function airlineItemHtml(airline, isCopy) {
+  const logoUrl = airline.logo || (AIRLINE_LOGO_URL ? AIRLINE_LOGO_URL.replace('{code}', airline.code) : '');
+  const logoImage = logoUrl
+    ? `<img src="${logoUrl}" alt="" loading="lazy" onerror="this.parentElement.classList.add('no-logo');this.remove()">`
+    : '';
+  return `<li class="airline"${isCopy ? ' aria-hidden="true"' : ''}><span class="airline-badge${logoUrl ? '' : ' no-logo'}">${logoImage}<b>${airline.code}</b></span><span class="airline-text"><span class="airline-name">${airline.name}</span><span class="airline-code">${airline.code}</span></span></li>`;
+}
+const airlineCopiesPerHalf = Math.max(1, Math.ceil(10 / (PARTNER_AIRLINES.length || 1)));
+const airlinesOneHalf = Array.from({ length: airlineCopiesPerHalf }, () => PARTNER_AIRLINES).flat();
+document.querySelector('#airline-list').innerHTML =
+  airlinesOneHalf.map(airline => airlineItemHtml(airline, false)).join('') +
+  airlinesOneHalf.map(airline => airlineItemHtml(airline, true)).join('');
+
+/* Footer "Pay with" tiles: a white tile with the logo; without a logo (or if it cannot load) the tile shows the name */
+document.querySelector('#pay-list').innerHTML = PAYMENT_METHODS.map(method => {
+  const fileId = method.id || method.name.toLowerCase().replace(/[^a-z0-9]+/g, '');
+  const logoUrl = method.logo || (PAYMENT_LOGO_URL ? PAYMENT_LOGO_URL.replace('{id}', fileId) : '');
+  const logoImage = logoUrl
+    ? `<img src="${logoUrl}" alt="${method.name}" loading="lazy" onerror="this.parentElement.classList.add('no-logo');this.remove()">`
+    : '';
+  return `<li class="pay-tile${logoUrl ? '' : ' no-logo'}">${logoImage}<span class="pay-name">${method.name}</span></li>`;
+}).join('');
+
+/* Optional "Verified by ..." badge (only when PAYMENT_GATEWAY_BADGE is set in the content script) */
+if (PAYMENT_GATEWAY_BADGE) {
+  const gatewayLogo = PAYMENT_GATEWAY_BADGE.logo
+    ? `<img src="${PAYMENT_GATEWAY_BADGE.logo}" alt="${PAYMENT_GATEWAY_BADGE.name}" height="28" loading="lazy">`
+    : `<b class="pay-gateway-name">${PAYMENT_GATEWAY_BADGE.name}</b>`;
+  document.querySelector('#pay-gateway').innerHTML = `<span data-i18n="${cardText('gateway', 0, 'text', PAYMENT_GATEWAY_BADGE.text)}"></span>${gatewayLogo}`;
+}
+
+/* Support button: one row per contact option */
+document.querySelector('#support-list').innerHTML = SUPPORT_CHANNELS.map(({ type, icon, label, note }, index) => {
+  const href = type === 'whatsapp' ? whatsappLink('Hi RelaxTrip, I need help with a booking.')
+             : type === 'phone' ? PHONE_LINK
+             : 'mailto:' + CONTACT.email;
+  const detailHtml = note
+    ? `<small data-i18n="${cardText('support', index, 'note', note)}"></small>`
+    : `<small>${type === 'phone' ? CONTACT.phone : CONTACT.email}</small>`;
+  const openInNewTab = type === 'whatsapp' ? ' target="_blank" rel="noopener"' : '';
+  return `<a class="support-link" href="${href}"${openInNewTab}><span class="ibox">${iconSvg(icon)}</span><span><b data-i18n="${cardText('support', index, 'label', label)}"></b>${detailHtml}</span></a>`;
+}).join('');
+
+/* Fill in the logo wherever the HTML has data-logo */
+document.querySelectorAll('[data-logo]').forEach(logoPlaceholder => {
+  logoPlaceholder.innerHTML = LOGO_HTML;
+});
+
+/* Turn every <i data-icon="name"> placeholder into a real SVG icon (keeps its classes) */
+document.querySelectorAll('i[data-icon]').forEach(iconPlaceholder => {
+  iconPlaceholder.outerHTML = iconSvg(iconPlaceholder.dataset.icon, iconPlaceholder.className);
+});
+
+/* Contact links and texts (values come from CONTACT at the top) */
+document.querySelectorAll('[data-contact-link=phone]').forEach(link => { link.href = PHONE_LINK; });
+document.querySelectorAll('[data-contact-link=whatsapp]').forEach(link => { link.href = whatsappLink('Hi RelaxTrip, I need help with a booking.'); });
+document.querySelectorAll('[data-contact-link=email]').forEach(link => { link.href = 'mailto:' + CONTACT.email; });
+document.querySelectorAll('[data-contact-link=map]').forEach(link => { link.href = MAPS_LINK; });
+
+/* Search-engine data (what Google can show about the business) is built from CONTACT, so it never goes out of date */
+const structuredDataTag = document.createElement('script');
+structuredDataTag.type = 'application/ld+json';
+structuredDataTag.textContent = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'TravelAgency',
+  name: 'RelaxTrip',
+  telephone: '+' + PHONE_INTERNATIONAL_DIGITS,
+  email: CONTACT.email,
+  address: { '@type': 'PostalAddress', streetAddress: CONTACT.address.en, addressCountry: 'BD' },
+  openingHours: CONTACT.openingHoursCode
+});
+document.head.appendChild(structuredDataTag);
+document.querySelectorAll('[data-phone-text]').forEach(element => { element.textContent = CONTACT.phone; });
+document.querySelectorAll('[data-email-text]').forEach(element => { element.textContent = CONTACT.email; });
+
+/* Menu button holds two icons; CSS shows the "menu" or the "X" depending on aria-expanded */
+document.querySelector('#burger').innerHTML = iconSvg('menu', 'b-m') + iconSvg('x', 'b-x');
+

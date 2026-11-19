@@ -1,0 +1,40 @@
+/* =========================================================================
+   FILE: css/04-header.css
+   This file was section 04 of the old single-file version.
+   LOAD ORDER MATTERS: keep the <link> list in index.html in numbered order,
+   lower numbers load first, later files win when rules conflict.
+   ========================================================================= */
+
+/* =========================================================================
+   4. HEADER AND NAVIGATION
+   Sticky top bar: logo, desktop menu (1320px and wider), theme and language
+   buttons, Call Now button (768px and wider) and the mobile/tablet menu button.
+   ========================================================================= */
+/* HEADER BAR: stays at the top while scrolling. .sc is added by JS after scrolling a little (adds a shadow). */
+.hdr{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--color-page-background) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--color-border);transition:box-shadow var(--motion-duration-normal)}
+.hdr.sc{box-shadow:0 8px 24px -14px rgba(0,0,0,.35)}
+/* Header inner row: logo on the left, controls on the right. */
+.bar-in{display:flex;align-items:center;justify-content:space-between;height:5rem;gap:.5rem}
+/* Hidden by default; the media queries below turn on the right ones for each screen width. */
+.dnav,.cta-h,.burger{display:none} .ctl{display:flex;align-items:center;gap:.5rem}
+/* Theme button shows a sun in dark mode and a moon in light mode. */
+.sun{display:none} .dark .sun{display:inline} .dark .moon{display:none}
+/* Language button (flag + the language you will switch TO). */
+.lang{padding:0 .85rem;min-height:48px}
+@media(min-width:480px){.ctl{gap:.75rem}}
+/* Phones: slightly smaller logo (tightened further in section 10). */
+@media(max-width:479px){.logo{font-size:1.2rem}.logo svg{width:1.9rem;height:1.9rem}}
+/* Call Now button appears in the header from tablet width. */
+@media(min-width:768px){.cta-h{display:inline-flex}}
+/* Menu (3-bar) button shows on every screen narrower than 1320px. */
+@media(max-width:1319px){.burger{display:inline-flex}}
+/* From 1320px the full menu is shown in the header and the mobile menu is removed. */
+@media(min-width:1320px){.dnav{display:flex;gap:1.5rem}.mnav{display:none!important}}
+/* MOBILE MENU panel: slides open by animating its height from 0fr to 1fr (see section 11 for its position). */
+.mnav{display:grid;grid-template-rows:0fr;transition:grid-template-rows var(--motion-duration-slow) var(--motion-easing)} .mnav.open{grid-template-rows:1fr}
+/* Inner wrapper hides the content while the panel is closed (also hides it from screen readers). */
+.mnav>div{overflow:hidden;visibility:hidden;transition:visibility 0s var(--motion-duration-slow)} .mnav.open>div{visibility:visible;transition-delay:0s}
+/* Mobile menu link list. */
+.mnav nav{display:flex;flex-direction:column;padding:.5rem 0;width:min(1200px,100% - 2rem);margin-inline:auto}
+.mnav .nav-link{padding:.85rem 0;font-size:var(--font-size-large)} .mnav .btn{width:min(1200px,100% - 2rem);margin:.5rem auto 1.25rem;display:flex}
+

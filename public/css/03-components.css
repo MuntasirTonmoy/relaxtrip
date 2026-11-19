@@ -1,0 +1,54 @@
+/* =========================================================================
+   FILE: css/03-components.css
+   This file was section 03 of the old single-file version.
+   LOAD ORDER MATTERS: keep the <link> list in index.html in numbered order,
+   lower numbers load first, later files win when rules conflict.
+   ========================================================================= */
+
+/* =========================================================================
+   3. REUSABLE COMPONENTS
+   Cards, buttons, icon boxes, avatars, nav links and the logo.
+   All of them share ONE hover / press / focus behaviour so the site feels
+   consistent: hover lifts, press shrinks slightly, keyboard focus shows a ring.
+   ========================================================================= */
+/* CARD: base look of every card. .card.link = a card that is a clickable link and lifts on hover. */
+.card{background:var(--color-card-background);border:1px solid var(--color-border);border-radius:var(--radius-card);padding:2rem;box-shadow:var(--shadow-card);
+  transition:transform var(--motion-duration-normal) var(--motion-easing),box-shadow var(--motion-duration-normal) var(--motion-easing),border-color var(--motion-duration-normal) var(--motion-easing)}
+.card.link{display:grid;gap:1rem;align-content:start;text-decoration:none}
+.card.link:hover{transform:translateY(-4px);border-color:var(--color-brand-gold);box-shadow:var(--shadow-card-hover)}
+.card.link:active{transform:translateY(-2px) scale(.99)}
+/* BUTTON: base (secondary) button. Hover lifts it 2px, press shrinks it slightly. */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:48px;padding:.75rem 1.5rem;border-radius:var(--radius-control);
+  border:1px solid var(--color-border);background:var(--color-card-background);color:var(--color-text);font-family:inherit;font-weight:700;font-size:var(--font-size-small);line-height:1.2;text-decoration:none;cursor:pointer;
+  transition:transform var(--motion-duration-normal) var(--motion-easing),box-shadow var(--motion-duration-normal) var(--motion-easing),background-color var(--motion-duration-normal),border-color var(--motion-duration-normal)}
+.btn:hover{transform:translateY(-2px);border-color:var(--color-brand-gold)}
+.btn:active{transform:translateY(0) scale(.98)}
+/* PRIMARY BUTTON: solid gold. */
+.btn.primary{background:var(--color-brand-gold);border-color:var(--color-brand-gold);color:var(--color-black)}
+/* Primary button hover: slightly brighter gold. */
+.btn.primary:hover{background:#ffc42e;box-shadow:0 10px 22px -8px rgba(255,180,0,.6)}
+/* ICON BUTTON ("ib"): square button used for the theme toggle, menu button and slider arrows. */
+.btn.ib{width:48px;padding:0}
+/* "Enquire ->" link text at the bottom of service cards; the arrow nudges right on card hover. */
+.more{display:inline-flex;align-items:center;gap:.4rem;font-weight:700;font-size:var(--font-size-small);color:var(--color-accent-text)}
+.more .i{transition:transform var(--motion-duration-normal) var(--motion-easing)} .card.link:hover .more .i{transform:translateX(4px)}
+/* ICON BOX: rounded square that holds a service icon. */
+.ibox{width:3rem;height:3rem;border-radius:var(--radius-inner);display:grid;place-items:center;background:color-mix(in srgb,var(--color-brand-gold) 20%,transparent);color:var(--color-accent-text)}
+.ibox .i{width:1.5rem;height:1.5rem}
+/* AVATAR: round badge with initials (reviews and team). .lg = the big team version. */
+.av{width:3rem;height:3rem;border-radius:50%;background:var(--color-brand-gold);color:var(--color-black);display:grid;place-items:center;font-weight:800;flex:none}
+.av.lg{width:6rem;height:6rem;font-size:1.75rem;margin:0 auto;border:3px solid color-mix(in srgb,var(--color-brand-gold) 40%,var(--color-card-background))}
+/* NAV LINK: colour-only hover (no underline). Hover = gold, current section = .on (see below). */
+.nav-link{position:relative;display:inline-block;padding:.5rem 0;font-weight:600;font-size:var(--font-size-small);color:var(--color-text-muted);text-decoration:none;transition:color var(--motion-duration-fast)}
+.nav-link.on{color:var(--color-nav-link-active)} .nav-link:hover{color:var(--color-brand-gold)}
+
+/* ---- LOGO: the RELAXTRIP wordmark is built from text. "RELA" is gold, the "X" is
+   half gold / half gray (like your logotext), "TRIP" is gray. The same markup is
+   used in the header, footer and hero title so it always matches. ---- */
+/* LOGO size: header and footer. */
+.logo{display:inline-flex;align-items:center;gap:.55rem;text-decoration:none;font-weight:800;font-size:1.375rem;letter-spacing:-.03em;font-family:"Plus Jakarta Sans",sans-serif}
+.logo svg{width:2.4rem;height:2.4rem;flex:none}
+/* Wordmark letters: .g = "RELA" gold, .gy = "TRIP" gray, .x = the "X" (half gold, half gray gradient). */
+.wm .g{color:var(--color-brand-gold)} .wm .gy{color:var(--color-logo-gray)}
+.wm .x{background:linear-gradient(90deg,var(--color-brand-gold) 50%,var(--color-logo-gray) 50%);-webkit-background-clip:text;background-clip:text;color:transparent}
+

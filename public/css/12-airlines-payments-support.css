@@ -1,0 +1,79 @@
+/* =========================================================================
+   FILE: css/12-airlines-payments-support.css
+   This file was section 12 of the old single-file version.
+   LOAD ORDER MATTERS: keep the <link> list in index.html in numbered order,
+   lower numbers load first, later files win when rules conflict.
+   ========================================================================= */
+
+/* =========================================================================
+   12. PARTNER AIRLINES, FOOTER PAYMENTS, SUPPORT BUTTON
+   ========================================================================= */
+/* Text that only screen readers hear (used for icon-only buttons). */
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* PARTNER AIRLINES strip: compact section right under the hero. The smaller heading gap is set by overriding the variable. */
+.partners{--section-heading-gap:2rem;padding-block:clamp(2.5rem,5vw,4rem);border-top:1px solid var(--color-border)}
+/* Scrolling area: the edges fade out. */
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+/* The moving row (two identical halves). Speed: change the 45s below. It pauses while the mouse is over it. */
+.marquee-track{display:flex;width:max-content;margin:0;padding:0;list-style:none;animation:marquee-scroll 45s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes marquee-scroll{to{transform:translateX(-50%)}}
+/* One airline card: round logo badge + name + code (a gold circle with the code when there is no logo). Margin, not gap, so both halves of the loop are exactly equal. */
+.airline{display:flex;align-items:center;gap:1rem;flex:none;min-width:15rem;margin-right:1rem;padding:.9rem 1.5rem .9rem .9rem;border:1px solid var(--color-border);border-radius:var(--radius-inner);background:var(--color-card-background);white-space:nowrap}
+.airline-badge{position:relative;flex:none;width:3.5rem;height:3.5rem;display:grid;place-items:center;overflow:hidden;border-radius:50%;border:1px solid var(--color-border);background:#fff}
+.airline-badge img{width:72%;height:72%;object-fit:contain}
+.airline-badge b{display:none;font-size:.875rem;font-weight:800;color:var(--color-black)}
+.airline-badge.no-logo{border-color:var(--color-brand-gold);background:var(--color-brand-gold)}
+.airline-badge.no-logo b{display:block}
+.airline-text{display:grid;gap:.1rem}
+.airline-name{font-size:var(--font-size-body);font-weight:800;color:var(--color-text)}
+.airline-code{font-size:.875rem;font-weight:700;color:var(--color-text-muted)}
+/* People who ask for less motion get a still, wrapped grid instead of the scrolling row. */
+@media(prefers-reduced-motion:reduce){.marquee{-webkit-mask-image:none;mask-image:none}.marquee-track{width:auto;flex-wrap:wrap;justify-content:center;transform:none}.airline{margin:.35rem}.airline[aria-hidden=true]{display:none}}
+
+/* FOOTER "PAY WITH" row: label on the left, white logo tiles, optional "Verified by" badge on the right. */
+.pay{display:flex;flex-wrap:wrap;align-items:center;gap:1.25rem 1.75rem;margin-top:3rem;padding-top:1.5rem;border-top:1px solid #3a3a3a}
+.pay-head{display:grid;gap:.35rem;padding-right:1.75rem;border-right:1px solid #3a3a3a}
+.pay-title{display:flex;align-items:center;gap:.5rem;margin:0}
+.pay-head p{margin:0;max-width:14rem;font-size:.8125rem;color:#a8a8a8}
+/* ".foot" in front so this beats the general footer list rule (which would stack the tiles). */
+.foot .pay-list{display:flex;flex:1;flex-wrap:wrap;gap:.75rem;margin:0;padding:0;list-style:none}
+.pay-tile{display:grid;place-items:center;min-width:4.5rem;height:3.25rem;padding:.35rem .7rem;border-radius:.75rem;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.45);overflow:hidden}
+.pay-tile img{display:block;max-width:100%;max-height:100%;object-fit:contain}
+.pay-name{display:none;font-size:.75rem;font-weight:800;line-height:1.15;text-align:center;color:#1f1f1f}
+.pay-tile.no-logo .pay-name{display:block}
+.pay-gateway{display:flex;align-items:center;gap:.6rem;margin-left:auto;font-size:.8125rem;color:#a8a8a8}
+.pay-gateway:empty{display:none}
+.pay-gateway-name{padding:.3rem .7rem;border-radius:.5rem;background:#2a62b0;color:#fff;font-size:.875rem}
+.pay + .legal{margin-top:1.5rem}
+/* Extra space at the very bottom so the floating Support button never covers the legal links. */
+.foot{padding-bottom:5.5rem}
+
+/* SUPPORT BUTTON: fixed at the bottom-right corner above everything else (z-index 70 beats the header's 50). */
+.support{position:fixed;right:max(1rem,env(safe-area-inset-right));bottom:max(1rem,env(safe-area-inset-bottom));z-index:70;display:grid;justify-items:end;gap:.75rem;pointer-events:none}
+.support-fab{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:56px;padding:0 1.25rem;border:0;border-radius:999px;background:var(--color-brand-gold);color:var(--color-black);font-family:inherit;font-weight:800;font-size:var(--font-size-small);cursor:pointer;box-shadow:0 10px 28px -8px rgba(0,0,0,.45);transition:transform var(--motion-duration-normal) var(--motion-easing),box-shadow var(--motion-duration-normal) var(--motion-easing)}
+.support-fab:hover{transform:translateY(-2px);box-shadow:0 14px 32px -8px rgba(0,0,0,.5)}
+.support-fab:active{transform:scale(.97)}
+/* The wrapper itself ignores taps (so its empty area never blocks the page); only the button and the open panel react. */
+.support-fab,.support-panel{pointer-events:auto}
+.support-fab .i{width:1.5rem;height:1.5rem}
+/* Phones: round icon-only button (the word "Support" stays available to screen readers). */
+@media(max-width:639px){.support-fab{width:56px;padding:0}.fab-text{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}}
+/* The panel grows out of the button; while closed it is invisible and cannot be focused. */
+.support-panel{width:min(340px,calc(100vw - 2rem));display:grid;gap:1rem;padding:1.25rem;border:1px solid var(--color-border);border-radius:var(--radius-card);background:var(--color-card-background);box-shadow:0 24px 48px -16px rgba(0,0,0,.45);transform-origin:bottom right;opacity:0;transform:translateY(12px) scale(.98);visibility:hidden;transition:opacity var(--motion-duration-normal) var(--motion-easing),transform var(--motion-duration-normal) var(--motion-easing),visibility 0s var(--motion-duration-normal)}
+.support.open .support-panel{opacity:1;transform:none;visibility:visible;transition-delay:0s}
+.support-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+.support-head h2{font-size:var(--font-size-large)}
+.support-head p{margin-top:.25rem;font-size:.8125rem;color:var(--color-text-muted)}
+.support-close{flex:none;width:36px;height:36px;display:grid;place-items:center;padding:0;border:1px solid var(--color-border);border-radius:50%;background:transparent;color:var(--color-text);cursor:pointer;transition:border-color var(--motion-duration-fast)}
+.support-close:hover{border-color:var(--color-brand-gold)}
+.support-list{display:grid;gap:.6rem}
+/* One contact option row (same hover language as other clickable cards). */
+.support-link{display:flex;align-items:center;gap:.9rem;padding:.7rem;border:1px solid var(--color-border);border-radius:var(--radius-inner);color:var(--color-text);text-decoration:none;transition:transform var(--motion-duration-normal) var(--motion-easing),border-color var(--motion-duration-normal)}
+.support-link:hover{transform:translateY(-2px);border-color:var(--color-brand-gold)}
+.support-link .ibox{width:2.5rem;height:2.5rem;flex:none}
+.support-link b{display:block;font-size:var(--font-size-small)}
+.support-link small{color:var(--color-text-muted);font-size:.8125rem}
+
+

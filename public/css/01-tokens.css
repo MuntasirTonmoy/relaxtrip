@@ -1,0 +1,96 @@
+/* =========================================================================
+   FILE: css/01-tokens.css
+   This file was section 01 of the old single-file version.
+   LOAD ORDER MATTERS: keep the <link> list in index.html in numbered order,
+   lower numbers load first, later files win when rules conflict.
+   ========================================================================= */
+
+/* =========================================================================
+   1. DESIGN TOKENS (CSS custom properties)
+   Every colour, size, radius and animation speed lives here. Change a value
+   once and the whole site follows.
+   Names:  --color-*  --shadow-*  --radius-*  --motion-*  --slider-*
+           --font-*  --line-height-*  --section-*  --grid-gap
+   ========================================================================= */
+:root{
+  /* ---- Brand palette: the whole site uses only gold, charcoal, black and white ---- */
+  --color-brand-gold:#FFB400;               /* PRIMARY colour: buttons, highlights, icons, "RELA" in the logo */
+  --color-brand-charcoal:#4d4d4d;           /* SECONDARY colour: map shapes, video poster backdrop */
+  --color-black:#111;                       /* near-black: text on gold buttons, icon colour on gold */
+
+  /* ---- Surfaces and text (LIGHT theme; the dark theme overrides them below) ---- */
+  --color-page-background:#fff;             /* main page background */
+  --color-section-alt-background:#f4f4f4;   /* every second section uses this soft grey */
+  --color-card-background:#fff;             /* cards, secondary buttons */
+  --color-border:#dedede;                   /* card borders, dividers, dividers */
+  --color-text:#111;                        /* headings and main text */
+  --color-text-muted:#4d4d4d;               /* descriptions and small labels */
+  --color-accent-text:#FFB400;              /* small coloured section labels, big numbers, accent icons */
+  --color-focus-ring:#111;                  /* outline shown when navigating with the keyboard */
+  --color-nav-link-active:var(--color-brand-gold);   /* colour of the nav link for the section you are viewing (same in light and dark) */
+
+  /* ---- Logo colours (from your logo SVG) ---- */
+  --color-logo-mark-gold:#FFB400;           /* gold crescent of the logo mark (same as the "RELA" gold) */
+  --color-logo-gray:#4e4e4e;                /* gray part of the mark and the "TRIP" letters */
+
+  /* ---- Shadows ---- */
+  --shadow-card:0 4px 14px -4px rgba(0,0,0,.08);                  /* resting shadow of cards */
+  --shadow-card-hover:0 16px 32px -12px rgba(255,180,0,.4);       /* gold glow when a clickable card is hovered */
+
+  /* ---- Rounded corners ---- */
+  --radius-card:24px;                       /* big cards, map, slider */
+  --radius-inner:16px;                      /* things inside cards: icon boxes, video thumbnail */
+  --radius-control:12px;                    /* buttons and form-like controls */
+
+  /* ---- Animation speed and feel (used by hover effects, menus, accordion) ---- */
+  --motion-easing:cubic-bezier(.16,1,.3,1);
+  --motion-duration-fast:150ms;             /* small colour changes */
+  --motion-duration-normal:250ms;           /* hover lift, button press */
+  --motion-duration-slow:450ms;             /* mobile menu, accordion, scroll reveal */
+
+  /* ---- REVIEWS SLIDER animation (change these to make the swipe faster/slower) ---- */
+  --slider-slide-duration:var(--motion-duration-slow);   /* how long one slide change takes */
+  --slider-slide-easing:var(--motion-easing);            /* acceleration curve of the slide change */
+
+  /* ---- Spacing ---- */
+  --section-padding-vertical:clamp(4.5rem,8vw,7rem);   /* space above/below every page section */
+  --grid-gap:2rem;                                     /* gap between cards in grids */
+  --section-heading-gap:3.5rem;                        /* gap between a section heading and its content */
+
+  /* ---- Typography (sizes grow smoothly with screen width) ---- */
+  --font-size-small:clamp(.875rem,.84rem + .15vw,.9375rem);   /* card text, buttons, nav links */
+  --font-size-body:1rem;                                      /* normal paragraph text */
+  --font-size-large:clamp(1rem,.94rem + .3vw,1.125rem);       /* intro paragraphs, quotes */
+  --font-size-h1:clamp(2rem,1.2rem + 4vw,3.75rem);            /* hero title */
+  --font-size-h2:clamp(1.75rem,1.2rem + 2.4vw,2.5rem);        /* section titles */
+  --font-size-h3:clamp(1.125rem,1rem + .5vw,1.25rem);         /* card titles */
+  --line-height-body:1.7;                   /* space between lines of normal text */
+  --line-height-heading:1.15;               /* space between lines of headings */
+  --font-weight-heading:800;                /* boldness of headings */
+
+  /* Tells Chrome this is a LIGHT-only page so its "auto dark mode" does not darken it. */
+  color-scheme:only light;
+}
+
+/* DARK THEME: applied when <html> has class "dark". Only the values that differ are listed. */
+.dark{
+  --color-page-background:#0f0f0f;
+  --color-section-alt-background:#171717;
+  --color-card-background:#1c1c1c;
+  --color-border:#333;
+  --color-text:#fff;
+  --color-text-muted:#c4c4c4;
+  --color-accent-text:#FFB400;
+  --color-focus-ring:#FFB400;
+  --color-logo-gray:#d9d9d9;                /* lighter gray so "TRIP" stays readable on dark */
+  --shadow-card:none;
+  --shadow-card-hover:0 16px 32px -12px rgba(255,180,0,.22);
+  color-scheme:dark;
+}
+/* BANGLA MODE: Bangla letters need taller lines and slightly lighter headings than English. */
+html[lang=bn]{--line-height-body:1.85;--line-height-heading:1.4;--font-weight-heading:700}            /* Bangla needs taller lines, no bold-800, no tracking */
+/* BANGLA MODE: no letter-spacing and no UPPERCASE (both break Bangla letter joins). */
+html[lang=bn] *{letter-spacing:0;text-transform:none}
+/* Logo gray is lighter inside the dark footer so "TRIP" stays readable. */
+.foot,.cta{--color-logo-gray:#d4d4d4}
+

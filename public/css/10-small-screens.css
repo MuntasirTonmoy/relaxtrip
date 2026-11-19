@@ -1,0 +1,31 @@
+/* =========================================================================
+   FILE: css/10-small-screens.css
+   This file was section 10 of the old single-file version.
+   LOAD ORDER MATTERS: keep the <link> list in index.html in numbered order,
+   lower numbers load first, later files win when rules conflict.
+   ========================================================================= */
+
+/* =========================================================================
+   10. SMALL-SCREEN FIXES (320-480px wide phones) + LANGUAGE FLAG
+   Keeps the badge and buttons tidy on narrow phones, and
+   styles the flag inside the language button.
+   ========================================================================= */
+/* Stop phones from enlarging text on their own (keeps sizes consistent). */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+/* Language button text size and spacing. */
+.lang{gap:.5rem;font-size:.875rem}
+/* Small flag image inside the language button. */
+.flag{display:inline-flex} .flag svg{width:1.5rem;height:1rem;display:block;border-radius:2px;box-shadow:0 0 0 1px rgba(128,128,128,.4)}
+/* Hero badge: font shrinks with the screen so it stays on ONE line on phones (English). */
+.badge{font-size:clamp(.6875rem,3.4vw,.875rem);padding:.45rem .8rem;gap:.5rem;max-width:100%;white-space:nowrap;line-height:1.4}
+/* Bangla text may be longer, so the badge is allowed to wrap. */
+html[lang=bn] .badge{white-space:normal;text-align:center}
+/* Directions button: full width, centred text, balanced line breaks. */
+.contact .btn{width:100%;text-align:center;line-height:1.3;text-wrap:balance;font-size:var(--font-size-small)}
+/* Map pill: never wider than the card. */
+.m-lab{max-width:calc(100% - 2rem);font-size:var(--font-size-small);line-height:1.3}
+/* Phones: less padding inside cards (the enquiry widget has its own padding). */
+@media(max-width:479px){.card:not(.fq):not(.rev):not(.booking){padding:1.5rem}}
+/* Very small phones (320-359px): even tighter header buttons. */
+@media(max-width:359px){.ctl{gap:.25rem}.ctl .btn{width:36px;min-height:36px}.ctl .btn.lang{width:auto;padding:0 .4rem;gap:.35rem;font-size:.8125rem}.logo{font-size:.9rem;gap:.3rem}.logo svg{height:1.8rem;width:2.2rem}}
+

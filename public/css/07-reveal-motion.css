@@ -1,0 +1,20 @@
+/* =========================================================================
+   FILE: css/07-reveal-motion.css
+   This file was section 07 of the old single-file version.
+   LOAD ORDER MATTERS: keep the <link> list in index.html in numbered order,
+   lower numbers load first, later files win when rules conflict.
+   ========================================================================= */
+
+/* =========================================================================
+   7. SCROLL-REVEAL MOTION
+   Cards fade and slide up the first time they scroll into view. The JavaScript
+   adds class "in" (and later removes both classes) so hover effects keep working.
+   Cards in the same row start slightly later via --reveal-order (set in the HTML).
+   ========================================================================= */
+/* "rv" = reveal. Hidden until scrolled into view. Only active when JavaScript runs (class "js" on <html>). */
+.js .rv{opacity:0;transform:translateY(16px);transition:opacity var(--motion-duration-slow) var(--motion-easing),transform var(--motion-duration-slow) var(--motion-easing);transition-delay:calc(var(--reveal-order,0)*80ms)}
+.js .rv.in{opacity:1;transform:none}
+/* People who ask their device for less motion get no animations. */
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.js .rv{opacity:1;transform:none}}
+
+/* =========================================================================

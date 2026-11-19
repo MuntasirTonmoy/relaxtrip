@@ -1,0 +1,36 @@
+/* =========================================================================
+   FILE: css/05-hero.css
+   This file was section 05 of the old single-file version.
+   LOAD ORDER MATTERS: keep the <link> list in index.html in numbered order,
+   lower numbers load first, later files win when rules conflict.
+   ========================================================================= */
+
+/* =========================================================================
+   5. HERO (first screen)
+   Badge, title, intro text, two buttons, trust points. On phones and tablets
+   everything is centred in one column; from 1024px the text is on the left
+   and the enquiry widget (Air ticket / Visa) is on the right.
+   ========================================================================= */
+/* HERO: fills the first screen. Uses svh (small viewport height) so it does not jump when the phone address bar hides. */
+.hero{position:relative;overflow:hidden;min-height:calc(100svh - 5rem);display:flex;align-items:center;padding-block:4rem 6rem}
+/* Soft gold glow in the top-right corner of the hero. */
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 55% at 85% 25%,rgba(255,180,0,.2),transparent 70%);pointer-events:none}
+/* Hero layout grid (text + enquiry widget). */
+.hero-g{position:relative;display:grid;gap:3rem;align-items:center}
+/* Hero text column. */
+.hero-t{display:grid;gap:1.75rem;justify-items:start}
+/* BADGE: the green pill above the hero title (colours are set in section 8). */
+.badge{display:inline-flex;align-items:center;gap:.6rem;padding:.5rem 1rem;border-radius:999px;font-size:.875rem;font-weight:700;color:var(--color-accent-text);background:color-mix(in srgb,var(--color-brand-gold) 16%,transparent);border:1px solid color-mix(in srgb,var(--color-brand-gold) 40%,transparent)}
+.badge::before{content:"";width:.5rem;height:.5rem;border-radius:50%;background:var(--color-brand-gold);animation:pulse 2s ease-in-out infinite}
+/* Pulsing dot animation (hero badge and map pin). */
+@keyframes pulse{50%{opacity:.35;transform:scale(.8)}}
+/* Gold highlighter marker behind highlighted words. */
+.hl{background:linear-gradient(transparent 62%,rgba(255,180,0,.5) 0);padding-inline:.1em}
+/* Hero intro paragraph. */
+.lead{font-size:var(--font-size-large);color:var(--color-text-muted);max-width:36rem}
+/* Row of hero/CTA buttons (stack full-width on phones, see below). */
+.row-btns{display:flex;flex-wrap:wrap;gap:1rem} .row-btns .btn{min-height:56px;padding-inline:2rem}
+/* Trust points under the hero buttons (green ticks). */
+.trust{display:flex;flex-wrap:wrap;gap:.75rem 2rem;font-size:var(--font-size-small);font-weight:600;color:var(--color-text-muted)} .trust span{display:inline-flex;gap:.5rem;align-items:center} .trust .i{color:#16a34a}
+@media(max-width:639px){.row-btns .btn{width:100%}}
+
