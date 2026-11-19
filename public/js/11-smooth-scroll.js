@@ -35,14 +35,14 @@ function scrollToSection(sectionId) {
 }
 
 /* Every link that points to "#something" scrolls with the function above.
-   "#top" (logo, back-to-top) shows the clean address (relaxtrip.com/) instead of "#top" in the URL bar. */
+   No section is added to the URL bar, so it always shows the clean address (relaxtrip.com/).
+   Links pasted WITH a hash (relaxtrip.com/#faq) still land on that section: the browser does that on its own. */
 document.addEventListener('click', event => {
   const link = event.target.closest('a[href^="#"]');
   if (!link || link.getAttribute('href').length < 2) return;
   event.preventDefault();
   const sectionId = link.getAttribute('href').slice(1);
-  const newUrl = sectionId === 'top' ? location.pathname + location.search : '#' + sectionId;
   scrollToSection(sectionId);
-  try { history.replaceState(null, '', newUrl); } catch (error) { /* some previews block this: ignore */ }
+  try { history.replaceState(null, '', location.pathname + location.search); } catch (error) { /* some previews block this: ignore */ }
 });
 
