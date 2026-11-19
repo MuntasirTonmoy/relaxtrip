@@ -11,8 +11,9 @@
    everything is centred in one column; from 1024px the text is on the left
    and the enquiry widget (Air ticket / Visa) is on the right.
    ========================================================================= */
-/* HERO: fills the first screen. Uses svh (small viewport height) so it does not jump when the phone address bar hides. */
-.hero{position:relative;overflow:hidden;min-height:calc(100svh - 5rem);display:flex;align-items:center;padding-block:4rem 6rem}
+/* HERO: sized by its content (heading + booking menu) so the whole section fits on the first screen.
+   No forced min-height: if the content is shorter than the screen the hero simply ends after the menu. */
+.hero{position:relative;overflow:hidden;display:flex;align-items:center;padding-block:4rem 6rem}
 /* Soft gold glow in the top-right corner of the hero. */
 .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 55% at 85% 25%,rgba(255,180,0,.2),transparent 70%);pointer-events:none}
 /* Hero layout grid (text + enquiry widget). */

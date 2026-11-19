@@ -8,10 +8,13 @@
 /* =========================================================================
    13. HERO ENQUIRY WIDGET (Air Ticket / Visa search card -> WhatsApp message)
    ========================================================================= */
-/* The hero is now one centred column (text, then the wide search card). overflow:visible lets the passenger pop-up hang below the hero. */
-.hero{overflow:visible;padding-block:clamp(2.25rem,5vw,4rem) 5.5rem}
-.hero-g{gap:2.5rem}
-.hero-t{max-width:52rem;margin-inline:auto;gap:1.25rem}
+/* The hero is now one centred column (text, then the wide search card). overflow:visible lets the passenger pop-up hang below the hero.
+   COMPACT: no forced min-height, small paddings and gaps, capped title size - the heading + the
+   whole booking menu must fit inside the first screen on laptops and on phones. */
+.hero{overflow:visible;padding-block:clamp(2rem,4vw,3rem) 4rem}
+.hero-g{gap:1.75rem}
+.hero-t{max-width:52rem;margin-inline:auto;gap:1rem}
+.hero h1{font-size:clamp(1.9rem,1.1rem + 2.6vw,2.9rem)}
 /* WRAPPER: floating tab pill + card + note. It is the "container" the fields measure themselves against.
    z-index keeps the passenger pop-up above the sections that come after the hero. */
 .booking-wrap{position:relative;z-index:5;width:100%;max-width:72rem;justify-self:center;display:grid;grid-template-columns:minmax(0,1fr);container:booking / inline-size}

@@ -10,10 +10,6 @@ export const SITE_TEXT = {
   wa: { en: "WhatsApp", bn: "হোয়াটসঅ্যাপ" },
 
   /* ---- HERO (first screen) ---- */
-  hero_badge: {
-    en: "Bangladesh's Premier Air Ticketing Agency",
-    bn: "বাংলাদেশের আস্থার এয়ার টিকেটিং এজেন্সি",
-  },
   hero_title: { en: "Explore the World With {WM}", bn: "{WM}-এর সাথে বিশ্ব ঘুরে দেখুন" },
   hero_desc: {
     en: "Your trusted partner for domestic and international air ticketing, visa processing, holiday packages, and 24/7 dedicated travel support right here in Bangladesh.",

@@ -25,8 +25,8 @@
 .contact a:not(.btn):hover{text-decoration:underline;text-decoration-color:var(--color-brand-gold);text-underline-offset:4px}
 /* In Bangla mode the Bangla font goes first so digits and punctuation match the letters. */
 html[lang=bn] body{font-family:"Hind Siliguri","Plus Jakarta Sans",system-ui,sans-serif}
-/* Hero padding grows with screen width. */
-.hero{padding-block:clamp(3.5rem,9vw,6.5rem)}
+/* Hero padding grows with screen width (kept small so the heading + booking menu fit one screen). */
+.hero{padding-block:clamp(2rem,4vw,3.25rem)}
 /* Hero is ONE centred column by default (phones and tablets). */
 .hero-g{grid-template-columns:1fr;gap:3rem}
 /* Centre the hero text, intro and buttons. */
