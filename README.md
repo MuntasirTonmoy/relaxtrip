@@ -38,7 +38,7 @@ relaxtrip/
         ├── 05-theme.js        ← light/dark mode
         ├── 06-header.js       ← nav bar behavior (scroll, mobile menu)
         ├── 07-faq.js          ← FAQ accordion
-        ├── 08-slider.js       ← reviews slider
+        ├── 08-slider.js       ← carousels (reviews, team)
         ├── 09-counters.js     ← animated stat numbers
         ├── 10-reveal.js       ← scroll fade-in
         ├── 11-smooth-scroll.js

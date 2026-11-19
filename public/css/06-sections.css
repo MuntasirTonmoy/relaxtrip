@@ -62,11 +62,12 @@ blockquote{font-size:var(--font-size-large);font-weight:500} .who{display:flex;g
 .contact a:not(.btn){text-decoration:none;transition:color var(--motion-duration-fast)} .contact a:not(.btn):hover{color:var(--color-accent-text)}
 /* MAP card: an illustrated map that opens Google Maps (an embedded map is blocked in some previews). */
 .map{position:relative;display:block;overflow:hidden;min-height:22rem;border-radius:var(--radius-card);border:1px solid var(--color-border);background:var(--color-section-alt-background);transition:transform var(--motion-duration-normal) var(--motion-easing),box-shadow var(--motion-duration-normal) var(--motion-easing),border-color var(--motion-duration-normal)}
-/* TEAM cards. */
-.team p{color:var(--color-text-muted);font-size:var(--font-size-small)} .team .card{text-align:center;display:grid;gap:.9rem;justify-items:center;padding:1.25rem}
-.team-photo{width:100%;aspect-ratio:4/5;border-radius:var(--radius-inner);overflow:hidden;background:var(--color-surface-alt, #eee)}
+/* TEAM cards (inside the same carousel layout as the reviews slider). */
+.team p{color:var(--color-text-muted);font-size:var(--font-size-small)} .team .card{text-align:center;display:grid;gap:.9rem;justify-items:center;padding:1.25rem 1rem}
+.team-photo{width:100%;max-width:13rem;aspect-ratio:4/5;border-radius:var(--radius-inner);overflow:hidden;background:var(--color-surface-alt, #eee)}
 .team-photo img{width:100%;height:100%;object-fit:cover;display:block}
 .team .role{font-weight:700;color:var(--color-accent-text);font-size:var(--font-size-small)}
+.team .slide>.tm{flex:1}   /* all visible team cards stretch to the SAME height */
 /* FAQ accordion: .fq = one question card, .open is added by JS. */
 .faq{max-width:48rem;margin-inline:auto;display:grid;gap:1rem} .fq{padding:0;overflow:hidden}
 .fq:hover{border-color:var(--color-brand-gold)}

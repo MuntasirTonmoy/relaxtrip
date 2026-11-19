@@ -51,8 +51,7 @@ document.querySelector('#track').innerHTML = REVIEWS.map((review, index) =>
 ).join('');
 
 /* Slider dots (one per review) */
-document.querySelector('#dots').style.display = 'contents';
-document.querySelector('#dots').innerHTML = REVIEWS.map((review, index) =>
+document.querySelector('#car .dots').innerHTML = REVIEWS.map((review, index) =>
   `<button class="dot" data-index="${index}" aria-label="Review ${index + 1}"></button>`
 ).join('');
 
@@ -62,13 +61,18 @@ document.querySelector('#whyl').innerHTML = WHY_US_ITEMS.map(({ title, descripti
   return `<div class="wi rv" style="--reveal-order:${index}"><span class="n" data-num="${displayNumber}">${displayNumber}</span><div><h3 data-i18n="${cardText('whyus', index, 'title', title)}"></h3><p data-i18n="${cardText('whyus', index, 'description', description)}"></p></div></div>`;
 }).join('');
 
-/* Team cards: photo (optional — falls back to initials) + name + role */
-document.querySelector('#teaml').innerHTML = TEAM_MEMBERS.map((member, index) => {
+/* Team carousel: one slide per member — photo (optional — falls back to initials) + name + role */
+document.querySelector('#ttrack').innerHTML = TEAM_MEMBERS.map((member, index) => {
   const photo = member.photo
     ? `<span class="team-photo"><img src="${member.photo}" loading="lazy" alt=""></span>`
     : `<span class="av lg" aria-hidden="true">${member.initials || initialsOf(member.name.en)}</span>`;
-  return `<div class="card rv" style="--reveal-order:${index % 3}">${photo}<h3 data-i18n="${cardText('team', index, 'name', member.name)}"></h3><p class="role" data-i18n="${cardText('team', index, 'role', member.role)}"></p></div>`;
+  return `<div class="slide" role="group" aria-roledescription="slide" aria-label="Team member ${index + 1} / ${TEAM_MEMBERS.length}"><div class="card rv tm" style="--reveal-order:${index % 3}">${photo}<h3 data-i18n="${cardText('team', index, 'name', member.name)}"></h3><p class="role" data-i18n="${cardText('team', index, 'role', member.role)}"></p></div></div>`;
 }).join('');
+
+/* Team slider dots (one per member) */
+document.querySelector('#tcar .dots').innerHTML = TEAM_MEMBERS.map((member, index) =>
+  `<button class="dot" data-index="${index}" aria-label="Team member ${index + 1}"></button>`
+).join('');
 
 /* FAQ questions and answers */
 document.querySelector('#faql').innerHTML = FAQ_ITEMS.map(({ question, answer }, index) => {
