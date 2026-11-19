@@ -22,7 +22,7 @@ export const SITE_TEXT = {
   booking_travellers_title: { en: "Travellers", bn: "যাত্রী" },
   booking_cabin_title: { en: "Cabin class", bn: "ক্লাস" },
   booking_done: { en: "Done", bn: "ঠিক আছে" },
-  booking_select_date: { en: "Select date", bn: "তারিখ বাছাই করুন" },
+  booking_select_date: { en: "Select date", bn: "তারিখ দিন" },
   booking_swap: { en: "Swap From and To", bn: "কোথা থেকে ও কোথায় বদলান" },
   booking_passengers_one: { en: "{n} Passenger", bn: "{n} জন যাত্রী" },
   booking_passengers_many: { en: "{n} Passengers", bn: "{n} জন যাত্রী" },

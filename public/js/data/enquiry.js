@@ -28,7 +28,7 @@ export const ENQUIRY_TABS = [
       { name: "from", type: "airport", columns: 2.5, required: true, swapWith: "to", defaultCode: "DAC", label: { en: "From", bn: "কোথা থেকে" }, placeholder: { en: "Select city", bn: "শহর বাছাই করুন" }, hint: { en: "City or airport", bn: "শহর বা বিমানবন্দর" } },
       { name: "to", type: "airport", columns: 2.5, required: true, label: { en: "To", bn: "কোথায়" }, placeholder: { en: "Select city", bn: "শহর বাছাই করুন" }, hint: { en: "City or airport", bn: "শহর বা বিমানবন্দর" } },
       { name: "departure", type: "date", columns: 2, required: true, label: { en: "Departure", bn: "যাত্রার তারিখ" } },
-      { name: "return", type: "date", columns: 2, required: true, minFrom: "departure", enableWhen: { field: "tripType", value: "return" }, disabledText: { en: "Select date", bn: "তারিখ বাছাই করুন" }, placeholder: { en: "Select date", bn: "তারিখ বাছাই করুন" }, label: { en: "Return", bn: "ফেরার তারিখ" } },
+      { name: "return", type: "date", columns: 2, required: true, minFrom: "departure", enableWhen: { field: "tripType", value: "return" }, disabledText: { en: "Select date", bn: "তারিখ দিন" }, placeholder: { en: "Select date", bn: "তারিখ দিন" }, label: { en: "Return", bn: "ফেরার তারিখ" } },
       { name: "travellers", type: "travellers", columns: 3, tablet: 4, summarySub: "class", label: { en: "Passenger & Class", bn: "যাত্রী ও ক্লাস" },
         counters: [
           { name: "adults", min: 1, max: 9, value: 1, label: { en: "Adult", bn: "প্রাপ্তবয়স্ক" }, hint: { en: "12 years and above", bn: "১২ বছর ও তার বেশি" }, messageLabel: "Adults" },
