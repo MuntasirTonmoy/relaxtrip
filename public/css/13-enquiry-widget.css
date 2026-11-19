@@ -22,7 +22,7 @@
 .booking-tabs{position:relative;z-index:3;justify-self:center;display:flex;gap:.25rem;max-width:100%;margin-bottom:-2.25rem;padding:.4rem;border:1px solid var(--color-border);border-radius:999px;background:var(--color-card-background);box-shadow:0 12px 28px -12px rgba(0,0,0,.35)}
 .booking-tab{display:flex;align-items:center;gap:.6rem;min-height:48px;padding:0 1.25rem 0 .45rem;border:0;border-radius:999px;background:transparent;color:var(--color-text-muted);font-family:inherit;font-size:var(--font-size-small);font-weight:800;cursor:pointer;transition:background-color var(--motion-duration-normal),color var(--motion-duration-fast)}
 .booking-tab-icon{width:2.25rem;height:2.25rem;display:grid;place-items:center;border-radius:50%;background:color-mix(in srgb,var(--color-brand-gold) 22%,transparent);color:var(--color-text)}
-.booking-tab:hover{color:var(--color-text)}
+.booking-tab:not([aria-selected=true]):hover{color:var(--color-brand-gold)}
 .booking-tab[aria-selected=true]{background:var(--color-brand-gold);color:var(--color-black)}
 .booking-tab[aria-selected=true] .booking-tab-icon{background:rgba(255,255,255,.55);color:var(--color-black)}
 /* Very narrow screens (card under 22rem wide, roughly phones under 375px): drop the round icons so both tab names fit. */
