@@ -41,11 +41,12 @@
 /* ".foot" in front so this beats the general footer list rule (which would stack the tiles). */
 .foot .pay-list{display:flex;flex:1;flex-wrap:wrap;align-items:center;gap:.75rem;margin:0;padding:0;list-style:none}
 /* ".foot .socials" (2 classes) so it beats the general ".foot ul" grid rule from section 6
-   that would otherwise stack the icons one per line. */
-.foot .socials{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:.6rem;list-style:none;margin:0 0 1.25rem;padding:0}
+   that would otherwise stack the icons one per line. Sits under the brand description:
+   one horizontal row, plain by default, a simple border appears on hover. */
+.foot .socials{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:.6rem;list-style:none;margin:0;padding:0}
 .socials li{flex:none}
-.socials a{display:grid;place-items:center;width:2.75rem;height:2.75rem;border-radius:999px;border:1px solid var(--color-border);background:transparent;color:var(--color-text-muted);transition:transform var(--motion-duration-normal) var(--motion-easing),color var(--motion-duration-normal) var(--motion-easing),border-color var(--motion-duration-normal) var(--motion-easing)}
-.socials a:hover{transform:translateY(-2px);color:var(--color-brand-gold);border-color:var(--color-brand-gold)}
+.socials a{display:grid;place-items:center;width:2.75rem;height:2.75rem;border-radius:999px;border:1px solid transparent;background:transparent;color:var(--color-text-muted);transition:border-color var(--motion-duration-normal) var(--motion-easing)}
+.socials a:hover{border-color:var(--color-border)}
 .socials svg{width:1.35rem;height:1.35rem}
 @media(max-width:767px){.foot .socials{gap:.5rem;justify-content:flex-start}}
 /* Phones: the whole set of payment logos stays in ONE horizontal row - it scrolls sideways
