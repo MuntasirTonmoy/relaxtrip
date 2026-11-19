@@ -39,7 +39,7 @@ a{color:inherit}
 .sec{padding-block:var(--section-padding-vertical)} .alt{background:var(--color-section-alt-background)}
 /* SECTION HEADING: small label (eyebrow), big title and intro text, centred above each section. */
 .head{max-width:42rem;margin:0 auto var(--section-heading-gap);text-align:center}
-.head h2{margin:.6rem 0 1rem} .head p{color:var(--color-text-muted);font-size:var(--font-size-large)}
+.head h2{margin:.75rem 0 .85rem} .head p{color:var(--color-text-muted);font-size:var(--font-size-large)}
 /* EYEBROW: the small coloured label above section titles (e.g. "ABOUT US"). Change its size here. */
 .eyebrow{font-size:clamp(.9375rem,.9rem + .25vw,1.0625rem);font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-text)}
 /* 3-COLUMN GRID: 1 column on phones, 2 from 768px, 3 from 1024px. Used by services and team. */

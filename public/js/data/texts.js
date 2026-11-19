@@ -67,7 +67,7 @@ export const SITE_TEXT = {
     en: "Real feedback from clients who experienced our ticketing and tour services.",
     bn: "আমাদের সেবা গ্রহণকারী সম্মানিত ক্লায়েন্টদের বাস্তব অভিজ্ঞতা।",
   },
-  review_fb_source: { en: "Recommends Relax Trip on Facebook", bn: "ফেসবুকে Relax Trip ফর সুপারিশ করেছেন" },
+  review_fb_source: { en: "Recommends Relax Trip on Facebook", bn: "ফেসবুকে Relax Trip-কে সুপারিশ করেছেন" },
 
   /* ---- WHY US (heading) ---- */
   why_tag: { en: "Why Choose Us", bn: "কেন আমাদের বেছে নেবেন" },
@@ -122,8 +122,6 @@ export const SITE_TEXT = {
     en: "© 2026 RelaxTrip. All rights reserved.",
     bn: "© ২০২৬ রিল্যাক্সট্রিপ। সর্বস্বত্ব সংরক্ষিত।",
   },
-  privacy_policy: { en: "Privacy Policy", bn: "প্রাইভেসি পলিসি" },
-  terms_conditions: { en: "Terms & Conditions", bn: "শর্তাবলী" },
   /* ---- PARTNER AIRLINES (heading) ---- */
   partners_tag: { en: "Partner airlines", bn: "পার্টনার এয়ারলাইনস" },
   partners_heading: { en: "Fly with leading airlines", bn: "শীর্ষস্থানীয় এয়ারলাইনসের সাথে উড়ুন" },

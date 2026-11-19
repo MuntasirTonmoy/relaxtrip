@@ -13,9 +13,6 @@ export const SUPPORT_CHANNELS = [
      2. using CONTACT automatically: { type: "whatsapp" | "phone" | "email", icon, label } — the link is built from CONTACT, no url needed.
    Icons for other sites can be added in js/01-icons.js under ICON_PATHS. ---- */
 export const SOCIAL_LINKS = [
-  { icon: "facebook", label: { en: "Facebook", bn: "ফেসবুক" }, url: "https://facebook.com/relaxtripbd" },
-  { type: "whatsapp", icon: "whatsapp", label: { en: "WhatsApp", bn: "হোয়াটসঅ্যাপ" } },
-  { icon: "youtube", label: { en: "YouTube", bn: "ইউটিউব" }, url: "https://youtube.com/@relaxtripbd" },
-  { icon: "tiktok", label: { en: "TikTok", bn: "টিকটক" }, url: "https://tiktok.com/@relaxtripbd" },
-  { icon: "linkedin", label: { en: "LinkedIn", bn: "লিঙ্কডইন" }, url: "https://linkedin.com/company/relaxtripbd" },
+  { icon: "facebook", label: { en: "Facebook", bn: "ফেসবুক" }, url: "https://www.facebook.com/relaxtripbangladesh/" },
+  { icon: "whatsapp", label: { en: "WhatsApp Channel", bn: "হোয়াটসঅ্যাপ চ্যানেল" }, url: "https://whatsapp.com/channel/0029VbCiIHWFCCoP2afjbb1g" },
 ];

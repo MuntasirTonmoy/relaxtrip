@@ -5,13 +5,13 @@
 export const STAT_CARDS = [
   {
     type: "counter",
-    value: 100,
+    value: 1000,
     label: { en: "Domestic Flight Bookings", bn: "ডোমেস্টিক ফ্লাইট বুকিং" },
     note: { en: "(Verified Daily Fares)", bn: "(দৈনিক যাচাইকৃত ভাড়া)" },
   },
   {
     type: "counter",
-    value: 50,
+    value: 500,
     label: { en: "International Destinations", bn: "ইন্টারন্যাশনাল গন্তব্য" },
     note: { en: "(Global Airline Network)", bn: "(বৈশ্বিক এয়ারলাইন নেটওয়ার্ক)" },
   },

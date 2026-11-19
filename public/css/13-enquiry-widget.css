@@ -11,7 +11,7 @@
 /* The hero is now one centred column (text, then the wide search card). overflow:visible lets the passenger pop-up hang below the hero.
    COMPACT: no forced min-height, small paddings and gaps, capped title size - the heading + the
    whole booking menu must fit inside the first screen on laptops and on phones. */
-.hero{overflow:visible;padding-block:clamp(2rem,4vw,3rem) 4rem}
+.hero{overflow:visible;padding-block:clamp(2rem,4vw,3rem)}
 .hero-g{gap:2.5rem}
 .hero-t{max-width:52rem;margin-inline:auto;gap:1rem}
 .hero h1{font-size:clamp(1.9rem,1.1rem + 2.6vw,2.9rem)}
