@@ -156,6 +156,7 @@ export const REVIEWS = [
   },
   {
     name: { en: "Sam Fisher", bn: "Sam Fisher" },
+    photo: "images/reviews/sam-fisher.jpg",
     quote: {
       en: "Trusted and very well-behaved. After-sales service is top-notch. 100/100 recommended.",
       bn: "Trusted and very well-behaved. After-sales service is top-notch. 100/100 recommended.",
@@ -163,9 +164,18 @@ export const REVIEWS = [
   },
   {
     name: { en: "M M Sohan Parvez", bn: "M M Sohan Parvez" },
+    photo: "images/reviews/m-m-sohan-parvez.jpg",
     quote: {
       en: "The admin's support and behavior is awesome.",
       bn: "The admin's support and behavior is awesome.",
+    },
+  },
+  {
+    name: { en: "Sadman Yousuf", bn: "Sadman Yousuf" },
+    photo: "images/reviews/sadman-yousuf.jpg",
+    quote: {
+      en: "Best service and good behaviour.",
+      bn: "Best service and good behaviour.",
     },
   },
 ];
