@@ -26,6 +26,7 @@ export const ICON_PATHS={
  nav:'<path d="m3 11 19-9-9 19-2-8z"/>',play:'<path d="M6 3l14 9-14 9z" fill="currentColor"/>',msg:'<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/>',
  lock:'<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
  swap:'<path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/>',
+ 'arrow-right':'<path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>',
  user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
  minus:'<path d="M5 12h14"/>',
  'chev-d':'<path d="m6 9 6 6 6-6"/>',

@@ -27,7 +27,7 @@ export const ENQUIRY_TABS = [
         options: [ { value: "one-way", label: { en: "One Way", bn: "ওয়ান ওয়ে" } }, { value: "return", label: { en: "Round Trip", bn: "রাউন্ড ট্রিপ" } } ] },
       { name: "from", type: "airport", columns: 2.5, required: true, swapWith: "to", defaultCode: "DAC", label: { en: "From", bn: "কোথা থেকে" }, placeholder: { en: "Select city", bn: "শহর বাছাই করুন" }, hint: { en: "City or airport", bn: "শহর বা বিমানবন্দর" } },
       { name: "to", type: "airport", columns: 2.5, required: true, label: { en: "To", bn: "কোথায়" }, placeholder: { en: "Select city", bn: "শহর বাছাই করুন" }, hint: { en: "City or airport", bn: "শহর বা বিমানবন্দর" } },
-      { name: "departure", type: "date", columns: 2, required: true, swapWith: "return", label: { en: "Departure", bn: "যাত্রার তারিখ" } },
+      { name: "departure", type: "date", columns: 2, required: true, label: { en: "Departure", bn: "যাত্রার তারিখ" } },
       { name: "return", type: "date", columns: 2, required: true, minFrom: "departure", enableWhen: { field: "tripType", value: "return" }, disabledText: { en: "Select date", bn: "তারিখ বাছাই করুন" }, placeholder: { en: "Select date", bn: "তারিখ বাছাই করুন" }, label: { en: "Return", bn: "ফেরার তারিখ" } },
       { name: "travellers", type: "travellers", columns: 3, tablet: 4, summarySub: "class", label: { en: "Passenger & Class", bn: "যাত্রী ও ক্লাস" },
         counters: [

@@ -55,7 +55,7 @@ function enquiryFieldHtml(tab, field) {
   }
   if (field.type === 'date') {                                       /* a calendar pop-up */
     const datePlaceholder = field.placeholder ? ` data-placeholder-key="${cardText(keyPrefix, 0, 'placeholder', field.placeholder)}"` : '';
-    return `${wrapperStart('f-popup-field', datePlaceholder)}${triggerStart}${labelHtml}<span class="f-value"></span><span class="f-sub"></span></button><input type="hidden" name="${field.name}" id="${idPrefix}" data-value-input>${swapButtonHtml}<div class="f-pop cal-pop" id="${idPrefix}-popover" role="dialog" aria-label="${field.label.en}"><div class="cal-head"><span class="cal-head-icon">${iconSvg('calendar')}</span><span class="cal-head-text"><small data-i18n="${labelKey}"></small><b class="cal-head-value"></b></span></div><div class="cal-nav"><button class="cal-nav-button" type="button" data-cal-nav="-1">${iconSvg('chev-l')}</button><b class="cal-month"></b><button class="cal-nav-button" type="button" data-cal-nav="1">${iconSvg('chev-r')}</button></div><div class="cal-grid"></div></div></div>`;
+    return `${wrapperStart('f-popup-field', datePlaceholder)}${triggerStart}${labelHtml}<span class="f-value"></span><span class="f-sub"></span></button><input type="hidden" name="${field.name}" id="${idPrefix}" data-value-input><div class="f-pop cal-pop" id="${idPrefix}-popover" role="dialog" aria-label="${field.label.en}"><div class="cal-head"><span class="cal-head-icon">${iconSvg('calendar')}</span><span class="cal-head-text"><small data-i18n="${labelKey}"></small><b class="cal-head-value"></b></span></div><div class="cal-nav"><button class="cal-nav-button" type="button" data-cal-nav="-1">${iconSvg('chev-l')}</button><b class="cal-month"></b><button class="cal-nav-button" type="button" data-cal-nav="1">${iconSvg('chev-r')}</button></div><div class="cal-grid"></div></div></div>`;
   }
   if (field.type === 'travellers') {                                 /* summary button + pop-up with counters (and cabin class) */
     const counterRows = field.counters.map((counter, index) => {
@@ -247,10 +247,11 @@ function refreshEnquiryForm(form) {
     wrapper.classList.toggle('is-disabled', !isEnabled);
     wrapper.querySelectorAll('[data-value-input]').forEach(control => { control.disabled = !isEnabled; });   /* a disabled field is not checked */
   });
-  /* A swap arrow between two fields disappears when the second field is switched off (One Way hides the Departure-Return arrow). */
+  /* The arrow between From and To: one arrow (one way) or both arrows (round trip). */
   form.querySelectorAll('.f-swap').forEach(button => {
-    const secondWrapper = form.querySelector('.f[data-field="' + button.dataset.swap.split('|')[1] + '"]');
-    button.hidden = Boolean(secondWrapper && secondWrapper.classList.contains('is-disabled'));
+    const isRoundTrip = form.elements.tripType && form.elements.tripType.value === 'return';
+    const svg = button.querySelector('svg');
+    if (svg) svg.outerHTML = iconSvg(isRoundTrip ? 'swap' : 'arrow-right');
   });
   form.querySelectorAll('.f[data-type=date]').forEach(wrapper => {
     const field = fieldOfWrapper(form, wrapper);
