@@ -2,7 +2,7 @@ import { CONTACT } from './data/contact.js';
 import { NAV_LINKS, TRUST_POINTS } from './data/navigation.js';
 import { STAT_CARDS, SERVICES, REVIEWS, WHY_US_ITEMS } from './data/sections.js';
 import { TEAM_MEMBERS, FAQ_ITEMS } from './data/team-faq.js';
-import { PARTNER_AIRLINES, AIRLINE_LOGO_URL, PAYMENT_METHODS, PAYMENT_LOGO_URL, PAYMENT_GATEWAY_BADGE } from './data/partners.js';
+import { PARTNER_AIRLINES, AIRLINE_LOGO_URL } from './data/partners.js';
 import { SUPPORT_CHANNELS, SOCIAL_LINKS } from './data/support.js';
 import { iconSvg, LOGO_HTML } from './01-icons.js';
 import { whatsappLink, PHONE_INTERNATIONAL_DIGITS, PHONE_LINK, MAPS_LINK, initialsOf } from './02-helpers.js';
@@ -45,15 +45,15 @@ document.querySelector('#stats').innerHTML = STAT_CARDS.map(({ type, value, labe
   return `<div class="card stat rv" style="--reveal-order:${index}"><b ${numberAttribute}>0</b><p data-i18n="${cardText('stat', index, 'label', label)}"></p><small data-i18n="${cardText('stat', index, 'note', note)}"></small></div>`;
 }).join('');
 
-/* Review slides (inside #track): stars, the quote, then who said it (Facebook recommendation) */
-document.querySelector('#track').innerHTML = REVIEWS.map((review, index) =>
-  `<div class="slide" role="group" aria-roledescription="slide" aria-label="${index + 1} / ${REVIEWS.length}"><figure class="card rev"><div class="stars" role="img" aria-label="5 / 5">★★★★★</div><blockquote data-i18n="${cardText('review', index, 'quote', review.quote)}"></blockquote><figcaption class="who"><span class="av" aria-hidden="true">${review.initials || initialsOf(review.name.en)}</span><span><b data-i18n="${cardText('review', index, 'name', review.name)}"></b><br><small class="fb-src"><i data-icon="facebook"></i><span data-i18n="review_fb_source"></span></small></span></figcaption></figure></div>`
-).join('');
-
-/* Slider dots (one per review) */
-document.querySelector('#car .dots').innerHTML = REVIEWS.map((review, index) =>
-  `<button class="dot" data-index="${index}" aria-label="Review ${index + 1}"></button>`
-).join('');
+/* Review slides (inside #track): stars, the quote, then who said it (Facebook recommendation).
+   The reviewer photo comes from the `photo` field (downloaded from the Facebook page);
+   without one the initials avatar is shown. */
+document.querySelector('#track').innerHTML = REVIEWS.map((review, index) => {
+  const avatar = review.photo
+    ? `<span class="av photo" aria-hidden="true"><img src="${review.photo}" alt="" loading="lazy"></span>`
+    : `<span class="av" aria-hidden="true">${review.initials || initialsOf(review.name.en)}</span>`;
+  return `<div class="slide" role="group" aria-roledescription="slide" aria-label="${index + 1} / ${REVIEWS.length}"><figure class="card rev"><div class="stars" role="img" aria-label="5 / 5">★★★★★</div><blockquote data-i18n="${cardText('review', index, 'quote', review.quote)}"></blockquote><figcaption class="who">${avatar}<span><b data-i18n="${cardText('review', index, 'name', review.name)}"></b><br><small class="fb-src"><i data-icon="facebook"></i><span data-i18n="review_fb_source"></span></small></span></figcaption></figure></div>`;
+}).join('');
 
 /* "Why us" numbered list */
 document.querySelector('#whyl').innerHTML = WHY_US_ITEMS.map(({ title, description }, index) => {
@@ -68,11 +68,6 @@ document.querySelector('#ttrack').innerHTML = TEAM_MEMBERS.map((member, index) =
     : `<span class="av lg" aria-hidden="true">${member.initials || initialsOf(member.name.en)}</span>`;
   return `<div class="slide" role="group" aria-roledescription="slide" aria-label="Team member ${index + 1} / ${TEAM_MEMBERS.length}"><div class="card rv tm" style="--reveal-order:${index % 3}">${photo}<h3 data-i18n="${cardText('team', index, 'name', member.name)}"></h3><p class="role" data-i18n="${cardText('team', index, 'role', member.role)}"></p></div></div>`;
 }).join('');
-
-/* Team slider dots (one per member) */
-document.querySelector('#tcar .dots').innerHTML = TEAM_MEMBERS.map((member, index) =>
-  `<button class="dot" data-index="${index}" aria-label="Team member ${index + 1}"></button>`
-).join('');
 
 /* FAQ questions and answers */
 document.querySelector('#faql').innerHTML = FAQ_ITEMS.map(({ question, answer }, index) => {
@@ -96,26 +91,8 @@ document.querySelector('#airline-list').innerHTML =
   airlinesOneHalf.map(airline => airlineItemHtml(airline, false)).join('') +
   airlinesOneHalf.map(airline => airlineItemHtml(airline, true)).join('');
 
-/* Footer "Pay with" tiles: a white tile with the logo; without a logo (or if it cannot load) the tile shows the name */
-document.querySelector('#pay-list').innerHTML = PAYMENT_METHODS.map(method => {
-  const fileId = method.id || method.name.toLowerCase().replace(/[^a-z0-9]+/g, '');
-  const logoUrl = method.logo === '' || method.id === '-' ? '' : (method.logo || (PAYMENT_LOGO_URL ? PAYMENT_LOGO_URL.replace('{id}', fileId) : ''));
-  const logoImage = logoUrl
-    ? `<img src="${logoUrl}" alt="${method.name}" loading="lazy" onerror="this.parentElement.classList.add('no-logo');this.remove()">`
-    : '';
-  return `<li class="pay-tile${logoUrl ? '' : ' no-logo'}">${logoImage}<span class="pay-name">${method.name}</span></li>`;
-}).join('');
-
-/* Optional payment banner/badge (only when PAYMENT_GATEWAY_BADGE is set in the content script);
-   the optional text field in front of it is translatable, the image alone is enough most times */
-if (PAYMENT_GATEWAY_BADGE) {
-  const badge = PAYMENT_GATEWAY_BADGE;
-  const gatewayLogo = badge.logo
-    ? `<img src="${badge.logo}" alt="${badge.name || badge.alt || ''}" height="36" loading="lazy">`
-    : `<b class="pay-gateway-name">${badge.name}</b>`;
-  const label = badge.text ? `<span data-i18n="${cardText('gateway', 0, 'text', badge.text)}"></span>` : '';
-  document.querySelector('#pay-gateway').innerHTML = `${label}${gatewayLogo}`;
-}
+/* The footer payment banner is a plain <img class="pay-banner"> in index.html —
+   swap the file public/logos/sslcommerz.webp (or edit index.html) to change it. */
 
 /* Support button: one row per contact option */
 document.querySelector('#support-list').innerHTML = SUPPORT_CHANNELS.map(({ type, icon, label, note }, index) => {

@@ -64,11 +64,11 @@ export const SERVICES = [
     },
   },
   {
-    icon: "shield-plus",
-    title: { en: "Travel Insurance", bn: "ট্রাভেল ইন্স্যুরেন্স" },
+    icon: "moon",
+    title: { en: "Holy Hajj & Umrah", bn: "পবিত্র হজ্জ ও ওমরাহ" },
     description: {
-      en: "Comprehensive international medical and trip cancellation insurance plans ensuring peace of mind abroad.",
-      bn: "বিদেশে ভ্রমণের সময় পূর্ণ মানসিক শান্তির জন্য আন্তর্জাতিক মেডিকেল ও ট্রিপ ইন্স্যুরেন্স প্ল্যান।",
+      en: "Complete Hajj and Umrah packages: visa processing, flights, hotels close to the holy sites in Makkah and Madinah, and experienced guidance throughout.",
+      bn: "সম্পূর্ণ হজ্জ ও ওমরাহ প্যাকেজ: ভিসা প্রসেসিং, ফ্লাইট, মক্কা ও মদিনার পবিত্র স্থানের কাছে হোটেল ও অভিজ্ঞ গাইডের পূর্ণ সহয়তা।",
     },
   },
   {
@@ -92,6 +92,7 @@ export const SERVICES = [
 export const REVIEWS = [
   {
     name: { en: "Md Rafik Ahmed", bn: "Md Rafik Ahmed" },
+    photo: "images/reviews/md-rafik-ahmed.jpg",
     quote: {
       en: "Excellent service! The booking process was smooth, quick, and hassle-free. Highly recommended for reliable air ticketing services.",
       bn: "Excellent service! The booking process was smooth, quick, and hassle-free. Highly recommended for reliable air ticketing services.",
@@ -99,6 +100,7 @@ export const REVIEWS = [
   },
   {
     name: { en: "Yeasin Arafat", bn: "Yeasin Arafat" },
+    photo: "images/reviews/yeasin-arafat.jpg",
     quote: {
       en: "Well and so much trustful... thanks for making our journey so easy and comfortable.",
       bn: "Well and so much trustful... thanks for making our journey so easy and comfortable.",
@@ -106,6 +108,7 @@ export const REVIEWS = [
   },
   {
     name: { en: "MD Forhad Ahmead", bn: "MD Forhad Ahmead" },
+    photo: "images/reviews/md-forhad-ahmead.jpg",
     quote: {
       en: "\u0985\u09a4\u09cd\u09af\u09a8\u09cd\u09a4 \u09ac\u09bf\u09b6\u09cd\u09ac\u09b8\u09cd\u09a4 \u098f\u0995\u099f\u09bf \u098f\u09af\u09bc\u09be\u09b0 \u099f\u09bf\u0995\u09bf\u099f\u09bf\u0982 \u09b8\u09be\u09b0\u09cd\u09ad\u09bf\u09b8\u0964 \u09a4\u09be\u09a6\u09c7\u09b0 \u09b8\u09be\u09b0\u09cd\u09ad\u09bf\u09b8\u09c7 \u0986\u09ae\u09bf \u09b8\u09a8\u09cd\u09a4\u09c1\u09b7\u09cd\u099f\u0964",
       bn: "\u0985\u09a4\u09cd\u09af\u09a8\u09cd\u09a4 \u09ac\u09bf\u09b6\u09cd\u09ac\u09b8\u09cd\u09a4 \u098f\u0995\u099f\u09bf \u098f\u09af\u09bc\u09be\u09b0 \u099f\u09bf\u0995\u09bf\u099f\u09bf\u0982 \u09b8\u09be\u09b0\u09cd\u09ad\u09bf\u09b8\u0964 \u09a4\u09be\u09a6\u09c7\u09b0 \u09b8\u09be\u09b0\u09cd\u09ad\u09bf\u09b8\u09c7 \u0986\u09ae\u09bf \u09b8\u09a8\u09cd\u09a4\u09c1\u09b7\u09cd\u099f\u0964",
@@ -113,6 +116,7 @@ export const REVIEWS = [
   },
   {
     name: { en: "Tareq Rahman", bn: "Tareq Rahman" },
+    photo: "images/reviews/tareq-rahman.jpg",
     quote: {
       en: "\u09a4\u09be\u09a6\u09c7\u09b0 \u09ac\u09cd\u09af\u09ac\u09b9\u09be\u09b0 \u0993 \u09b8\u09be\u09b0\u09cd\u09ad\u09bf\u09b8 \u09a6\u09c1\u099f\u09cb\u0987 \u0985\u09a8\u09c7\u0995 \u09ad\u09be\u09b2\u09cb\u0964 \u09ac\u09b0\u09cd\u09a4\u09ae\u09be\u09a8 \u09b8\u09ae\u09df\u09c7 \u098f\u0987 \u09b0\u0995\u09ae \u09b8\u09be\u09b0\u09cd\u09ad\u09bf\u09b8 \u0996\u09c1\u09ac\u0987 \u0995\u09ae \u09aa\u09be\u0993\u09df\u09be \u09af\u09be\u09df\u0964 \u09b8\u09ac \u0995\u09bf\u099b\u09c1\u09b0 \u099c\u09a8\u09cd\u09af \u09a7\u09a8\u09cd\u09af\u09ac\u09be\u09a6.",
       bn: "\u09a4\u09be\u09a6\u09c7\u09b0 \u09ac\u09cd\u09af\u09ac\u09b9\u09be\u09b0 \u0993 \u09b8\u09be\u09b0\u09cd\u09ad\u09bf\u09b8 \u09a6\u09c1\u099f\u09cb\u0987 \u0985\u09a8\u09c7\u0995 \u09ad\u09be\u09b2\u09cb\u0964 \u09ac\u09b0\u09cd\u09a4\u09ae\u09be\u09a8 \u09b8\u09ae\u09df\u09c7 \u098f\u0987 \u09b0\u0995\u09ae \u09b8\u09be\u09b0\u09cd\u09ad\u09bf\u09b8 \u0996\u09c1\u09ac\u0987 \u0995\u09ae \u09aa\u09be\u0993\u09df\u09be \u09af\u09be\u09df\u0964 \u09b8\u09ac \u0995\u09bf\u099b\u09c1\u09b0 \u099c\u09a8\u09cd\u09af \u09a7\u09a8\u09cd\u09af\u09ac\u09be\u09a6.",
@@ -120,6 +124,7 @@ export const REVIEWS = [
   },
   {
     name: { en: "Tahsan Khan", bn: "Tahsan Khan" },
+    photo: "images/reviews/tahsan-khan.jpg",
     quote: {
       en: "\u0986\u09ae\u09bf \u0986\u099c\u0995\u09c7 \u09ae\u09be\u09b2\u09af\u09bc\u09c7\u09b6\u09bf\u09af\u09bc\u09be\u09af\u09af\u09bc \u09b0\u09bf\u09b2\u09cd\u09af\u09be\u0995\u09cd\u09b8 \u099f\u09bf\u09aa \u098f\u09b0 \u09ae\u09be\u09a7\u09cd\u09af\u09ae\u09c7 \u099f\u09bf\u0995\u09c7\u099f \u0995\u09c7\u099f\u09c7 \u0986\u09b8\u099b\u09bf, \u0993\u09a8\u09be\u09a6\u09c7\u09b0 \u09ac\u09cd\u09af\u09ac\u09b9\u09be\u09b0 \u0985\u09a8\u09c7\u0995 \u09ad\u09be\u09b2\u09cb \u098f\u09ac\u0982 \u0985\u09a8\u09c7\u0995 \u09b8\u09be\u09aa\u09cb\u09b0\u09cd\u099f\u09bf\u0982 \u09b8\u0995\u09b2 \u0995\u09bf\u099b\u09c1 \u0985\u09a8\u09c7\u0995 \u09b8\u09c1\u09a8\u09cd\u09a6\u09b0 \u0995\u09b0\u09c7 \u09ac\u09c1\u099d\u09bf\u09af\u09bc\u09c7 \u09a6\u09bf\u09af\u09bc\u09c7\u099b\u09bf\u09b2\u09c7\u09a8\u0964",
       bn: "\u0986\u09ae\u09bf \u0986\u099c\u0995\u09c7 \u09ae\u09be\u09b2\u09af\u09bc\u09c7\u09b6\u09bf\u09af\u09bc\u09be\u09af\u09af\u09bc \u09b0\u09bf\u09b2\u09cd\u09af\u09be\u0995\u09cd\u09b8 \u099f\u09bf\u09aa \u098f\u09b0 \u09ae\u09be\u09a7\u09cd\u09af\u09ae\u09c7 \u099f\u09bf\u0995\u09c7\u099f \u0995\u09c7\u099f\u09c7 \u0986\u09b8\u099b\u09bf, \u0993\u09a8\u09be\u09a6\u09c7\u09b0 \u09ac\u09cd\u09af\u09ac\u09b9\u09be\u09b0 \u0985\u09a8\u09c7\u0995 \u09ad\u09be\u09b2\u09cb \u098f\u09ac\u0982 \u0985\u09a8\u09c7\u0995 \u09b8\u09be\u09aa\u09cb\u09b0\u09cd\u099f\u09bf\u0982 \u09b8\u0995\u09b2 \u0995\u09bf\u099b\u09c1 \u0985\u09a8\u09c7\u0995 \u09b8\u09c1\u09a8\u09cd\u09a6\u09b0 \u0995\u09b0\u09c7 \u09ac\u09c1\u099d\u09bf\u09af\u09bc\u09c7 \u09a6\u09bf\u09af\u09bc\u09c7\u099b\u09bf\u09b2\u09c7\u09a8\u0964",
@@ -127,6 +132,7 @@ export const REVIEWS = [
   },
   {
     name: { en: "Md Rafsan Imran", bn: "Md Rafsan Imran" },
+    photo: "images/reviews/md-rafsan-imran.jpg",
     quote: {
       en: "I really appreciate their professionalism, honesty, and commitment to customer satisfaction.",
       bn: "I really appreciate their professionalism, honesty, and commitment to customer satisfaction.",
@@ -134,6 +140,7 @@ export const REVIEWS = [
   },
   {
     name: { en: "Habibur Rahman", bn: "Habibur Rahman" },
+    photo: "images/reviews/habibur-rahman.jpg",
     quote: {
       en: "Very satisfied with their service. Highly recommended!",
       bn: "Very satisfied with their service. Highly recommended!",
@@ -141,6 +148,7 @@ export const REVIEWS = [
   },
   {
     name: { en: "Tufael Khan", bn: "Tufael Khan" },
+    photo: "images/reviews/tufael-khan.jpg",
     quote: {
       en: "Excellent service with reasonable prices.",
       bn: "Excellent service with reasonable prices.",
@@ -148,6 +156,7 @@ export const REVIEWS = [
   },
   {
     name: { en: "SK Walid", bn: "SK Walid" },
+    photo: "images/reviews/sk-walid.jpg",
     quote: {
       en: "Excellent service with reasonable prices. Highly recommended.",
       bn: "Excellent service with reasonable prices. Highly recommended.",
@@ -155,6 +164,7 @@ export const REVIEWS = [
   },
   {
     name: { en: "Sam Fisher", bn: "Sam Fisher" },
+    photo: "images/reviews/sam-fisher.jpg",
     quote: {
       en: "Trusted and very well-behaved. After-sales service is top-notch. 100/100 recommended.",
       bn: "Trusted and very well-behaved. After-sales service is top-notch. 100/100 recommended.",
@@ -162,6 +172,7 @@ export const REVIEWS = [
   },
   {
     name: { en: "M M Sohan Parvez", bn: "M M Sohan Parvez" },
+    photo: "images/reviews/m-m-sohan-parvez.jpg",
     quote: {
       en: "The admin's support and behavior is awesome.",
       bn: "The admin's support and behavior is awesome.",

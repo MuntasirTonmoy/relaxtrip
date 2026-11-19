@@ -3,6 +3,8 @@
    Used by the Reviews slider and the Team slider; any section can add its own
    by giving it the same markup (see index.html) and calling setupCarousel below.
    One step moves exactly ONE card.
+   Dots are rebuilt automatically so there is exactly ONE dot per possible
+   position (cards - per-view + 1) — no dead dots on any screen size.
    Slide speed/feel: edit --slider-slide-duration and --slider-slide-easing in the CSS tokens.
    ========================================================================= */
 const SWIPE_MIN_DISTANCE_PX = 50;      /* a drag shorter than this is ignored */
@@ -15,17 +17,28 @@ function getPerView() {
   return 1;
 }
 
-/* Wires up one carousel. `root` is the slider block (holds the arrows and dots),
-   `track` is the .track row holding the .slide cards. */
+/* Wires up one carousel. `root` is the slider block (holds the arrows and the
+   .dots container), `track` is the .track row holding the .slide cards. */
 function setupCarousel(root, track) {
   const slides = track.querySelectorAll('.slide');
-  const dots = root.querySelectorAll('.dot');
+  const dotsRoot = root.querySelector('.dots');
   const SLIDE_COUNT = slides.length;
+  let dots = [];
   let currentSlideIndex = 0;
   let swipeStartX = null;             /* where the finger/mouse went down; null = no drag in progress */
 
   /* Highest valid first-visible-card index (so the last step is never half empty) */
   const maxFirstSlide = () => Math.max(0, SLIDE_COUNT - getPerView());
+
+  /* (Re)build the dots: cards - per-view + 1 positions. Called once and again
+     whenever the breakpoint changes the per-view count. */
+  function buildDots() {
+    dotsRoot.innerHTML = Array.from({ length: maxFirstSlide() + 1 }, (_, index) =>
+      `<button class="dot" data-index="${index}" aria-label="Go to ${index + 1}"></button>`
+    ).join('');
+    dots = [...dotsRoot.querySelectorAll('.dot')];
+    dots.forEach(dot => { dot.onclick = () => goToSlide(+dot.dataset.index); });
+  }
 
   /* Shows the window of cards that starts at card `index`; wraps around at both ends.
      One step moves exactly ONE card. The track is as wide as the viewport (one page),
@@ -44,7 +57,6 @@ function setupCarousel(root, track) {
 
   root.querySelector('[data-prev]').onclick = () => goToSlide(currentSlideIndex - 1);
   root.querySelector('[data-next]').onclick = () => goToSlide(currentSlideIndex + 1);
-  dots.forEach(dot => { dot.onclick = () => goToSlide(+dot.dataset.index); });
 
   root.addEventListener('keydown', event => {
     if (event.key === 'ArrowRight') goToSlide(currentSlideIndex + 1);
@@ -60,10 +72,16 @@ function setupCarousel(root, track) {
     swipeStartX = null;
   });
 
-  /* Screen size change (laptop -> tablet -> phone): re-clamp the position so the
-     visible window still fits, and keep the hidden/visible cards in sync */
-  addEventListener('resize', () => goToSlide(currentSlideIndex));
+  /* Screen size change (laptop -> tablet -> phone): if the number of positions
+     changed, rebuild the dots; then re-clamp the position so the visible window
+     still fits, and keep the hidden/visible cards in sync */
+  let lastDotCount = -1;
+  addEventListener('resize', () => {
+    if (dots.length !== maxFirstSlide() + 1) buildDots();
+    goToSlide(currentSlideIndex);
+  });
 
+  buildDots();
   goToSlide(0);
 }
 

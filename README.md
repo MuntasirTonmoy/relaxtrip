@@ -51,7 +51,7 @@ relaxtrip/
             ├── enquiry.js     ← ENQUIRY_TABS, AIRPORTS, calendar settings
             ├── sections.js    ← STAT_CARDS, SERVICES, REVIEWS (Facebook), WHY_US_ITEMS
             ├── team-faq.js    ← TEAM_MEMBERS (name / role / photo in images/team/), FAQ_ITEMS
-            ├── partners.js    ← PARTNER_AIRLINES, PAYMENT_METHODS + logo folder pattern
+            ├── partners.js    ← PARTNER_AIRLINES (payment banner lives in index.html + logos/sslcommerz.webp)
             ├── support.js     ← SUPPORT_CHANNELS, SOCIAL_LINKS (footer social icons)
             └── texts.js       ← SITE_TEXT (every UI label, in English + Bangla)
 ```
