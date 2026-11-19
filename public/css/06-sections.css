@@ -38,8 +38,11 @@
 /* Gold star rating. */
 .stars{color:var(--color-brand-gold);letter-spacing:.2em;font-size:1.65rem}
 blockquote{font-size:clamp(1.2375rem,1.13rem + .5vw,1.4375rem);font-weight:500;line-height:1.55} .who{display:flex;gap:1rem;align-items:center;text-align:left} .who small{color:var(--color-text-muted);font-size:.9625rem}
-/* "Recommends on Facebook" line under the reviewer name: Facebook-blue icon + muted label. */
-.fb-src{display:inline-flex;align-items:center;gap:.4rem;font-weight:600;white-space:nowrap;font-size:clamp(.68rem,.52rem + 1vw,.9rem);max-width:100%}
+/* "Recommends on Facebook" line: wraps on small phones (not enough room next to the avatar),
+   one line from tablet upwards. The clamp shrinks it just enough to fit in the narrower 2- and 3-card views. */
+.fb-src{display:inline-flex;align-items:center;gap:.4rem;font-weight:600;font-size:.85rem;max-width:100%}
+.who > span{min-width:0}
+@media(min-width:640px){.fb-src{white-space:nowrap;font-size:clamp(.7rem,.56rem + .22vw,.85rem);max-width:100%}.fb-src span{overflow:hidden;text-overflow:ellipsis}}
 .fb-src .i{width:1rem;height:1rem;color:#1877F2}
 /* Slider controls row: previous arrow, dots, next arrow. */
 .cc{display:flex;justify-content:center;align-items:center;gap:.75rem;margin-top:1.5rem}
