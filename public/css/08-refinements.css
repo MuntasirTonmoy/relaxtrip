@@ -35,8 +35,10 @@ html[lang=bn] body{font-family:"Hind Siliguri","Plus Jakarta Sans",system-ui,san
 .b-x{display:none} .burger[aria-expanded=true] .b-m{display:none} .burger[aria-expanded=true] .b-x{display:inline}
 /* Phones: smaller header buttons so logo + theme + language + menu fit on one row. */
 @media(max-width:479px){.ctl{gap:.375rem}.ctl .btn{width:40px;min-height:40px;padding:0}.ctl .btn.lang{width:auto;padding:0 .55rem}.logo{font-size:1.05rem;gap:.4rem}.logo svg{height:2.1rem;width:2.55rem}}
-/* Review card padding. */
+/* Review card padding. From 640px the cards sit 2-up (3-up from 1024px): tighter padding,
+   body-size quote text, and equal card heights (handled by .slide>.rev in section 6). */
 .rev{padding:1.25rem 1.25rem 2rem}
+@media(min-width:640px){#track .rev{padding:1.5rem 1.25rem}#track blockquote{font-size:var(--font-size-body)}}
 /* (Older) charcoal CTA band + padding. Background is replaced by the gold band in section 11; padding still applies. */
 .cta{background:var(--color-brand-charcoal);padding-block:clamp(4.5rem,10vw,7.5rem)} .cta p{color:#f2f2f2}
 /* Content of the closing band: centred stack with comfortable spacing. */

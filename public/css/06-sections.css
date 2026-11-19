@@ -20,13 +20,19 @@
 .stat p{margin:.6rem 0 .2rem;font-weight:700;font-size:var(--font-size-small);line-height:1.4} .stat small{font-size:.8125rem;color:var(--color-text-muted)}
 /* SERVICE cards description text. */
 .svc p{color:var(--color-text-muted);font-size:var(--font-size-small)}
-/* REVIEWS SLIDER: .viewport hides the slides that are off-screen. */
-.car{max-width:48rem;margin-inline:auto} .viewport{overflow:hidden;border-radius:var(--radius-card);padding:.5rem}
+/* REVIEWS SLIDER: .viewport hides the cards that are off-screen.
+   Shows 3 cards on laptop, 2 on tablet, 1 on mobile. */
+.car{max-width:80rem;margin-inline:auto} .viewport{overflow:hidden;border-radius:var(--radius-card);padding:.5rem}
 /* SLIDER TRACK: all slides sit in a row; JS moves the row sideways with translateX.
    >>> To change the swipe speed/feel edit --slider-slide-duration and --slider-slide-easing in section 1. */
 .track{display:flex;transition:transform var(--slider-slide-duration) var(--slider-slide-easing);touch-action:pan-y;will-change:transform}
-/* One slide = full width of the slider. */
-.slide{flex:0 0 100%;padding:.25rem}
+/* One slide = one review card. Mobile: the whole slider width.
+   Tablet (640px+): 2 cards visible. Laptop (1024px+): 3 cards visible.
+   >>> Keep these widths in sync with getPerView() in js/08-slider.js. */
+.slide{flex:0 0 100%;padding:.25rem;display:flex}
+.slide>.rev{flex:1}   /* both/all visible cards stretch to the SAME height */
+@media(min-width:640px){.slide{flex-basis:50%}}
+@media(min-width:1024px){.slide{flex-basis:33.3333%}}
 /* REVIEW card contents (stars, quote, name, Facebook source line). */
 .rev{display:grid;gap:1.25rem;text-align:center;justify-items:center;padding:2.5rem 2rem}
 /* Gold star rating. */

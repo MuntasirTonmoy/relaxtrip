@@ -7,16 +7,37 @@ const reviewTrack = document.querySelector('#track');
 const reviewSlides = document.querySelectorAll('.slide');
 const reviewDots = document.querySelectorAll('.dot');
 const SWIPE_MIN_DISTANCE_PX = 50;      /* a drag shorter than this is ignored */
+const SLIDE_COUNT = reviewSlides.length;
 let currentSlideIndex = 0;
 let swipeStartX = null;                /* where the finger/mouse went down; null = no drag in progress */
 
-/* Shows slide number `index`; wraps around at both ends */
+/* How many review cards are visible at once: 3 on laptop, 2 on tablet, 1 on mobile.
+   >>> Keep in sync with the .slide widths in css/06-sections.css (640px / 1024px). */
+function getPerView() {
+  if (window.matchMedia('(min-width:1024px)').matches) return 3;
+  if (window.matchMedia('(min-width:640px)').matches) return 2;
+  return 1;
+}
+
+/* Highest valid first-visible-card index (so the last step is never half empty) */
+const maxFirstSlide = () => Math.max(0, SLIDE_COUNT - getPerView());
+
+/* Shows the window of cards that starts at card `index`; wraps around at both ends.
+   One step moves exactly ONE card: with 11 cards that is 100/11 % of the track,
+   which is correct for any screen size and any number of cards per view. */
 function goToSlide(index) {
-  currentSlideIndex = (index + reviewSlides.length) % reviewSlides.length;
-  reviewTrack.style.transform = `translateX(${-currentSlideIndex * 100}%)`;
-  reviewSlides.forEach((slide, slideIndex) => { slide.inert = slideIndex !== currentSlideIndex; });   /* hidden slides cannot be tabbed into */
+  const last = maxFirstSlide();
+  currentSlideIndex = index > last ? 0 : index < 0 ? last : Math.min(index, last);
+  reviewTrack.style.transform = `translateX(${-currentSlideIndex * (100 / SLIDE_COUNT)}%)`;
+  /* Cards outside the current window cannot be tabbed into */
+  const visibleUpTo = currentSlideIndex + getPerView();
+  reviewSlides.forEach((slide, slideIndex) => { slide.inert = slideIndex < currentSlideIndex || slideIndex >= visibleUpTo; });
   reviewDots.forEach((dot, dotIndex) => dot.setAttribute('aria-current', dotIndex === currentSlideIndex));
 }
+
+/* Screen size change (laptop -> tablet -> phone): re-clamp the position so the
+   visible window still fits, and keep the hidden/visible cards in sync */
+addEventListener('resize', () => goToSlide(currentSlideIndex));
 
 document.querySelector('#next').onclick = () => goToSlide(currentSlideIndex + 1);
 document.querySelector('#prev').onclick = () => goToSlide(currentSlideIndex - 1);
