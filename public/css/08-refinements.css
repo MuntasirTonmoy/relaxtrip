@@ -26,7 +26,7 @@
 .trust .i{color:#16a34a} .dark .trust .i{color:#4ade80} .stars{color:var(--color-brand-gold)} .wi .n{color:var(--color-accent-text)}
 .btn.primary:hover{background:var(--color-brand-gold);filter:brightness(1.08)}
 /* Underlined gold on contact-link hover. */
-.contact a:not(.btn):hover{text-decoration:underline;text-decoration-color:var(--color-brand-gold);text-underline-offset:4px}
+/* Hover on contact links only changes colour (gold) — no underline. */
 /* In Bangla mode the Bangla font goes first so digits and punctuation match the letters. */
 html[lang=bn] body{font-family:"Noto Sans Bengali","Plus Jakarta Sans",system-ui,sans-serif}
 /* Hero padding grows with screen width (kept small so the heading + booking menu fit one screen). */

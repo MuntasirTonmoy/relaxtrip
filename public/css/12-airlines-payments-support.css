@@ -50,7 +50,8 @@
 .foot .socials{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:.6rem;list-style:none;margin:0;padding:0}
 .socials li{flex:none}
 .socials a{display:grid;place-items:center;width:2.75rem;height:2.75rem;border-radius:999px;border:1px solid transparent;background:transparent;color:#fff;transition:border-color var(--motion-duration-normal) var(--motion-easing)}
-.socials a:hover{border-color:var(--color-brand-gold)}
+/* Social icons keep their default colour on hover (only the gold border appears); the footer's gold link hover does not recolor them. */
+.socials a:hover{border-color:var(--color-brand-gold);color:inherit}
 .socials svg{width:1.35rem;height:1.35rem}
 @media(max-width:767px){.foot .socials{gap:.5rem;justify-content:flex-start}}
 /* Phones: the banner takes the full row; the copyright line stays below it. */
