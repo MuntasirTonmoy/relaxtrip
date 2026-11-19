@@ -49,7 +49,8 @@ export const PAYMENT_METHODS = [
    just the pattern below. "" = no logos, the tiles show the names. */
 export const PAYMENT_LOGO_URL = "logos/payments/{id}.png";
 
-/* ---- Optional "Verified by" badge at the right of the payment row (for example the SSLCOMMERZ banner).
-   Keep it null until you really are a verified merchant. Example:
-   const PAYMENT_GATEWAY_BADGE = { text: { en: "Verified by", bn: "যাচাইকৃত" }, name: "SSLCOMMERZ", logo: "logos/sslcommerz.png" }; ---- */
-export const PAYMENT_GATEWAY_BADGE = null;
+/* ---- Optional payment banner/badge shown at the right of the payment row.
+   Set it to null to hide. The image lives in public/logos/ (swap the file or the path to change it).
+   TIP: an image that already contains the wording (like the SSLCommerz banner) needs NO text field —
+   only add `text: { en: ..., bn: ... }` when you want an extra label in front of the image. ---- */
+export const PAYMENT_GATEWAY_BADGE = { logo: "logos/sslcommerz.webp", alt: "SSLCommerz" };

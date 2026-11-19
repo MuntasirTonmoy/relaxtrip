@@ -106,12 +106,15 @@ document.querySelector('#pay-list').innerHTML = PAYMENT_METHODS.map(method => {
   return `<li class="pay-tile${logoUrl ? '' : ' no-logo'}">${logoImage}<span class="pay-name">${method.name}</span></li>`;
 }).join('');
 
-/* Optional "Verified by ..." badge (only when PAYMENT_GATEWAY_BADGE is set in the content script) */
+/* Optional payment banner/badge (only when PAYMENT_GATEWAY_BADGE is set in the content script);
+   the optional text field in front of it is translatable, the image alone is enough most times */
 if (PAYMENT_GATEWAY_BADGE) {
-  const gatewayLogo = PAYMENT_GATEWAY_BADGE.logo
-    ? `<img src="${PAYMENT_GATEWAY_BADGE.logo}" alt="${PAYMENT_GATEWAY_BADGE.name}" height="28" loading="lazy">`
-    : `<b class="pay-gateway-name">${PAYMENT_GATEWAY_BADGE.name}</b>`;
-  document.querySelector('#pay-gateway').innerHTML = `<span data-i18n="${cardText('gateway', 0, 'text', PAYMENT_GATEWAY_BADGE.text)}"></span>${gatewayLogo}`;
+  const badge = PAYMENT_GATEWAY_BADGE;
+  const gatewayLogo = badge.logo
+    ? `<img src="${badge.logo}" alt="${badge.name || badge.alt || ''}" height="36" loading="lazy">`
+    : `<b class="pay-gateway-name">${badge.name}</b>`;
+  const label = badge.text ? `<span data-i18n="${cardText('gateway', 0, 'text', badge.text)}"></span>` : '';
+  document.querySelector('#pay-gateway').innerHTML = `${label}${gatewayLogo}`;
 }
 
 /* Support button: one row per contact option */

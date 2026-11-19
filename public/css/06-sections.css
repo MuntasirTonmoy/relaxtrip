@@ -36,8 +36,8 @@
 /* REVIEW card contents (stars, quote, name, Facebook source line). */
 .rev{display:grid;gap:1.25rem;text-align:center;justify-items:center;padding:2.5rem 2rem}
 /* Gold star rating. */
-.stars{color:var(--color-brand-gold);letter-spacing:.2em;font-size:var(--font-size-large)}
-blockquote{font-size:var(--font-size-large);font-weight:500} .who{display:flex;gap:.9rem;align-items:center;text-align:left} .who small{color:var(--color-text-muted);font-size:.8125rem}
+.stars{color:var(--color-brand-gold);letter-spacing:.2em;font-size:1.35rem}
+blockquote{font-size:clamp(1.0625rem,1rem + .38vw,1.195rem);font-weight:500} .who{display:flex;gap:.9rem;align-items:center;text-align:left} .who small{color:var(--color-text-muted);font-size:.8125rem}
 /* "Recommends on Facebook" line under the reviewer name: Facebook-blue icon + muted label. */
 .fb-src{display:inline-flex;align-items:center;gap:.4rem;font-weight:600}
 .fb-src .i{width:1rem;height:1rem;color:#1877F2}
