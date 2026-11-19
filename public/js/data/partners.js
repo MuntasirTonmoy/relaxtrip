@@ -24,33 +24,7 @@ export const PARTNER_AIRLINES = [
    If a logo cannot load, the code in a gold circle is shown instead, so nothing ever looks broken. */
 export const AIRLINE_LOGO_URL = "https://pics.avs.io/120/120/{code}.png";
 
-/* ---- FOOTER "PAY WITH" LOGOS: white tiles in the footer.
-   name = text shown when there is no logo. id = the logo file name in logos/payments/ (defaults to the name lowercase);
-   id: "-" = never show a logo for this method, always the name.
-   logo = (optional) address of this method's logo image. This only DISPLAYS accepted methods; real online payment needs a payment-gateway account.
-   To use your own file for a method, drop it into public/logos/payments/ named e.g. bkash.svg; a file that cannot load falls back to the name. ---- */
-export const PAYMENT_METHODS = [
-  { name: "Visa", id: "visa", logo: "logos/payments/visa.svg" },
-  { name: "Mastercard", id: "mastercard", logo: "logos/payments/mastercard.svg" },
-  { name: "American Express", id: "americanexpress", logo: "logos/payments/americanexpress.svg" },
-  { name: "bKash", id: "bkash" },
-  { name: "Nagad", id: "nagad" },
-  { name: "Rocket", id: "rocket" },
-  { name: "Upay", id: "upay" },
-  { name: "Nexus Pay", id: "nexuspay" },
-  { name: "Bank transfer", id: "-" },
-  { name: "Cash at office", id: "-" },
-];
-
-/* Folder pattern for the payment logo files. The official logo pictures for bKash, Nagad, Rocket, Upay and
-   Nexus Pay are in public/logos/payments/ (bkash.png, nagad.png, rocket.png, upay.png, nexuspay.png), and
-   visa / mastercard / americanexpress use exact vector marks (visa.svg, mastercard.svg, americanexpress.svg);
-   a file that cannot load falls back to the name. To switch ALL tiles to another folder or file type, change
-   just the pattern below. "" = no logos, the tiles show the names. */
-export const PAYMENT_LOGO_URL = "logos/payments/{id}.png";
-
-/* ---- Optional payment banner/badge shown at the right of the payment row.
-   Set it to null to hide. The image lives in public/logos/ (swap the file or the path to change it).
-   TIP: an image that already contains the wording (like the SSLCommerz banner) needs NO text field —
-   only add `text: { en: ..., bn: ... }` when you want an extra label in front of the image. ---- */
-export const PAYMENT_GATEWAY_BADGE = { logo: "logos/sslcommerz.webp", alt: "SSLCommerz" };
+/* ---- FOOTER "PAY WITH" BANNER: the accepted-methods strip in the footer footer.
+   It is a plain <img class="pay-banner"> in index.html pointing at public/logos/sslcommerz.webp —
+   one single image that already lists Visa, Mastercard, bKash, Nagad, etc.
+   To change it, replace that file (or edit the <img> tag in index.html). ---- */
