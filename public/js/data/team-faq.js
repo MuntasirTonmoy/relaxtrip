@@ -1,30 +1,47 @@
-/* ---- TEAM: one card each.
-   initials = (optional) avatar letters; if missing they are made from the English name,
-   e.g. "Mohammad Sagor" becomes "MS". ---- */
+/* ---- TEAM: one photo card each (photos live in public/images/team/).
+   TO ADD: put the photo file in images/team/, then copy one { ... } block and change
+   name / role / photo. TO REMOVE: delete the whole { ... } block.
+   A member without a photo falls back to initials automatically. ---- */
 export const TEAM_MEMBERS = [
   {
-    name: { en: "Mohammad Sagor", bn: "মোহাম্মদ সাগর" },
-    role: { en: "Managing Director", bn: "ব্যবস্থাপনা পরিচালক" },
-    description: {
-      en: "Over 10 years of leadership in aviation and tourism management in Bangladesh.",
-      bn: "বাংলাদেশের এভিয়েশন ও ট্যুরিজম ম্যানেজমেন্টে ১০ বছরেরও বেশি অভিজ্ঞ নেতৃত্ব।",
-    },
-  },
-  {
-    name: { en: "Rumman Khan", bn: "রুম্মান খান" },
-    role: { en: "Head of Ticketing", bn: "হেড অফ টিকেটিং" },
-    description: {
-      en: "Expert in global GDS ticketing systems, airline routing, and corporate travel.",
-      bn: "গ্লোবাল জিডিএস টিকেটিং সিস্টেম, এয়ারলাইন রুট ও কর্পোরেট ট্রাভেলে বিশেষজ্ঞ।",
-    },
+    name: { en: "Shahin Hossain (Sagor)", bn: "শাহিন হোসসেন (সাগর)" },
+    role: { en: "Managing Partner", bn: "ম্যানেজিং পার্টনার" },
+    photo: "images/team/shahin.jpg",
   },
   {
     name: { en: "Muntasir Hossain", bn: "মুনতাসির হোসেন" },
-    role: { en: "Customer Relations Lead", bn: "কাস্টমার রিলেশনস লিড" },
-    description: {
-      en: "Dedicated to providing responsive support and resolving client requests promptly.",
-      bn: "গ্রাহকদের যেকোনো অনুরোধ দ্রুত ও সন্তোষজনকভাবে সমাধানে নিবেদিত।",
-    },
+    role: { en: "Managing Partner", bn: "ম্যানেজিং পার্টনার" },
+    photo: "images/team/muntasir.jpg",
+  },
+  {
+    name: { en: "Rumman Khan", bn: "রুম্মান খান" },
+    role: { en: "Managing Partner", bn: "ম্যানেজিং পার্টনার" },
+    photo: "images/team/rumman.jpg",
+  },
+  {
+    name: { en: "Mehreen Asha", bn: "মহরিন আশা" },
+    role: { en: "Reservation Officer", bn: "রিজার্ভেশন অফিসার" },
+    photo: "images/team/mehreen.jpg",
+  },
+  {
+    name: { en: "Sk Walid", bn: "এসকে বালিদ" },
+    role: { en: "Visualizer", bn: "ভিজুয়ালাইজার" },
+    photo: "images/team/walid.jpg",
+  },
+  {
+    name: { en: "Any Chakraborty", bn: "আনি চক্রবর্ত্তী" },
+    role: { en: "Customer Relationship Officer", bn: "কাস্টমার রিলেশনশিপ অফিসার" },
+    photo: "images/team/anny.jpg",
+  },
+  {
+    name: { en: "M M Sohan Parvez", bn: "এম এম সোহান পরবেজ" },
+    role: { en: "Accounts Manager", bn: "অ্যাকাউন্টস ম্যানেজার" },
+    photo: "images/team/sohan.jpg",
+  },
+  {
+    name: { en: "Habibur Rahman", bn: "হাবিবুর রহমান" },
+    role: { en: "Senior Developer", bn: "সিনিয়র ডেভেলপার" },
+    photo: "images/team/habibur.jpg",
   },
 ];
 

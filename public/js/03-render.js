@@ -62,10 +62,13 @@ document.querySelector('#whyl').innerHTML = WHY_US_ITEMS.map(({ title, descripti
   return `<div class="wi rv" style="--reveal-order:${index}"><span class="n" data-num="${displayNumber}">${displayNumber}</span><div><h3 data-i18n="${cardText('whyus', index, 'title', title)}"></h3><p data-i18n="${cardText('whyus', index, 'description', description)}"></p></div></div>`;
 }).join('');
 
-/* Team cards */
-document.querySelector('#teaml').innerHTML = TEAM_MEMBERS.map((member, index) =>
-  `<div class="card rv" style="--reveal-order:${index}"><span class="av lg" aria-hidden="true">${member.initials || initialsOf(member.name.en)}</span><div><h3 data-i18n="${cardText('team', index, 'name', member.name)}"></h3><p class="role" data-i18n="${cardText('team', index, 'role', member.role)}"></p></div><p data-i18n="${cardText('team', index, 'description', member.description)}"></p></div>`
-).join('');
+/* Team cards: photo (optional — falls back to initials) + name + role */
+document.querySelector('#teaml').innerHTML = TEAM_MEMBERS.map((member, index) => {
+  const photo = member.photo
+    ? `<span class="team-photo"><img src="${member.photo}" loading="lazy" alt=""></span>`
+    : `<span class="av lg" aria-hidden="true">${member.initials || initialsOf(member.name.en)}</span>`;
+  return `<div class="card rv" style="--reveal-order:${index % 3}">${photo}<h3 data-i18n="${cardText('team', index, 'name', member.name)}"></h3><p class="role" data-i18n="${cardText('team', index, 'role', member.role)}"></p></div>`;
+}).join('');
 
 /* FAQ questions and answers */
 document.querySelector('#faql').innerHTML = FAQ_ITEMS.map(({ question, answer }, index) => {
