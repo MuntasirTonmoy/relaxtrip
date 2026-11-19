@@ -48,6 +48,14 @@ export const SERVICES = [
     },
   },
   {
+    icon: "moon",
+    title: { en: "Holy Hajj & Umrah", bn: "পবিত্র হজ্জ ও ওমরাহ" },
+    description: {
+      en: "Complete Hajj and Umrah packages: visa processing, flights, hotels close to the holy sites in Makkah and Madinah, and experienced guidance throughout.",
+      bn: "সম্পূর্ণ হজ্জ ও ওমরাহ প্যাকেজ: ভিসা প্রসেসিং, ফ্লাইট, মক্কা ও মদিনার পবিত্র স্থানের কাছে হোটেল ও অভিজ্ঞ গাইডের পূর্ণ সহয়তা।",
+    },
+  },
+  {
     icon: "map",
     title: { en: "Holiday Tour Packages", bn: "হলিডে ট্যুর প্যাকেজ" },
     description: {
@@ -61,14 +69,6 @@ export const SERVICES = [
     description: {
       en: "Seamless hotel reservations worldwide at competitive corporate rates with verified comfort and safety standards.",
       bn: "স্বচ্ছ কর্পোরেট রেটে এবং নিরাপদ আবাসন নিশ্চিত করে বিশ্বব্যাপী হোটেল রিজার্ভেশন।",
-    },
-  },
-  {
-    icon: "moon",
-    title: { en: "Holy Hajj & Umrah", bn: "পবিত্র হজ্জ ও ওমরাহ" },
-    description: {
-      en: "Complete Hajj and Umrah packages: visa processing, flights, hotels close to the holy sites in Makkah and Madinah, and experienced guidance throughout.",
-      bn: "সম্পূর্ণ হজ্জ ও ওমরাহ প্যাকেজ: ভিসা প্রসেসিং, ফ্লাইট, মক্কা ও মদিনার পবিত্র স্থানের কাছে হোটেল ও অভিজ্ঞ গাইডের পূর্ণ সহয়তা।",
     },
   },
   {
@@ -155,16 +155,7 @@ export const REVIEWS = [
     },
   },
   {
-    name: { en: "SK Walid", bn: "SK Walid" },
-    photo: "images/reviews/sk-walid.jpg",
-    quote: {
-      en: "Excellent service with reasonable prices. Highly recommended.",
-      bn: "Excellent service with reasonable prices. Highly recommended.",
-    },
-  },
-  {
     name: { en: "Sam Fisher", bn: "Sam Fisher" },
-    photo: "images/reviews/sam-fisher.jpg",
     quote: {
       en: "Trusted and very well-behaved. After-sales service is top-notch. 100/100 recommended.",
       bn: "Trusted and very well-behaved. After-sales service is top-notch. 100/100 recommended.",
@@ -172,7 +163,6 @@ export const REVIEWS = [
   },
   {
     name: { en: "M M Sohan Parvez", bn: "M M Sohan Parvez" },
-    photo: "images/reviews/m-m-sohan-parvez.jpg",
     quote: {
       en: "The admin's support and behavior is awesome.",
       bn: "The admin's support and behavior is awesome.",

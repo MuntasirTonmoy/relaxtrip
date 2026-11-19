@@ -89,6 +89,4 @@ blockquote{font-size:clamp(1.125rem,1.03rem + .45vw,1.3125rem);font-weight:500;l
 .foot .eyebrow{color:var(--color-brand-gold)} .foot p,.foot li{font-size:var(--font-size-small)} .foot ul{display:grid;gap:.25rem}
 .foot .nav-link{color:#cfcfcf;padding:.3rem 0} .foot .nav-link:hover{color:var(--color-brand-gold)} .foot a:not(.nav-link):not(.logo){text-decoration:none} .foot a:not(.nav-link):hover{color:#fff}
 /* Footer bottom line: centred copyright (privacy/terms links removed). */
-.legal{margin-top:3rem;padding-top:1.5rem;border-top:1px solid #3a3a3a;display:flex;justify-content:center;font-size:1.0625rem;color:#a8a8a8}
-.legal div{display:flex;gap:1.5rem}
 
