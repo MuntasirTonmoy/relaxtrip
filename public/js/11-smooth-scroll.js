@@ -34,13 +34,15 @@ function scrollToSection(sectionId) {
   setTimeout(correctPositionIfNeeded, prefersReducedMotion ? 60 : 1300);   /* fallback for browsers without "scrollend" */
 }
 
-/* Every link that points to "#something" scrolls with the function above */
+/* Every link that points to "#something" scrolls with the function above.
+   "#top" (logo, back-to-top) shows the clean address (relaxtrip.com/) instead of "#top" in the URL bar. */
 document.addEventListener('click', event => {
   const link = event.target.closest('a[href^="#"]');
   if (!link || link.getAttribute('href').length < 2) return;
   event.preventDefault();
   const sectionId = link.getAttribute('href').slice(1);
+  const newUrl = sectionId === 'top' ? location.pathname + location.search : '#' + sectionId;
   scrollToSection(sectionId);
-  try { history.replaceState(null, '', '#' + sectionId); } catch (error) { /* some previews block this: ignore */ }
+  try { history.replaceState(null, '', newUrl); } catch (error) { /* some previews block this: ignore */ }
 });
 
