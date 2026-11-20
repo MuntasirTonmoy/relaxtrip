@@ -245,6 +245,7 @@ function refreshEnquiryForm(form) {
   form.querySelectorAll('[data-enable-when-field]').forEach(wrapper => {
     const isEnabled = form.elements[wrapper.dataset.enableWhenField].value === wrapper.dataset.enableWhenValue;
     wrapper.classList.toggle('is-disabled', !isEnabled);
+    wrapper.classList.toggle('is-hidden', !isEnabled);                 /* hidden until the condition matches (e.g. Return date only on Round Trip) */
     wrapper.querySelectorAll('[data-value-input]').forEach(control => { control.disabled = !isEnabled; });   /* a disabled field is not checked */
   });
   /* The arrow between From and To: always the double arrow — tapping it swaps the two values. */

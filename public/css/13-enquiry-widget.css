@@ -50,6 +50,7 @@
 .f-control::placeholder{color:var(--color-text-muted);opacity:.55;font-weight:700}
 .f-sub{min-height:1.2em;font-size:.8125rem;color:var(--color-text-muted)}
 .f-value.is-empty{color:var(--color-text-muted);opacity:.7}
+.f.is-hidden{display:none}
 .f.is-disabled .f-card{cursor:not-allowed}
 .f-card-button{cursor:pointer}
 /* SWAP BUTTON between From and To (sits on the border between the two cards; on phones below the From card). */
