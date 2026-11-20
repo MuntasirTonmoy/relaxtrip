@@ -34,9 +34,11 @@
 .booking [hidden]{display:none}
 .booking-form{position:relative;display:grid;gap:1.25rem;padding-bottom:3.25rem}
 /* FIELDS: a row that wraps. Each field says how many of 12 "columns" it is wide (--c-desktop / --c-tablet / --c-phone, halves like 2.5 allowed).
-   The width formula keeps the 1rem gaps exact, so 2.5 + 2.5 + 2 + 2 + 3 = a full row. */
+   The width formula keeps the 1rem gaps exact, so 2.5 + 2.5 + 2 + 2 + 3 = a full row.
+   flex-grow follows the column count: a complete row has no free space (so exact widths), but when a field is hidden
+   (e.g. Return date on One Way) the remaining fields stretch proportionally and the row always fills the card. */
 .booking-fields{display:flex;flex-wrap:wrap;gap:1rem}
-.f{--c:var(--c-phone,12);position:relative;display:grid;grid-template-columns:minmax(0,1fr);flex:0 0 calc(var(--c) / 12 * 100% - (12 - var(--c)) / 12 * 1rem - .05px);min-width:0;margin:0;padding:0;border:0}
+.f{--c:var(--c-phone,12);position:relative;display:grid;grid-template-columns:minmax(0,1fr);flex:var(--c) 0 calc(var(--c) / 12 * 100% - (12 - var(--c)) / 12 * 1rem - .05px);min-width:0;margin:0;padding:0;border:0}
 @container booking (min-width:36rem){.f{--c:var(--c-tablet,6)}}
 @container booking (min-width:62rem){.f{--c:var(--c-desktop,3)}}
 .f fieldset{margin:0;padding:0;border:0;min-width:0}
