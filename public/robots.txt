@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://relaxtrip.pages.dev/sitemap.xml
+Sitemap: https://relaxtripbd.com/sitemap.xml
