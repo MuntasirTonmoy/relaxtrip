@@ -24,7 +24,7 @@
 export const CONTACT = {
   phone: "01631-829573",        /* shown to visitors and used for BOTH calls and WhatsApp. Write it the way you dial it in Bangladesh */
   whatsappPhone: "",            /* (optional) a different WhatsApp number. Leave "" to use the phone number above */
-  email: "relaxtripbd@gmail.com",
+  email: "support@relaxtripbd.com",
   address: { en: "Shah Tower, 48 Naya Paltan, Dhaka 1000, Bangladesh", bn: "শাহ টাওয়্যার, ৪৮ নয়াপল্টন, ঢাকা ১০০০, বাংলাদেশ" },
   mapsLink: "",                 /* (optional) your own map link. Leave "" to open Google Maps for the address above */
   mapEmbed: "Shah Tower, 48 Naya Paltan, Dhaka 1000",   /* (optional) what the real Google map on the page searches for. Leave "" to use the address above */
