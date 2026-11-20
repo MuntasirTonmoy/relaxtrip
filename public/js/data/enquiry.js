@@ -48,7 +48,7 @@ export const ENQUIRY_TABS = [
     fields: [
       { name: "country", type: "airport", source: "countries", columns: 3, required: true, label: { en: "Visa country", bn: "ভিসার দেশ" }, placeholder: { en: "Select country", bn: "দেশ বাছাই করুন" }, hint: { en: "City or country", bn: "শহর বা দেশ" }, messageLabel: "Destination country" },
       { name: "visaType", type: "select", columns: 3, searchable: true, searchPlaceholder: { en: "Search visa type", bn: "ভিসার ধরন খুঁজুন" }, label: { en: "Visa type", bn: "ভিসার ধরন" }, hint: { en: "Select", bn: "নির্বাচন করুন" }, messageLabel: "Visa type",
-        options: [ { icon: "compass", label: { en: "Tourist", bn: "ট্যুরিস্ট" } }, { icon: "briefcase", label: { en: "Business", bn: "বিজনেস" } }, { icon: "cap", label: { en: "Student", bn: "স্টুডেন্ট" } }, { icon: "building", label: { en: "Work", bn: "ওয়ার্ক" } }, { icon: "heart", label: { en: "Medical", bn: "মেডিকেল" } }, { icon: "globe", label: { en: "Other", bn: "অন্যান্য" } } ] },
+        options: [ { icon: "building", label: { en: "Work", bn: "ওয়ার্ক" } }, { icon: "cap", label: { en: "Student", bn: "স্টুডেন্ট" } }, { icon: "heart", label: { en: "Medical", bn: "মেডিকেল" } }, { icon: "compass", label: { en: "Tourist", bn: "ট্যুরিস্ট" } }, { icon: "briefcase", label: { en: "Business", bn: "বিজনেস" } }, { icon: "globe", label: { en: "Other", bn: "অন্যান্য" } } ] },
       { name: "travelDate", type: "date", columns: 3, label: { en: "Expected travel date", bn: "ভ্রমণের সম্ভাব্য তারিখ" }, messageLabel: "Expected travel date" },
       { name: "travellers", type: "travellers", columns: 3, summarySub: "breakdown", label: { en: "Passengers", bn: "যাত্রী" },
         counters: [
