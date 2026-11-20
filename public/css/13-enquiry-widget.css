@@ -132,6 +132,16 @@
   .pop-item-text small{white-space:normal;overflow:visible;overflow-wrap:anywhere}
   .cabin-grid{grid-template-columns:1fr}
 }
+/* Older mobile browsers without container-query support skip the block above; this plain media query gives them the same phone fixes. */
+@supports not (container-type:inline-size){
+  @media (max-width:600px){
+    .booking{padding-inline:1rem}
+    .f-pop{padding:.9rem .75rem}
+    .pop-item{gap:.65rem;padding:.5rem .4rem}
+    .pop-item-text small{white-space:normal;overflow:visible;overflow-wrap:anywhere}
+    .cabin-grid{grid-template-columns:1fr}
+  }
+}
 /* CALENDAR pop-up: header with the chosen date, month arrows, then a 7-column grid of days. */
 .cal-pop{width:min(23rem,calc(100vw - 2rem))}
 .cal-head{display:flex;align-items:center;gap:.9rem;padding:.7rem;border-radius:var(--radius-inner);background:var(--color-section-alt-background)}
