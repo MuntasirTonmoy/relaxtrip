@@ -297,6 +297,7 @@ function positionPopup(wrapper, popup) {
 function setFieldPopupOpen(wrapper, shouldBeOpen) {
   wrapper.classList.toggle('open', shouldBeOpen);
   wrapper.querySelector('.f-card-button').setAttribute('aria-expanded', shouldBeOpen);
+  document.body.classList.toggle('booking-open', !!document.querySelector('.f.open'));   /* hides the support button on old browsers (newer CSS uses :has() for the same) */
   if (!shouldBeOpen) return;
   const form = wrapper.closest('form');
   const searchInput = wrapper.querySelector('.pop-search-input');

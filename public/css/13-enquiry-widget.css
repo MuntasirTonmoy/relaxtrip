@@ -41,6 +41,13 @@
 .f{--c:var(--c-phone,12);position:relative;display:grid;grid-template-columns:minmax(0,1fr);flex:var(--c) 0 calc(var(--c) / 12 * 100% - (12 - var(--c)) / 12 * 1rem - .05px);min-width:0;margin:0;padding:0;border:0}
 @container booking (min-width:36rem){.f{--c:var(--c-tablet,6)}}
 @container booking (min-width:62rem){.f{--c:var(--c-desktop,3)}}
+/* Older engines without container queries copy the same widths with media queries, so the field
+   grid keeps its tablet/desktop layout everywhere (otherwise fields stay phone-width on laptops). */
+@supports not (container-type:inline-size){
+  @media (min-width:576px){.f{--c:var(--c-tablet,6)}}
+  @media (min-width:992px){.f{--c:var(--c-desktop,3)}}
+  @media (max-width:575px){.f-swap{top:auto;bottom:-1.875rem;left:50%;right:auto;transform:translateX(-50%) rotate(90deg)}.f-swap:hover{transform:translateX(-50%) rotate(180deg)}}
+}
 .f fieldset{margin:0;padding:0;border:0;min-width:0}
 /* A FIELD CARD: small label, big value, small line below. */
 .f-card{position:relative;display:grid;gap:.15rem;align-content:center;width:100%;height:100%;min-height:5.75rem;margin:0;padding:.9rem 1.1rem;border:1px solid var(--color-border);border-radius:var(--radius-inner);background:var(--color-page-background);color:var(--color-text);font:inherit;text-align:left;cursor:text;transition:border-color var(--motion-duration-fast),box-shadow var(--motion-duration-fast)}
@@ -174,5 +181,5 @@
 .cal-day.is-selected{background:var(--color-brand-gold);color:var(--color-black);opacity:1}
 .cal-day.is-selected::after{background:var(--color-black)}
 /* While a search pop-up is open the floating Support button steps aside so it never covers the list. */
-body:has(.booking .f.open) .support{opacity:0;pointer-events:none}
+body:has(.booking .f.open) .support,body.booking-open .support{opacity:0;pointer-events:none}
 .support{transition:opacity var(--motion-duration-normal)}

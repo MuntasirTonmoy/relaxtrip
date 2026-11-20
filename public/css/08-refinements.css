@@ -50,4 +50,22 @@ html[lang=bn] body{font-family:"Noto Sans Bengali","Plus Jakarta Sans",system-ui
 .cta-in{display:grid;gap:1.5rem;justify-items:center;text-align:center} .cta-in p{margin-inline:auto} .cta-in .row-btns{margin-top:.5rem}
 /* Footer background = near-black in both themes. */
 .foot{background:#111}
+/* =========================================================================
+   OLD-BROWSER FALLBACKS: browsers that cannot parse color-mix() drop every
+   declaration that uses it (header tint, selected item highlight, icon tiles),
+   so those elements lose their background entirely. This block gives them a
+   solid stand-in from the normal tokens. Modern browsers skip it.
+   ========================================================================= */
+@supports not (color: color-mix(in srgb,red,blue)){
+  .hdr{background:var(--color-page-background)}
+  .badge{background:var(--color-section-alt-background);border-color:var(--color-brand-gold)}
+  .ibox,.booking-tab-icon,.pax-icon,.pop-icon{background:var(--color-section-alt-background)}
+  .av.lg{border-color:var(--color-brand-gold)}
+  .dot::before{background:var(--color-border)}
+  .m-w{fill:var(--color-section-alt-background)}
+  .f-card:focus-within,.pop-search:focus-within{box-shadow:0 0 0 3px var(--color-border)}
+  .cabin input:checked + span{background:var(--color-section-alt-background)}
+  .pop-item:hover,.pop-item:focus-visible,.pop-item.is-selected{background:var(--color-section-alt-background)}
+  .cal-day:hover:not(:disabled){background:var(--color-section-alt-background)}
+}
 
