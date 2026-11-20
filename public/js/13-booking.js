@@ -282,6 +282,7 @@ onLanguageChange(refreshEnquiryDisplays);   /* dates, airports and passenger sum
    full-width, so the CSS rule left:0; right:0; width:auto positions the pop-up exactly across the fields box
    with no inline styles. On big screens inline width/left are still needed (align to the card's right edge). */
 function positionPopup(wrapper, popup) {
+  if (!popup) return;
   popup.style.width = '';
   popup.style.left = '';
   popup.style.right = '';
@@ -294,6 +295,15 @@ function positionPopup(wrapper, popup) {
   popup.style.left = (Math.min(wrapperRect.left, cardRect.right - 16 - popupWidth) - wrapperRect.left) + 'px';
   popup.style.right = 'auto';
 }
+/* Positions every pop-up of the visible tab, open or closed. Without clipping on the card
+   (Safari < 16.4 clips both axes) this is what keeps closed wide pop-ups inside the card,
+   so they never make the page scroll sideways on any browser. */
+function positionAllPopups() {
+  document.querySelectorAll('.booking-form:not([hidden]) .f').forEach(wrapper => {
+    positionPopup(wrapper, wrapper.querySelector('.f-pop, .pax-pop'));
+  });
+}
+positionAllPopups();
 function setFieldPopupOpen(wrapper, shouldBeOpen) {
   wrapper.classList.toggle('open', shouldBeOpen);
   wrapper.querySelector('.f-card-button').setAttribute('aria-expanded', shouldBeOpen);
@@ -330,6 +340,7 @@ function showEnquiryTab(tabId) {
     tabButton.tabIndex = isActive ? 0 : -1;
     document.querySelector('#booking-form-' + tab.id).hidden = !isActive;
   });
+  positionAllPopups();
 }
 bookingTabsBox.addEventListener('click', event => {
   const tabButton = event.target.closest('.booking-tab');
@@ -434,12 +445,7 @@ addEventListener('keydown', event => {
 let popupResizeFrame = 0;
 addEventListener('resize', () => {
   cancelAnimationFrame(popupResizeFrame);
-  popupResizeFrame = requestAnimationFrame(() => {
-    document.querySelectorAll('.f.open').forEach(wrapper => {
-      const popup = wrapper.querySelector('.f-pop, .pax-pop');
-      if (popup) positionPopup(wrapper, popup);
-    });
-  });
+  popupResizeFrame = requestAnimationFrame(() => { positionAllPopups(); });
 });
 
 /* ---------- Sending ---------- */

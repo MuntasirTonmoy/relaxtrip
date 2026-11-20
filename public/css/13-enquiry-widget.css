@@ -27,9 +27,10 @@
 .booking-tab[aria-selected=true] .booking-tab-icon{background:rgba(255,255,255,.55);color:var(--color-black)}
 /* Very narrow screens (card under 22rem wide, roughly phones under 375px): drop the round icons so both tab names fit. */
 @container booking (max-width:21.99rem){.booking-tab-icon{display:none}.booking-tab{padding:0 .9rem}}
-/* THE CARD. overflow stays visible so the swap button, search button and pop-up can stick out. */
-/* overflow-x:clip stops closed pop-ups from making the page scroll sideways; overflow-y stays visible so the Send button and pop-ups can hang below the card. */
-.booking{position:relative;overflow-x:clip;overflow-y:visible;padding:3.5rem 1.5rem 0;border-radius:var(--radius-card)}
+/* THE CARD. overflow stays visible so the swap button, the Send button and the pop-ups can stick out (the Send button hangs half below the card and pop-ups may hang further).
+   NO overflow clipping here on purpose: Safari (iOS 16.0-16.3) turns "overflow-x:clip + overflow-y:visible" into clipping BOTH axes, which cut pop-ups at the card's bottom edge on iPhones.
+   Horizontal containment instead comes from the script: positionPopup() runs for every pop-up, open OR closed, so a closed pop-up never sticks out of the card sideways. */
+.booking{position:relative;overflow:visible;padding:3.5rem 1.5rem 0;border-radius:var(--radius-card)}
 /* Elements hidden with the "hidden" attribute must really disappear (the rules below set display). */
 .booking [hidden]{display:none}
 .booking-form{position:relative;display:grid;gap:1.25rem;padding-bottom:3.25rem}
