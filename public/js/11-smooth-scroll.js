@@ -37,7 +37,7 @@ function scrollToSection(sectionId) {
 /* Every link that points to "#something" scrolls with the function above.
    The URL bar shows the section as a PATH (relaxtrip.com/reviews), never with #.
    Pasted or refreshed path links still land on the right section: on Cloudflare Pages the public/_redirects
-   file serves index.html for any path, and the small router below scrolls to the matching section. */
+   file serves index.html for each section path, and the small router below scrolls to the matching section. */
 document.addEventListener('click', event => {
   const link = event.target.closest('a[href^="#"]');
   if (!link || link.getAttribute('href').length < 2) return;

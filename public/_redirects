@@ -1,1 +1,25 @@
-/*  /index.html  200
+# Cloudflare Pages routing (https://developers.cloudflare.com/pages/configuration/redirects/)
+# 1) A request that matches a real file (css, js, images, logos...) is always served directly.
+# 2) The section paths below are "rewrites" (200): they render the homepage, and
+#    js/11-smooth-scroll.js scrolls to that section - so /reviews is a working link.
+# 3) Anything else (a bad/old link) gets the 404 page, which instantly redirects to the homepage.
+# WHEN YOU ADD A SECTION: give the <section> an id in index.html, then add one line here
+# (and, if you like, the same path with a trailing slash).
+
+/airlines  /index.html  200
+/about-us  /index.html  200
+/services  /index.html  200
+/reviews   /index.html  200
+/why-us    /index.html  200
+/location  /index.html  200
+/team      /index.html  200
+/faq       /index.html  200
+
+/airlines/  /index.html  200
+/about-us/  /index.html  200
+/services/  /index.html  200
+/reviews/   /index.html  200
+/why-us/    /index.html  200
+/location/  /index.html  200
+/team/      /index.html  200
+/faq/       /index.html  200
