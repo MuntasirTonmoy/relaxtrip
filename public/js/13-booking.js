@@ -277,7 +277,8 @@ function refreshEnquiryDisplays() {
 onLanguageChange(refreshEnquiryDisplays);   /* dates, airports and passenger summaries are script-written texts */
 
 /* ---------- Pop-ups: open, close, position ---------- */
-/* Puts the pop-up inside the card: full card width on phones, otherwise its own width, never past the card's right edge */
+/* Puts the pop-up inside the card: exactly the fields-box width on phones (flush, like the reference design),
+   otherwise its own width; on every device the pop-up must stay 8px clear of the screen edge. */
 function positionPopup(wrapper, popup) {
   popup.style.width = '';
   popup.style.left = '';
@@ -285,9 +286,13 @@ function positionPopup(wrapper, popup) {
   const cardRect = bookingPanelsBox.getBoundingClientRect();
   const wrapperRect = wrapper.getBoundingClientRect();
   const isNarrowCard = cardRect.width < 36 * parseFloat(getComputedStyle(document.documentElement).fontSize);   /* 36rem, same as the CSS */
-  const margin = isNarrowCard ? -8 : 16;                               /* phones: the pop-up keeps a small gutter on both sides */
-  const popupWidth = isNarrowCard ? cardRect.width - margin * 2 : Math.min(popup.offsetWidth, cardRect.width - margin * 2);
-  const popupLeft = isNarrowCard ? cardRect.left + margin : Math.min(wrapperRect.left, cardRect.right - margin - popupWidth);
+  const maxScreenWidth = document.documentElement.clientWidth - 8;                     /* hard ceiling: never touch the screen edges */
+  const margin = isNarrowCard ? 0 : 16;                                /* phones: flush with the fields box - nothing may overhang */
+  const popupWidth = Math.min(
+    (isNarrowCard ? cardRect.width : popup.offsetWidth) - margin * 2,
+    maxScreenWidth
+  );
+  const popupLeft = isNarrowCard ? cardRect.left : Math.min(wrapperRect.left, cardRect.right - margin - popupWidth);
   popup.style.width = popupWidth + 'px';
   popup.style.left = (popupLeft - wrapperRect.left) + 'px';
   popup.style.right = 'auto';

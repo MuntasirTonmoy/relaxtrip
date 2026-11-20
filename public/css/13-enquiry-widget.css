@@ -127,7 +127,7 @@
    long airport names wrap instead of ending with "...", and cabin class goes on one column so no option is cut off. */
 @container booking (max-width:35.99rem){
   .booking{padding-inline:1rem}
-  .f-pop{left:-.5rem;right:-.5rem;width:auto;padding:.9rem .75rem}
+  .f-pop{left:0;right:0;width:auto;padding:.9rem .75rem}
   .pop-search{padding:0 .75rem}
   .pop-search-input{font-size:.9375rem}
   .pop-item{gap:.65rem;padding:.5rem .4rem}
@@ -139,7 +139,7 @@
 @supports not (container-type:inline-size){
   @media (max-width:600px){
     .booking{padding-inline:1rem}
-    .f-pop{left:-.5rem;right:-.5rem;width:auto;padding:.9rem .75rem}
+    .f-pop{left:0;right:0;width:auto;padding:.9rem .75rem}
     .pop-search{padding:0 .75rem}
     .pop-search-input{font-size:.9375rem}
     .pop-item{gap:.65rem;padding:.5rem .4rem}
