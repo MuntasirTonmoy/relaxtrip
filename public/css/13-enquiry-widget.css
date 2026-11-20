@@ -68,7 +68,7 @@
 .seg input:checked + span{background:var(--color-brand-gold);color:var(--color-black)}
 .seg input:focus-visible + span{outline:2px solid var(--color-focus-ring);outline-offset:3px}
 /* PASSENGER POP-UP: opens under the passenger card (class "open" is added by the script). */
-.pax-pop{position:absolute;z-index:20;top:calc(100% + .5rem);right:0;width:min(23rem,calc(100vw - 2rem));display:grid;gap:1rem;padding:1.25rem;border:1px solid var(--color-border);border-radius:var(--radius-card);background:var(--color-card-background);box-shadow:0 24px 48px -16px rgba(0,0,0,.5);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity var(--motion-duration-normal) var(--motion-easing),transform var(--motion-duration-normal) var(--motion-easing),visibility 0s var(--motion-duration-normal)}
+.pax-pop{position:absolute;z-index:20;top:calc(100% + .5rem);right:0;width:min(23rem,calc(100vw - 2rem));display:grid;gap:1rem;padding:1.25rem;border:1px solid var(--color-border);border-radius:var(--radius-card);background:var(--color-card-background);box-shadow:0 8px 18px -8px rgba(0,0,0,.35);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity var(--motion-duration-normal) var(--motion-easing),transform var(--motion-duration-normal) var(--motion-easing),visibility 0s var(--motion-duration-normal)}
 .f.open .pax-pop{opacity:1;visibility:visible;transform:none;transition-delay:0s}
 @container booking (max-width:35.99rem){.pax-pop{left:0;right:0;width:auto}}
 .pax-title,.pop-title{margin:0;font-size:.75rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-muted)}
@@ -108,7 +108,7 @@
 .booking-fallback{margin:0;text-align:center;font-size:var(--font-size-small);font-weight:700}
 .booking-fallback a{color:var(--color-text);text-decoration:underline;text-decoration-color:var(--color-brand-gold);text-underline-offset:4px}
 /* POP-UP under a field card (airport search, visa type list, calendar). The script sets its width and left position so it always stays inside the card. */
-.f-pop{position:absolute;z-index:20;top:calc(100% + .5rem);left:0;width:min(26rem,calc(100vw - 2rem));display:grid;gap:.75rem;padding:1rem;border:1px solid var(--color-border);border-radius:var(--radius-card);background:var(--color-card-background);box-shadow:0 24px 48px -16px rgba(0,0,0,.5);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity var(--motion-duration-normal) var(--motion-easing),transform var(--motion-duration-normal) var(--motion-easing),visibility 0s var(--motion-duration-normal)}
+.f-pop{position:absolute;z-index:20;top:calc(100% + .5rem);left:0;width:min(26rem,calc(100vw - 2rem));display:grid;gap:.75rem;padding:1rem;border:1px solid var(--color-border);border-radius:var(--radius-card);background:var(--color-card-background);box-shadow:0 8px 18px -8px rgba(0,0,0,.35);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity var(--motion-duration-normal) var(--motion-easing),transform var(--motion-duration-normal) var(--motion-easing),visibility 0s var(--motion-duration-normal)}
 .f.open .f-pop{opacity:1;visibility:visible;transform:none;transition-delay:0s}
 /* Search box at the top of a pop-up. */
 .pop-search{display:flex;align-items:center;gap:.6rem;min-height:48px;padding:0 .9rem;border:1px solid var(--color-border);border-radius:var(--radius-control);background:var(--color-page-background);color:var(--color-text-muted);transition:border-color var(--motion-duration-fast),box-shadow var(--motion-duration-fast)}

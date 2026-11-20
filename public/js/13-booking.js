@@ -278,8 +278,9 @@ function refreshEnquiryDisplays() {
 onLanguageChange(refreshEnquiryDisplays);   /* dates, airports and passenger summaries are script-written texts */
 
 /* ---------- Pop-ups: open, close, position ---------- */
-/* Puts the pop-up inside the card: exactly the fields-box width on phones (flush, like the reference design),
-   otherwise its own width; on every device the pop-up must stay 8px clear of the screen edge. */
+/* Puts the pop-up inside the card. On phones the script stays out of the way completely - every phone field is
+   full-width, so the CSS rule left:0; right:0; width:auto positions the pop-up exactly across the fields box
+   with no inline styles. On big screens inline width/left are still needed (align to the card's right edge). */
 function positionPopup(wrapper, popup) {
   popup.style.width = '';
   popup.style.left = '';
@@ -287,15 +288,10 @@ function positionPopup(wrapper, popup) {
   const cardRect = bookingPanelsBox.getBoundingClientRect();
   const wrapperRect = wrapper.getBoundingClientRect();
   const isNarrowCard = cardRect.width < 36 * parseFloat(getComputedStyle(document.documentElement).fontSize);   /* 36rem, same as the CSS */
-  const maxScreenWidth = document.documentElement.clientWidth - 8;                     /* hard ceiling: never touch the screen edges */
-  const margin = isNarrowCard ? 0 : 16;                                /* phones: flush with the fields box - nothing may overhang */
-  const popupWidth = Math.min(
-    (isNarrowCard ? cardRect.width : popup.offsetWidth) - margin * 2,
-    maxScreenWidth
-  );
-  const popupLeft = isNarrowCard ? cardRect.left : Math.min(wrapperRect.left, cardRect.right - margin - popupWidth);
+  if (isNarrowCard) return;                                            /* phones: CSS does it all, no inline styles */
+  const popupWidth = Math.min(popup.offsetWidth, cardRect.width - 32, document.documentElement.clientWidth - 8);
   popup.style.width = popupWidth + 'px';
-  popup.style.left = (popupLeft - wrapperRect.left) + 'px';
+  popup.style.left = (Math.min(wrapperRect.left, cardRect.right - 16 - popupWidth) - wrapperRect.left) + 'px';
   popup.style.right = 'auto';
 }
 function setFieldPopupOpen(wrapper, shouldBeOpen) {
