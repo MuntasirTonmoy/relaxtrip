@@ -1,4 +1,4 @@
-import { CONTACT } from './data/contact.js';
+import { CONTACT } from '/js/data/contact.js';
 
 /* =========================================================================
    2. HELPER FUNCTIONS (preferences, contact links, small utilities)

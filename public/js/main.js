@@ -18,21 +18,21 @@
    Site texts and cards: edit the files in js/data/.
    IMPORT ORDER below = execution order. applyLanguage() must stay last.
    ========================================================================= */
-import './01-icons.js';
-import './02-helpers.js';
-import './04-language.js';
-import './03-render.js';
-import './05-theme.js';
-import './06-header.js';
-import './07-faq.js';
-import './08-slider.js';
-import './09-counters.js';
-import './10-reveal.js';
-import './11-smooth-scroll.js';
-import './12-support.js';
-import './13-booking.js';
+import '/js/01-icons.js';
+import '/js/02-helpers.js';
+import '/js/04-language.js';
+import '/js/03-render.js';
+import '/js/05-theme.js';
+import '/js/06-header.js';
+import '/js/07-faq.js';
+import '/js/08-slider.js';
+import '/js/09-counters.js';
+import '/js/10-reveal.js';
+import '/js/11-smooth-scroll.js';
+import '/js/12-support.js';
+import '/js/13-booking.js';
 
-import { applyLanguage } from './04-language.js';
+import { applyLanguage } from '/js/04-language.js';
 
 /* START: write all texts for the current language (must stay the LAST line) */
 applyLanguage();

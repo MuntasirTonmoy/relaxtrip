@@ -6,42 +6,42 @@ export const TEAM_MEMBERS = [
   {
     name: { en: "Shahin Hossain (Sagor)", bn: "শাহিন হোসসেন (সাগর)" },
     role: { en: "Managing Partner", bn: "ম্যানেজিং পার্টনার" },
-    photo: "images/team/shahin.jpg",
+    photo: "/images/team/shahin.jpg",
   },
   {
     name: { en: "Muntasir Hossain", bn: "মুনতাসির হোসেন" },
     role: { en: "Managing Partner", bn: "ম্যানেজিং পার্টনার" },
-    photo: "images/team/muntasir.jpg",
+    photo: "/images/team/muntasir.jpg",
   },
   {
     name: { en: "Rumman Khan", bn: "রুম্মান খান" },
     role: { en: "Managing Partner", bn: "ম্যানেজিং পার্টনার" },
-    photo: "images/team/rumman.jpg",
+    photo: "/images/team/rumman.jpg",
   },
   {
     name: { en: "Mehreen Asha", bn: "মহরিন আশা" },
     role: { en: "Reservation Officer", bn: "রিজার্ভেশন অফিসার" },
-    photo: "images/team/mehreen.jpg",
+    photo: "/images/team/mehreen.jpg",
   },
   {
     name: { en: "Sk Walid", bn: "এসকে বালিদ" },
     role: { en: "Visualizer", bn: "ভিজুয়ালাইজার" },
-    photo: "images/team/walid.jpg",
+    photo: "/images/team/walid.jpg",
   },
   {
     name: { en: "Any Chakraborty", bn: "আনি চক্রবর্ত্তী" },
     role: { en: "Customer Relationship Officer", bn: "কাস্টমার রিলেশনশিপ অফিসার" },
-    photo: "images/team/anny.jpg",
+    photo: "/images/team/anny.jpg",
   },
   {
     name: { en: "M M Sohan Parvez", bn: "এম এম সোহান পরবেজ" },
     role: { en: "Accounts Manager", bn: "অ্যাকাউন্টস ম্যানেজার" },
-    photo: "images/team/sohan.jpg",
+    photo: "/images/team/sohan.jpg",
   },
   {
     name: { en: "Habibur Rahman", bn: "হাবিবুর রহমান" },
     role: { en: "Senior Developer", bn: "সিনিয়র ডেভেলপার" },
-    photo: "images/team/habibur.jpg",
+    photo: "/images/team/habibur.jpg",
   },
 ];
 

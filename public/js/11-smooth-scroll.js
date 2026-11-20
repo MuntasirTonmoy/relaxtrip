@@ -1,5 +1,5 @@
-import { siteHeader } from './06-header.js';
-import { prefersReducedMotion } from './02-helpers.js';
+import { siteHeader } from '/js/06-header.js';
+import { prefersReducedMotion } from '/js/02-helpers.js';
 
 /* =========================================================================
    11. SMOOTH SCROLLING TO A SECTION

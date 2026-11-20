@@ -1,4 +1,4 @@
-import { safeStorage } from './02-helpers.js';
+import { safeStorage } from '/js/02-helpers.js';
 
 /* =========================================================================
    5. THEME (light / dark)

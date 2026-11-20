@@ -1,7 +1,7 @@
-import { CONTACT } from './data/contact.js';
-import { SITE_TEXT } from './data/texts.js';
-import { WORDMARK_HTML, LANGUAGE_FLAG_SVG } from './01-icons.js';
-import { safeStorage } from './02-helpers.js';
+import { CONTACT } from '/js/data/contact.js';
+import { SITE_TEXT } from '/js/data/texts.js';
+import { WORDMARK_HTML, LANGUAGE_FLAG_SVG } from '/js/01-icons.js';
+import { safeStorage } from '/js/02-helpers.js';
 
 /* The address and opening hours are edited in CONTACT but shown through the normal text system,
    so they also switch between English and Bangla. */

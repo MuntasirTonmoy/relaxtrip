@@ -1,4 +1,4 @@
-import { NAV_LINKS } from './data/navigation.js';
+import { NAV_LINKS } from '/js/data/navigation.js';
 
 /* =========================================================================
    6. HEADER: mobile menu, shadow on scroll, "current section" highlight

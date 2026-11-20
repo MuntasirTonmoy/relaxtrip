@@ -97,7 +97,7 @@
   <link rel="manifest" href="/site.webmanifest">
 
 <!-- boot.js runs BEFORE the page is painted: applies the saved theme + language without a flash. -->
-<script src="js/boot.js"></script>
+<script src="/js/boot.js"></script>
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -106,19 +106,19 @@
 
 <!-- Styles: one file per part of the page.
      NUMBERED LOAD ORDER MATTERS: later files override earlier ones (08-13 refine 01-07). -->
-  <link rel="stylesheet" href="css/01-tokens.css">
-  <link rel="stylesheet" href="css/02-base.css">
-  <link rel="stylesheet" href="css/03-components.css">
-  <link rel="stylesheet" href="css/04-header.css">
-  <link rel="stylesheet" href="css/05-hero.css">
-  <link rel="stylesheet" href="css/06-sections.css">
-  <link rel="stylesheet" href="css/07-reveal-motion.css">
-  <link rel="stylesheet" href="css/08-refinements.css">
-  <link rel="stylesheet" href="css/09-map.css">
-  <link rel="stylesheet" href="css/10-small-screens.css">
-  <link rel="stylesheet" href="css/11-mobile-menu-cta.css">
-  <link rel="stylesheet" href="css/12-airlines-payments-support.css">
-  <link rel="stylesheet" href="css/13-enquiry-widget.css">
+  <link rel="stylesheet" href="/css/01-tokens.css">
+  <link rel="stylesheet" href="/css/02-base.css">
+  <link rel="stylesheet" href="/css/03-components.css">
+  <link rel="stylesheet" href="/css/04-header.css">
+  <link rel="stylesheet" href="/css/05-hero.css">
+  <link rel="stylesheet" href="/css/06-sections.css">
+  <link rel="stylesheet" href="/css/07-reveal-motion.css">
+  <link rel="stylesheet" href="/css/08-refinements.css">
+  <link rel="stylesheet" href="/css/09-map.css">
+  <link rel="stylesheet" href="/css/10-small-screens.css">
+  <link rel="stylesheet" href="/css/11-mobile-menu-cta.css">
+  <link rel="stylesheet" href="/css/12-airlines-payments-support.css">
+  <link rel="stylesheet" href="/css/13-enquiry-widget.css">
 </head>
 <body>
 
@@ -229,7 +229,7 @@
       <li data-i18n="office_address"></li><li><a data-contact-link="phone" data-phone-text></a></li><li><a data-contact-link="email" data-email-text></a></li></ul></div>
   </div>
   <div class="paybar">
-    <div class="paybar-logo"><img class="pay-banner" src="logos/sslcommerz.webp" alt="Pay with SSLCommerz — Visa, Mastercard, bKash, Nagad and more" loading="lazy"></div>
+    <div class="paybar-logo"><img class="pay-banner" src="/logos/sslcommerz.webp" alt="Pay with SSLCommerz — Visa, Mastercard, bKash, Nagad and more" loading="lazy"></div>
     <p class="paybar-copy" data-i18n="footer_copy"></p>
   </div>
 </div></footer>
@@ -245,6 +245,6 @@
   <button class="support-fab" id="support-fab" type="button" aria-expanded="false" aria-controls="support-panel"><i data-icon="headset"></i><span class="fab-text" data-i18n="support_label"></span></button>
 </div>
 
-<script type="module" src="js/main.js"></script>
+<script type="module" src="/js/main.js"></script>
 </body>
 </html>

@@ -1,12 +1,12 @@
-import { CONTACT } from './data/contact.js';
-import { NAV_LINKS, TRUST_POINTS } from './data/navigation.js';
-import { STAT_CARDS, SERVICES, REVIEWS, WHY_US_ITEMS } from './data/sections.js';
-import { TEAM_MEMBERS, FAQ_ITEMS } from './data/team-faq.js';
-import { PARTNER_AIRLINES, AIRLINE_LOGO_URL } from './data/partners.js';
-import { SUPPORT_CHANNELS, SOCIAL_LINKS } from './data/support.js';
-import { iconSvg, LOGO_HTML } from './01-icons.js';
-import { whatsappLink, PHONE_INTERNATIONAL_DIGITS, PHONE_LINK, MAPS_LINK, initialsOf } from './02-helpers.js';
-import { cardText, localizeDigits, onLanguageChange } from './04-language.js';
+import { CONTACT } from '/js/data/contact.js';
+import { NAV_LINKS, TRUST_POINTS } from '/js/data/navigation.js';
+import { STAT_CARDS, SERVICES, REVIEWS, WHY_US_ITEMS } from '/js/data/sections.js';
+import { TEAM_MEMBERS, FAQ_ITEMS } from '/js/data/team-faq.js';
+import { PARTNER_AIRLINES, AIRLINE_LOGO_URL } from '/js/data/partners.js';
+import { SUPPORT_CHANNELS, SOCIAL_LINKS } from '/js/data/support.js';
+import { iconSvg, LOGO_HTML } from '/js/01-icons.js';
+import { whatsappLink, PHONE_INTERNATIONAL_DIGITS, PHONE_LINK, MAPS_LINK, initialsOf } from '/js/02-helpers.js';
+import { cardText, localizeDigits, onLanguageChange } from '/js/04-language.js';
 
 /* =========================================================================
    3. BUILD THE PAGE

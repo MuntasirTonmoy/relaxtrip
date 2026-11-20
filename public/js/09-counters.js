@@ -1,5 +1,5 @@
-import { localizeDigits } from './04-language.js';
-import { prefersReducedMotion } from './02-helpers.js';
+import { localizeDigits } from '/js/04-language.js';
+import { prefersReducedMotion } from '/js/02-helpers.js';
 
 /* =========================================================================
    9. NUMBER COUNTERS (count up once, when 60% visible)

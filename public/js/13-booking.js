@@ -1,7 +1,7 @@
-import { ENQUIRY_TABS, AIRPORTS, COUNTRIES, CALENDAR_WEEK_STARTS_ON } from './data/enquiry.js';
-import { iconSvg } from './01-icons.js';
-import { whatsappLink, prefersReducedMotion } from './02-helpers.js';
-import { cardText, translate, localizeDigits, currentLanguage, onLanguageChange } from './04-language.js';
+import { ENQUIRY_TABS, AIRPORTS, COUNTRIES, CALENDAR_WEEK_STARTS_ON } from '/js/data/enquiry.js';
+import { iconSvg } from '/js/01-icons.js';
+import { whatsappLink, prefersReducedMotion } from '/js/02-helpers.js';
+import { cardText, translate, localizeDigits, currentLanguage, onLanguageChange } from '/js/04-language.js';
 
 /* =========================================================================
    13. HERO ENQUIRY WIDGET (Air Ticket / Visa -> a neatly arranged WhatsApp message)
