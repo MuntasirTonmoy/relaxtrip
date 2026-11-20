@@ -12,8 +12,10 @@
    ========================================================================= */
 /* Include padding and border in every element's width (makes sizing predictable). */
 *{box-sizing:border-box}
-/* Smooth scrolling for anchor links. scroll-padding-top keeps targets clear of the sticky header. */
-html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+/* Smooth scrolling for anchor links. scroll-padding-top keeps targets clear of the sticky header.
+   text-size-adjust:100% forbids mobile browsers (and UA-spoofing extensions) from silently
+   inflating text with their font-boosting heuristics, which broke popup scaling. */
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 /* Page defaults: colours come from the tokens, so light/dark theme switches everything. */
 body{margin:0;background:var(--color-page-background);color:var(--color-text);font:400 var(--font-size-body)/var(--line-height-body) "Plus Jakarta Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased;transition:background-color var(--motion-duration-normal),color var(--motion-duration-normal)}
 /* Remove default browser margins; spacing is added deliberately per component. */

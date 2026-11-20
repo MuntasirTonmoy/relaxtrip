@@ -163,24 +163,25 @@
   .booking{padding-inline:1rem}
   .f-pop{left:0;right:0;top:calc(100% + .625rem);width:auto;border-radius:1.25rem;padding:.625rem .625rem .75rem}
   .pop-search{padding:0 .75rem}
-  .pop-search-input{font-size:.9375rem}
+  .pop-search-input{font-size:clamp(.875rem,3.9vw,.9375rem)}
   .pop-item{gap:.75rem;padding:.5rem .625rem;border-radius:.75rem}
   .pop-item-text small{white-space:normal;overflow:visible;overflow-wrap:anywhere}
   .cabin-grid{grid-template-columns:1fr}
   .pax-pop{gap:.75rem;padding:1rem}
   .pax-row{gap:.65rem}
   .pax-icon{width:2.25rem;height:2.25rem;border-radius:.75rem}
-  .pax-text small{font-size:.75rem}
-  .cabin span{min-height:2.5rem}
-  .pop-title{font-size:.6875rem;font-weight:800}
+  .pax-text b{font-size:clamp(.75rem,3.7vw,.8125rem)}
+  .pax-text small{font-size:clamp(.625rem,3.4vw,.75rem)}
+  .cabin span{min-height:2.5rem;font-size:clamp(.8125rem,3.9vw,.875rem)}
+  .pop-title{font-size:clamp(.5625rem,3vw,.6875rem);font-weight:800}
   .pop-search{min-height:44px}
   .pop-item{min-height:44px}
-  .pop-item-text b{font-size:.8125rem}
-  .pop-item-text small{font-size:.6875rem}
+  .pop-item-text b{font-size:clamp(.75rem,3.7vw,.8125rem)}
+  .pop-item-text small{font-size:clamp(.625rem,3.2vw,.6875rem)}
   .pop-list{max-height:min(18rem,60vh)}
   .pop-icon{width:2.25rem;height:2.25rem;border-radius:.75rem}
   .pop-icon .flag-img{width:1.75rem}
-  .pop-code{font-size:.6875rem;padding:.1875rem .5rem}
+  .pop-code{font-size:clamp(.5625rem,3vw,.6875rem);padding:.1875rem .5rem}
   .seg span{min-height:44px;padding:0 .9rem}
 }
 /* Older mobile browsers without container-query support skip the block above; this plain media query gives them the same phone fixes. */
@@ -189,24 +190,25 @@
     .booking{padding-inline:1rem}
     .f-pop{left:0;right:0;top:calc(100% + .625rem);width:auto;border-radius:1.25rem;padding:.625rem .625rem .75rem}
     .pop-search{padding:0 .75rem}
-    .pop-search-input{font-size:.9375rem}
+    .pop-search-input{font-size:clamp(.875rem,3.9vw,.9375rem)}
     .pop-item{gap:.75rem;padding:.5rem .625rem;border-radius:.75rem}
     .pop-item-text small{white-space:normal;overflow:visible;overflow-wrap:anywhere}
     .cabin-grid{grid-template-columns:1fr}
     .pax-pop{gap:.75rem;padding:1rem}
     .pax-row{gap:.65rem}
     .pax-icon{width:2.25rem;height:2.25rem;border-radius:.75rem}
-    .pax-text small{font-size:.75rem}
-    .cabin span{min-height:2.5rem}
-    .pop-title{font-size:.6875rem;font-weight:800}
+    .pax-text b{font-size:clamp(.75rem,3.7vw,.8125rem)}
+    .pax-text small{font-size:clamp(.625rem,3.4vw,.75rem)}
+    .cabin span{min-height:2.5rem;font-size:clamp(.8125rem,3.9vw,.875rem)}
+    .pop-title{font-size:clamp(.5625rem,3vw,.6875rem);font-weight:800}
     .pop-search{min-height:44px}
     .pop-item{min-height:44px}
-    .pop-item-text b{font-size:.8125rem}
-    .pop-item-text small{font-size:.6875rem}
+    .pop-item-text b{font-size:clamp(.75rem,3.7vw,.8125rem)}
+    .pop-item-text small{font-size:clamp(.625rem,3.2vw,.6875rem)}
     .pop-list{max-height:min(18rem,60vh)}
     .pop-icon{width:2.25rem;height:2.25rem;border-radius:.75rem}
     .pop-icon .flag-img{width:1.75rem}
-    .pop-code{font-size:.6875rem;padding:.1875rem .5rem}
+    .pop-code{font-size:clamp(.5625rem,3vw,.6875rem);padding:.1875rem .5rem}
     .seg span{min-height:44px;padding:0 .9rem}
   }
 }
@@ -215,8 +217,9 @@
   .cal-head-icon{width:2.25rem;height:2.25rem;border-radius:.75rem}
   .cal-nav-button{width:2.25rem;height:2.25rem}
   .cal-grid{gap:.125rem}
-  .cal-weekday{padding:.3rem 0;font-size:.6875rem}
-  .cal-day{aspect-ratio:auto;min-height:2.1rem;border-radius:.6rem;font-size:.875rem}
+  .cal-month{font-size:clamp(.8125rem,3.9vw,.9375rem)}
+  .cal-weekday{padding:.3rem 0;font-size:clamp(.5rem,2.6vw,.6875rem);letter-spacing:.02em;white-space:nowrap}
+  .cal-day{aspect-ratio:auto;min-height:2.1rem;border-radius:.6rem;font-size:clamp(.75rem,3.9vw,.875rem)}
 }
 @supports not (container-type:inline-size){
   @media (max-width:600px){
@@ -224,8 +227,9 @@
     .cal-head-icon{width:2.25rem;height:2.25rem;border-radius:.75rem}
     .cal-nav-button{width:2.25rem;height:2.25rem}
     .cal-grid{gap:.125rem}
-    .cal-weekday{padding:.3rem 0;font-size:.6875rem}
-    .cal-day{aspect-ratio:auto;min-height:2.1rem;border-radius:.6rem;font-size:.875rem}
+    .cal-month{font-size:clamp(.8125rem,3.9vw,.9375rem)}
+    .cal-weekday{padding:.3rem 0;font-size:clamp(.5rem,2.6vw,.6875rem);letter-spacing:.02em;white-space:nowrap}
+    .cal-day{aspect-ratio:auto;min-height:2.1rem;border-radius:.6rem;font-size:clamp(.75rem,3.9vw,.875rem)}
   }
 }
 /* While a search pop-up is open the floating Support button steps aside so it never covers the list. */
