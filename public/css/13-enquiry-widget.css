@@ -77,7 +77,7 @@
 /* PASSENGER POP-UP: opens under the passenger card (class "open" is added by the script). */
 .pax-pop{position:absolute;z-index:20;top:calc(100% + .5rem);right:0;width:min(23rem,calc(100vw - 2rem));max-width:calc(100vw - 1rem);display:grid;gap:1rem;padding:1.25rem;border:1px solid var(--color-border);border-radius:var(--radius-card);background:var(--color-card-background);box-shadow:0 8px 18px -8px rgba(0,0,0,.35);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity var(--motion-duration-normal) var(--motion-easing),transform var(--motion-duration-normal) var(--motion-easing),visibility 0s var(--motion-duration-normal)}
 .f.open .pax-pop{opacity:1;visibility:visible;transform:none;transition-delay:0s}
-@container booking (max-width:35.99rem){.pax-pop{left:0;right:0;width:auto}}
+@container booking (max-width:35.99rem){.pax-pop{left:0;right:auto;top:calc(100% + .625rem);width:auto;min-width:min(18.75rem,calc(100vw - 2.5rem));max-width:calc(100vw - 1.5rem);border-radius:1.25rem}}
 .pax-title,.pop-title{margin:0;font-size:.75rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-muted)}
 .pax-row{display:flex;align-items:center;gap:.9rem}
 .pax-icon{flex:none;width:2.5rem;height:2.5rem;display:grid;place-items:center;border-radius:.75rem;background:color-mix(in srgb,var(--color-brand-gold) 20%,transparent);color:var(--color-text)}
@@ -137,7 +137,7 @@
    These sit BEFORE the phone override blocks further down so the overrides win the cascade and scale the
    calendar down on small screens. (Base rules placed after an override silently defeat it.) */
 .cal-pop{width:min(23rem,calc(100vw - 2rem))}
-@container booking (max-width:35.99rem){.f-pop.cal-pop{width:auto}}
+@container booking (max-width:35.99rem){.f-pop.cal-pop{width:auto;min-width:min(23rem,calc(100vw - 2.5rem))}}
 @supports not (container-type:inline-size){@media (max-width:600px){.f-pop.cal-pop{width:auto}}}
 .cal-head{display:flex;align-items:center;gap:.9rem;padding:.7rem;border-radius:var(--radius-inner);background:var(--color-section-alt-background)}
 .cal-head-icon{flex:none;width:2.75rem;height:2.75rem;display:grid;place-items:center;border-radius:.9rem;background:var(--color-brand-gold);color:var(--color-black)}
@@ -160,7 +160,7 @@
    long airport names wrap instead of ending with "...", and cabin class goes on one column so no option is cut off. */
 @container booking (max-width:35.99rem){
   .booking{padding-inline:1rem}
-  .f-pop{left:0;right:0;width:auto;padding:.9rem .75rem}
+  .f-pop{left:0;right:auto;top:calc(100% + .625rem);width:auto;min-width:min(18.75rem,calc(100vw - 2.5rem));max-width:calc(100vw - 1.5rem);border-radius:1.25rem;padding:.625rem .625rem .75rem}
   .pop-search{padding:0 .75rem}
   .pop-search-input{font-size:.9375rem}
   .pop-item{gap:.65rem;padding:.5rem .4rem}
@@ -186,7 +186,7 @@
 @supports not (container-type:inline-size){
   @media (max-width:600px){
     .booking{padding-inline:1rem}
-    .f-pop{left:0;right:0;width:auto;padding:.9rem .75rem}
+    .f-pop{left:0;right:auto;top:calc(100% + .625rem);width:auto;min-width:min(18.75rem,calc(100vw - 2.5rem));max-width:calc(100vw - 1.5rem);border-radius:1.25rem;padding:.625rem .625rem .75rem}
     .pop-search{padding:0 .75rem}
     .pop-search-input{font-size:.9375rem}
     .pop-item{gap:.65rem;padding:.5rem .4rem}
