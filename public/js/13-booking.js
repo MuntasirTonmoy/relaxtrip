@@ -284,8 +284,8 @@ function positionPopup(wrapper, popup) {
   popup.style.right = '';
   const cardRect = bookingPanelsBox.getBoundingClientRect();
   const wrapperRect = wrapper.getBoundingClientRect();
-  const margin = 16;
   const isNarrowCard = cardRect.width < 36 * parseFloat(getComputedStyle(document.documentElement).fontSize);   /* 36rem, same as the CSS */
+  const margin = isNarrowCard ? 8 : 16;                                /* phones: the pop-up takes every pixel back */
   const popupWidth = isNarrowCard ? cardRect.width - margin * 2 : Math.min(popup.offsetWidth, cardRect.width - margin * 2);
   const popupLeft = isNarrowCard ? cardRect.left + margin : Math.min(wrapperRect.left, cardRect.right - margin - popupWidth);
   popup.style.width = popupWidth + 'px';
@@ -426,6 +426,17 @@ addEventListener('keydown', event => {
   const openWrapper = document.querySelector('.f.open');
   closeAllFieldPopups();
   if (openWrapper) openWrapper.querySelector('.f-card-button').focus();          /* give the focus back to the card */
+});
+/* Rotation, address-bar collapse or a window resize re-measures every open pop-up so it still fits. */
+let popupResizeFrame = 0;
+addEventListener('resize', () => {
+  cancelAnimationFrame(popupResizeFrame);
+  popupResizeFrame = requestAnimationFrame(() => {
+    document.querySelectorAll('.f.open').forEach(wrapper => {
+      const popup = wrapper.querySelector('.f-pop, .pax-pop');
+      if (popup) positionPopup(wrapper, popup);
+    });
+  });
 });
 
 /* ---------- Sending ---------- */
