@@ -285,7 +285,7 @@ function positionPopup(wrapper, popup) {
   const cardRect = bookingPanelsBox.getBoundingClientRect();
   const wrapperRect = wrapper.getBoundingClientRect();
   const isNarrowCard = cardRect.width < 36 * parseFloat(getComputedStyle(document.documentElement).fontSize);   /* 36rem, same as the CSS */
-  const margin = isNarrowCard ? 8 : 16;                                /* phones: the pop-up takes every pixel back */
+  const margin = isNarrowCard ? -16 : 16;                              /* phones: the pop-up spans the whole card, edge to edge */
   const popupWidth = isNarrowCard ? cardRect.width - margin * 2 : Math.min(popup.offsetWidth, cardRect.width - margin * 2);
   const popupLeft = isNarrowCard ? cardRect.left + margin : Math.min(wrapperRect.left, cardRect.right - margin - popupWidth);
   popup.style.width = popupWidth + 'px';
