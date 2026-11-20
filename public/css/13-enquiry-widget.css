@@ -172,6 +172,11 @@
   .pax-text small{font-size:.75rem}
   .pax-step{width:2.5rem;height:2.5rem}
   .cabin span{min-height:2.5rem}
+  .pop-title{font-size:.6875rem;font-weight:800}
+  .pop-search{min-height:44px}
+  .pop-item{min-height:44px}
+  .pop-item-text b{font-size:.875rem}
+  .pop-list{max-height:min(18rem,60vh)}
   .pop-icon{width:2.25rem;height:2.25rem;border-radius:.65rem}
   .pop-icon .flag-img{width:1.75rem}
   .pop-code{font-size:.75rem;padding:.2rem .5rem}
@@ -193,6 +198,11 @@
     .pax-text small{font-size:.75rem}
     .pax-step{width:2.5rem;height:2.5rem}
     .cabin span{min-height:2.5rem}
+    .pop-title{font-size:.6875rem;font-weight:800}
+    .pop-search{min-height:44px}
+    .pop-item{min-height:44px}
+    .pop-item-text b{font-size:.875rem}
+    .pop-list{max-height:min(18rem,60vh)}
     .pop-icon{width:2.25rem;height:2.25rem;border-radius:.65rem}
     .pop-icon .flag-img{width:1.75rem}
     .pop-code{font-size:.75rem;padding:.2rem .5rem}
