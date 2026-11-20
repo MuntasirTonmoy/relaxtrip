@@ -132,7 +132,8 @@ export const SITE_TEXT = {
 
   /* ---- SUPPORT BUTTON (bottom-right) ---- */
   support_label: { en: "Support", bn: "সাপোর্ট" },
-  support_title: { en: "Need help with a booking?", bn: "বুকিং নিয়ে সাহায্য লাগবে?" },
+  support_title: { en: "Need help?", bn: "সাহায্য লাগবে?" },
+  support_subtitle: { en: "Reach us by phone, WhatsApp or email", bn: "ফোন, হোয়াটসঅ্যাপ বা ইমেইলে যোগাযোগ করুন" },
   support_close: { en: "Close", bn: "বন্ধ করুন" },
 };
 
