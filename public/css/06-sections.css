@@ -65,8 +65,8 @@ blockquote{font-size:clamp(1.2375rem,1.13rem + .5vw,1.4375rem);font-weight:500;l
 /* LOCATION: contact card + map card side by side from 1024px. */
 .loc{display:grid;gap:var(--grid-gap)} @media(min-width:1024px){.loc{grid-template-columns:5fr 7fr}}
 /* Contact card (address, phone, email, hours, directions button). */
-.contact{display:grid;gap:1.5rem;align-content:space-between}
-.contact ul{display:grid;gap:1rem;margin-top:1.25rem;color:var(--color-text-muted);font-weight:500} .contact li{display:flex;gap:.9rem;align-items:flex-start} .contact li .i{color:var(--color-accent-text);margin-top:.3rem}
+.contact{display:grid;gap:1.75rem;align-content:space-between}
+.contact ul{display:grid;gap:1.4rem;margin-top:1.4rem;color:var(--color-text-muted);font-weight:500} .contact li{display:flex;gap:.9rem;align-items:flex-start} .contact li .i{color:var(--color-accent-text);margin-top:.3rem}
 /* Contact links change colour on hover, but NOT the Directions button (it is a .btn). */
 .contact a:not(.btn){text-decoration:none;transition:color var(--motion-duration-fast)} .contact a:not(.btn):hover{color:var(--color-accent-text)}
 /* MAP card: an illustrated map that opens Google Maps (an embedded map is blocked in some previews). */

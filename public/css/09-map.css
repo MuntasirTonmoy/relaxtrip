@@ -24,5 +24,5 @@ html[lang=bn] .wm,html[lang=bn] .wm *{letter-spacing:-.03em}
 /* Map: water shape, roads, pulsing halo and the "Get Directions" pill. */
 .m-w{fill:color-mix(in srgb,var(--color-brand-charcoal) 22%,transparent)} .m-r{stroke:var(--color-border);stroke-width:6}
 .m-halo{fill:rgba(255,180,0,.28);transform-box:fill-box;transform-origin:center;animation:pulse 2s ease-in-out infinite}
-.m-lab{position:absolute;left:1rem;bottom:1rem;display:inline-flex;gap:.5rem;align-items:center;padding:.65rem 1.1rem;border-radius:999px;background:var(--color-brand-gold);color:var(--color-black);font-weight:700;font-size:var(--font-size-small);text-decoration:none}
+.m-lab{position:absolute;left:1rem;bottom:1rem;display:inline-flex;gap:.5rem;align-items:center;max-width:calc(100% - 2rem);padding:.65rem 1.1rem;border-radius:999px;background:var(--color-brand-gold);color:var(--color-black);font-weight:700;font-size:clamp(.72rem,2.7vw,.875rem);line-height:1.35;text-decoration:none;white-space:normal}
 

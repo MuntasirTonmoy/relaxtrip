@@ -76,8 +76,8 @@
 .support-panel{width:min(340px,calc(100vw - 2rem));display:grid;gap:1rem;padding:1.25rem;border:1px solid var(--color-border);border-radius:var(--radius-card);background:var(--color-card-background);box-shadow:0 24px 48px -16px rgba(0,0,0,.45);transform-origin:bottom right;opacity:0;transform:translateY(12px) scale(.98);visibility:hidden;transition:opacity var(--motion-duration-normal) var(--motion-easing),transform var(--motion-duration-normal) var(--motion-easing),visibility 0s var(--motion-duration-normal)}
 .support.open .support-panel{opacity:1;transform:none;visibility:visible;transition-delay:0s}
 .support-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
-.support-head h2{font-size:var(--font-size-large)}
-.support-head p{margin-top:.25rem;font-size:.8125rem;color:var(--color-text-muted)}
+.support-head h2{font-size:clamp(1rem,4.2vw,1.25rem)}
+.support-head p{margin-top:.3rem;font-size:clamp(.72rem,2.9vw,.8125rem);line-height:1.45}
 .support-close{flex:none;width:36px;height:36px;display:grid;place-items:center;padding:0;border:1px solid var(--color-border);border-radius:50%;background:transparent;color:var(--color-text);cursor:pointer;transition:border-color var(--motion-duration-fast)}
 .support-close:hover{border-color:var(--color-brand-gold)}
 .support-list{display:grid;gap:.6rem}
@@ -86,6 +86,6 @@
 .support-link:hover{transform:translateY(-2px);border-color:var(--color-brand-gold)}
 .support-link .ibox{width:2.5rem;height:2.5rem;flex:none}
 .support-link b{display:block;font-size:var(--font-size-small)}
-.support-link small{color:var(--color-text-muted);font-size:.8125rem}
+.support-link small{color:var(--color-text-muted);font-size:clamp(.72rem,2.9vw,.8125rem);line-height:1.4;white-space:normal}
 
 

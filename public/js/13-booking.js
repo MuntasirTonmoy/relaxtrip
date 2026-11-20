@@ -21,7 +21,7 @@ function enquiryFieldHtml(tab, field) {
   const keyPrefix = `enquiry_${tab.id}_${field.name}`;
   const desktopColumns = field.columns || 3;                       /* out of 12 (halves allowed) */
   const tabletColumns = field.tablet || (desktopColumns >= 12 ? 12 : desktopColumns >= 2.5 ? 6 : 4);
-  const phoneColumns = desktopColumns >= 2.5 || field.type === 'travellers' ? 12 : 6;     /* a field of 12 is always a full row */
+  const phoneColumns = field.phone || (desktopColumns >= 2.5 || field.type === 'travellers' ? 12 : 6);     /* a field of 12 is always a full row */
   const labelKey = cardText(keyPrefix, 0, 'label', field.label);
   const wrapperStart = (extraClass = '', extraAttributes = '') =>
     `<div class="f ${extraClass}" data-field="${field.name}" data-type="${field.type}" style="--c-desktop:${desktopColumns};--c-tablet:${tabletColumns};--c-phone:${phoneColumns}"` +
@@ -247,11 +247,10 @@ function refreshEnquiryForm(form) {
     wrapper.classList.toggle('is-disabled', !isEnabled);
     wrapper.querySelectorAll('[data-value-input]').forEach(control => { control.disabled = !isEnabled; });   /* a disabled field is not checked */
   });
-  /* The arrow between From and To: one arrow (one way) or both arrows (round trip). */
+  /* The arrow between From and To: always the double arrow — tapping it swaps the two values. */
   form.querySelectorAll('.f-swap').forEach(button => {
-    const isRoundTrip = form.elements.tripType && form.elements.tripType.value === 'return';
     const svg = button.querySelector('svg');
-    if (svg) svg.outerHTML = iconSvg(isRoundTrip ? 'swap' : 'arrow-right');
+    if (svg) svg.outerHTML = iconSvg('swap');
   });
   form.querySelectorAll('.f[data-type=date]').forEach(wrapper => {
     const field = fieldOfWrapper(form, wrapper);
